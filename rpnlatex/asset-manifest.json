@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "./static/css/main.c7173818.css",
-    "main.js": "./static/js/main.d4f3746d.js",
+    "main.css": "./static/css/main.7d68f157.css",
+    "main.js": "./static/js/main.c2929c58.js",
     "index.html": "./index.html",
     "static/media/KaTeX_AMS-Regular.ttf": "./static/media/KaTeX_AMS-Regular.1436d720bab5540f6042.ttf",
     "static/media/KaTeX_Main-Regular.ttf": "./static/media/KaTeX_Main-Regular.1f59b6fa39fdefdd8d5d.ttf",
@@ -16,8 +16,8 @@
     "static/media/KaTeX_Typewriter-Regular.ttf": "./static/media/KaTeX_Typewriter-Regular.ea67dc3c167e3d749122.ttf",
     "static/media/KaTeX_SansSerif-Bold.ttf": "./static/media/KaTeX_SansSerif-Bold.219aa2d692ab036bee6a.ttf",
     "static/media/KaTeX_Main-Regular.woff2": "./static/media/KaTeX_Main-Regular.94c5cef0897080e2abc2.woff2",
-    "static/media/KaTeX_AMS-Regular.woff2": "./static/media/KaTeX_AMS-Regular.cf3cce94764c737eac33.woff2",
     "service-worker.js": "./service-worker.js",
+    "static/media/KaTeX_AMS-Regular.woff2": "./static/media/KaTeX_AMS-Regular.cf3cce94764c737eac33.woff2",
     "static/media/KaTeX_Main-Bold.woff2": "./static/media/KaTeX_Main-Bold.8d75a1e6ecd58a4eb994.woff2",
     "static/media/KaTeX_SansSerif-Italic.ttf": "./static/media/KaTeX_SansSerif-Italic.ab042de625e5f6cb7518.ttf",
     "static/media/KaTeX_SansSerif-Regular.ttf": "./static/media/KaTeX_SansSerif-Regular.927a3bab5c885b4747e4.ttf",
@@ -64,11 +64,11 @@
     "static/media/KaTeX_Size4-Regular.woff2": "./static/media/KaTeX_Size4-Regular.cf8982ba6667cc82989a.woff2",
     "static/media/KaTeX_Size3-Regular.woff": "./static/media/KaTeX_Size3-Regular.a562474e7cb5eaa89d50.woff",
     "static/media/KaTeX_Size3-Regular.woff2": "./static/media/KaTeX_Size3-Regular.5cce6e91e556438f05bc.woff2",
-    "main.c7173818.css.map": "./static/css/main.c7173818.css.map",
-    "main.d4f3746d.js.map": "./static/js/main.d4f3746d.js.map"
+    "main.7d68f157.css.map": "./static/css/main.7d68f157.css.map",
+    "main.c2929c58.js.map": "./static/js/main.c2929c58.js.map"
   },
   "entrypoints": [
-    "static/css/main.c7173818.css",
-    "static/js/main.d4f3746d.js"
+    "static/css/main.7d68f157.css",
+    "static/js/main.c2929c58.js"
   ]
 }
