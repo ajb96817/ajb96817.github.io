@@ -8,8 +8,8 @@
     <meta name="description" content="rpnlatex" />
     <link rel="manifest" href="manifest.json" />
     <title>rpnlatex</title>
-    <script type="module" crossorigin src="/rpnlatex/assets/index-CeThLp7z.js"></script>
-    <link rel="stylesheet" crossorigin href="/rpnlatex/assets/index-CKrdi3We.css">
+    <script type="module" crossorigin src="./assets/index-CE8Asfmb.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-yVp-xZz0.css">
   </head>
   <body id="body">
     <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -19,7 +19,7 @@
 
     <!-- The entire user manual is inline here, to be unhidden at runtime when requested. -->
     <div id="helptext" style="display: none;">
-      <div class="version_info">rpnlatex v1.2.3</div>
+      <div class="version_info">rpnlatex v1.3.0</div>
       <h1>User Guide</h1>
       <p>
         Scroll this text up and down with
@@ -189,7 +189,8 @@
 	<span class="keybinding">Enter</span> will parse what you have typed and put it on the stack.
 	A malformed expression will signal an error; allowed expressions include:
 	<ul>
-	  <li>Numbers such as 3, -10, 5.12 (scientific notation not supported).</li>
+	  <li>Numbers such as 3, -10, 5.12</li>
+	  <li>Scientific notation such as 3e-4 (converts to <code>3\times{10}^{-4}</code>)</li>
 	  <li>Single-letter variables such as <code>x</code>.</li>
 	  <li>
 	    Implicit multiplication such as <code>5x</code> or <code>xy</code>
@@ -206,6 +207,10 @@
           <li>
 	    <a href="#placeholders">Placeholders</a> via the sequence
 	    <span class="keybinding">[</span><span class="keybinding">]</span>.
+	  </li>
+	  <li>
+	    <span class="keybinding">@</span> can be used to create a <code>\pi</code> symbol, as a special case.
+	    For example: <kbd>1//2@i</kbd> <code>\to \frac{1}{2\pi i}</code>.
 	  </li>
 	  <li><code>x!</code> factorial notation is allowed.</li>
 	  <li>Expressions can be parenthesized, e.g. <code>(x+y)</code>.  Brackets and curly braces may also
@@ -491,53 +496,68 @@
           </tr>
           <tr>
             <td><span class="keybinding">P</span> <code>\pm</code></td>
+            <td><span class="keybinding">q</span> <code>=</code></td>
             <td><span class="keybinding">s</span> <code>\sum</code></td>
             <td><span class="keybinding">t</span> <code>\therefore</code></td>
             <td><span class="keybinding">U</span> <code>\bigcup</code></td>
-            <td><span class="keybinding">v</span> <code>\vee</code></td>
           </tr>
           <tr>
+            <td><span class="keybinding">v</span> <code>\vee</code></td>
             <td><span class="keybinding">V</span> <code>\bigvee</code></td>
             <td><span class="keybinding">w</span> <code>\wedge</code></td>
             <td><span class="keybinding">W</span> <code>\bigwedge</code></td>
             <td><span class="keybinding">y</span> <code>\oint</code></td>
-            <td><span class="keybinding">Y</span> <code>\oiint</code></td>
           </tr>
           <tr>
+            <td><span class="keybinding">Y</span> <code>\oiint</code></td>
             <td><span class="keybinding">.</span> <code>\dots</code></td>
             <td><span class="keybinding">&gt;</span> <code>\cdots</code></td>
             <td><span class="keybinding">-</span> <code>-</code></td>
             <td><span class="keybinding">+</span> <code>+</code></td>
-            <td><span class="keybinding">*</span> <code>\star</code></td>
           </tr>
           <tr>
+            <td><span class="keybinding">*</span> <code>\star</code></td>
             <td><span class="keybinding">|</span> <code>|</code></td>
             <td><span class="keybinding">?</span> <code>?</code></td>
             <td><span class="keybinding">!</span> <code>!</code></td>
             <td><span class="keybinding">,</span> <code>,</code></td>
-            <td><span class="keybinding">;</span> <code>;</code></td>
 	  </tr>
 	  <tr>
+            <td><span class="keybinding">;</span> <code>;</code></td>
             <td><span class="keybinding">:</span> <code>:</code></td>
             <td><span class="keybinding">`</span> <code>`</code></td>
+            <td><span class="keybinding">/</span> <code>/</code></td>
+            <td><span class="keybinding">\</span> <code>\backslash</code></td>
+          </tr>
+	  <tr>
             <td><span class="keybinding">_</span> <code>\_</code></td>
             <td><span class="keybinding">&uarr;</span> <code>\uparrow</code></td>
             <td><span class="keybinding">&darr;</span> <code>\downarrow</code></td>
-          </tr>
-          <tr>
-            <td colspan="2">
-              <span class="keybinding">&nbsp;</span> (blank)
-            </td>
-            <td colspan="3">
-              <span class="keybinding">&#39;</span>
-              <code>\htmlClass{placeholder_expr}{\blacksquare}</code> (placeholder)
-            </td>
-          </tr>
+            <td><span class="keybinding">&larr;</span> <code>\leftarrow</code></td>
+            <td><span class="keybinding">&rarr;</span> <code>\rightarrow</code></td>
+	  </tr>
       </tbody></table>
       <p>
-        Also, <span class="keybinding">=</span> puts a &quot;separator&quot; onto
-        the stack, which can be useful to visually separate parts of the document.
+	Also available are:
       </p>
+      <ul class="keybindings">
+	<li>
+	  <span class="keybinding">&nbsp;</span>
+	  Create a <em>blank</em> expression, which has no content of its own but can still
+	  be combined with other expressions as usual.  This is different from a space
+	  character because it has zero width.  A blank expression on its own will be displayed
+	  as "(blank)" until it's combined with something.
+	</li>
+	<li>
+	  <span class="keybinding">=</span>
+	  Create a <em>separator</em>, a horizontal rule text object which can be
+	  useful to visually separate parts of the document.
+	</li>
+	<li>
+          <span class="keybinding">&#39;</span>
+	  Create a <em>placeholder</em>.  See the following section for more details.
+	</li>
+      </ul>
 
       <h2>
         <a name="placeholders" id="help_placeholders">Placeholders</a>
@@ -749,7 +769,7 @@
             <td><span class="keybinding">:</span> <code>x : y</code></td>
           </tr>
           <tr>
-            <td><span class="keybinding">;</span> <code>x;\,y</code></td>
+            <td><span class="keybinding">;</span> <code>x;y</code></td>
             <td><span class="keybinding">`</span> <code>x^\mathrm{T} y</code></td>
             <td><span class="keybinding">/</span> <code>x/y</code></td>
 	  </tr>
@@ -972,8 +992,13 @@
         </li>
 	<li>
 	  <span class="keybinding">|</span> <code>y\enspace x \to \left.y\right\vert_{x}</code>
-	  &quot;where&quot; notation, for example:
+	  &nbsp;&quot;where&quot; notation, for example:
 	  <code>\left.\frac{1}{\sqrt{1-x^2}}\right\vert_{x=1/2}</code>
+	</li>
+	<li>
+	  <span class="keybinding">^</span> <code>x\times{10}^y</code>
+	  &nbsp;Scientific notation, for example:
+	  <code>1.23\times{10}^{-4}</code>
 	</li>
         <li>
           <span class="keybinding">Enter</span> <code>z\enspace y\enspace x \to z_y^x</code>
@@ -1455,12 +1480,12 @@
         <li>
           <span class="keybinding">|</span> or <span class="keybinding">Enter</span>
           Stack N matrices (or other aligned structures) on top of each other (default 2).
-          Both must have the same number of columns.
+          All must have the same number of columns.
           This is the main way to build matrices from individual rows.
         </li>
         <li>
           <span class="keybinding">h</span>
-          Stack N matrices side by side (default 2).  Both must have the same number of rows.
+          Stack N matrices side by side (default 2).  All must have the same number of rows.
         </li>
       </ul>
 
@@ -1497,7 +1522,8 @@
           <span class="keybinding">c</span>
           Build a list of N cases for a piecewise function definition.
           If the component items are infix expressions joined with a colon
-          (via <span class="keybinding">,</span><span class="keybinding">:</span>),
+          (via <span class="keybinding">,</span><span class="keybinding">:</span>
+	  or <span class="keybinding">:</span><span class="keybinding">:</span>),
           they will be split up and placed as the left and right parts of the case structure.
           For example:
           <br />
@@ -1722,7 +1748,7 @@
         can be used as alternatives to
         <span class="keybinding">,</span><span class="keybinding">;</span>
         and
-        <span class="keybinding">,</span><span class="keybinding">:</span>
+        <span class="keybinding">,</span><span class="keybinding">:</span>.
       </p>
       <p>Lowercase Greek letters use the <span class="keybinding">;</span> prefix:</p>
       <table class="keybindings"><tbody>
@@ -1871,12 +1897,13 @@
           and <span class="keybinding">$</span><span class="keybinding">M</span>.
         </li>
         <li>
-          <span class="keybinding">z</span>
+          <span class="keybinding">z</span> or <span class="keybinding">+</span>
           Increase the text zoom factor in steps of 5%.  A prefix argument can be used to jump up multiple steps at once.  A prefix argument of <span class="keybinding">*</span> resets the zoom factor back to the default.
         </li>
         <li>
-          <span class="keybinding">Z</span>
-          Like <span class="keybinding">z</span> but decrease the zoom factor instead.
+          <span class="keybinding">Z</span> or <span class="keybinding">-</span>
+          Like <span class="keybinding">z</span> or <span class="keybinding">+</span>
+	  but decrease the zoom factor instead.
         </li>
         <li>
           <span class="keybinding">f</span>
