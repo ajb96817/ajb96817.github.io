@@ -9,8 +9,8 @@
     <link rel="manifest" href="manifest.json" />
     <!-- <link rel="icon" type="image/png" sizes="64x64" href="favicon-64x64.png" /> -->
     <title>rpnlatex</title>
-    <script type="module" crossorigin src="./assets/index-C5MkZdf2.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-BOQkQ3Gv.css">
+    <script type="module" crossorigin src="./assets/index-9oDEjUYL.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-CiWSasz2.css">
   </head>
   <body id="body">
     <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -20,7 +20,7 @@
 
     <!-- The entire user manual is inline here, to be unhidden at runtime when requested. -->
     <div id="helptext" style="display: none;">
-      <div class="version_info">rpnlatex v1.3.1</div>
+      <div class="version_info">rpnlatex v1.3.2</div>
       <h1>User Guide</h1>
       <p>
         Scroll this text up and down with
@@ -33,9 +33,8 @@
       </p>
       <p>
         The editor is divided into two sections: the <em>stack</em> and the <em>document</em>.  The stack is where
-        text and math expressions are built up; once you have built an expression on the stack that you want to keep,
-        you can transfer it to the document for storage.  The stack is for temporary use while you are
-        working on something to place into the document.
+        math expressions are built up; once you have built an expression on the stack that you want to keep,
+        you can transfer it to the document for storage.
       </p>
       <p>
         Expressions are entered using <em>reverse Polish notation</em> (RPN) which means
@@ -45,19 +44,20 @@
         followed by <span class="keybinding">+</span> to apply the addition operation.
       </p>
       <p>
-        The stack is displayed bottom-up; that is, the item most recently placed on the stack is the one shown at
-        the bottom of the screen.  The less recent items are then stacked up above it.
-        Editor operations always work with the first few items shown at the bottom of the screen (known, confusingly, as
-        the "stack top").  In this document, the labels <em>x</em>, <em>y</em> and <em>z</em> are used to refer to
+        The stack is displayed bottom-up; that is, the item most recently placed on the stack
+	(called the &quot;stack top&quot;) is the one shown at the bottom of the screen.
+	The older items are stacked up above it.
+        Editor operations always work with the first few items on the stack.
+        In this user guide, the labels <em>x</em>, <em>y</em> and <em>z</em> are used to refer to
         these first few items.
       </p>
       <p>
         Note that items on the stack have a small colored bar shown to the left of them.  This indicates the item's
-	size as well as its "type", which can be either a symbolic expression (grey) or a piece of text (blue).
+	size as well as its "type": a symbolic expression (grey) or a piece of text (blue).
       </p>
       <p>
-        This editor is designed to be operated entirely from the keyboard.  All operations can be performed using
-        either single keystrokes or pairs of keystrokes (a <em>prefix</em> key followed by a <em>subcommand</em> key).
+        This editor is designed to be operated entirely from the keyboard.  Operations are performed using
+        single keystrokes or pairs of keystrokes (a <em>prefix</em> key followed by a <em>subcommand</em> key).
       </p>
       <p>
 	Invalid or unassigned key inputs are silently ignored.
@@ -89,7 +89,6 @@
         <li>
           <span class="keybinding">^</span> or <span class="keybinding">`</span> <em>(backtick)</em>
           Make superscript: <code>x\enspace y \to x^y</code>
-	  (also <span class="keybinding">Ctrl+u</span>).
         </li>
         <li><span class="keybinding">Enter</span>
           Make subscript: <code>x\enspace y \to x_y</code>
@@ -151,7 +150,7 @@
         <li><span class="keybinding">.</span> <em>(period)</em> Add a <a href="#decorations">decoration</a> to the stack top.</li>
         <li><span class="keybinding">,</span> <em>(comma)</em> Combine two items with an <a href="#infix">infix operator</a>.</li>
         <li><span class="keybinding">=</span> Combine two items with a <a href="#relational">relational operator</a>.</li>
-        <li><span class="keybinding">/</span> Apply various <a href="#operators">functions and operators</a> to arguments from the stack.</li>
+        <li><span class="keybinding">/</span> Apply various <a href="#operators">functions and operators</a>.</li>
         <li><span class="keybinding">/</span><span class="keybinding">d</span> Build different kinds of <a href="#derivatives">derivatives</a>.</li>
         <li><span class="keybinding">/</span><span class="keybinding">i</span> Apply <a href="#integrals">integral limits</a>.</li>
         <li><span class="keybinding">/</span><span class="keybinding">f</span> Create <a href="#named_operators">named operators</a>.</li>
@@ -356,7 +355,7 @@
 	<strong>Document Operations:</strong>
 	These commands transfer items between the stack and the document.
 	The document has a shaded <em>selection indicator</em> which you can
-	move with the <span class="keybinding">&uarr;</span> <span class="keybinding">&darr;</span>
+	move with the <span class="keybinding">&uarr;</span><span class="keybinding">&darr;</span>
 	arrow keys (without using the <span class="keybinding">Tab</span> prefix).
 	<span class="keybinding">Shift+&uarr;</span> and <span class="keybinding">Shift+&darr;</span>
 	will shift the selected item up or down within the document.
@@ -389,11 +388,25 @@
           <span class="keybinding">l</span>
           Recenter the document view around the current selection indicator.
         </li>
+        <li>
+          <span class="keybinding">&larr;</span><span class="keybinding">&rarr;</span>
+          <em>(left/right arrows)</em> Scroll the document panel left or right if the contents are too wide.
+          <span class="keybinding">Shift+&larr;</span> and <span class="keybinding">Shift+&rarr;</span>
+          can also be used without the <span class="keybinding">Tab</span> prefix.
+        </li>
       </ul>
       <p>
 	<strong>Utilities:</strong>
       </p>
       <ul class="keybindings">
+        <li><span class="keybinding">Tab</span>
+          <em>Undo:</em> Revert stack and document back to the last 
+          state they were in.  Up to 100 undo states are available.
+        </li>
+        <li>
+          <span class="keybinding">.</span> <em>Redo:</em> Replay states that were
+          previously undone.
+        </li>
         <li>
           <span class="keybinding">c</span>
           Copy the stack top into an internal clipboard slot.
@@ -421,14 +434,6 @@
           <span class="keybinding">X</span>
           Clear the the entire stack and document.
         </li>
-        <li><span class="keybinding">Tab</span>
-          <em>Undo:</em> Revert stack and document back to the last 
-          state they were in.  Up to 100 undo states are available.
-        </li>
-        <li>
-          <span class="keybinding">.</span> <em>Redo:</em> Replay states that were
-          previously undone.
-        </li>
         <li>
           <span class="keybinding">!</span> <em>Export document:</em>
 	  Copy the document content to the clipboard as LaTeX text.
@@ -440,12 +445,6 @@
 	<li>
 	  <span class="keybinding">$</span>
 	  Extract the LaTeX source of the top stack item as a special code object.
-        </li>
-        <li>
-          <span class="keybinding">&larr;</span> <span class="keybinding">&rarr;</span>
-          <em>(left/right arrows)</em> Scroll the document panel left or right if the contents are too wide.
-          <span class="keybinding">Shift+&larr;</span> and <span class="keybinding">Shift+&rarr;</span>
-          can also be used without the <span class="keybinding">Tab</span> prefix.
         </li>
       </ul>
 
@@ -646,31 +645,31 @@
           </tr>
           <tr>
             <td><span class="keybinding">M</span> <code>\mp x</code></td>
-            <td><span class="keybinding">n</span> <code>\neg x</code></td>
-            <td><span class="keybinding">o</span> <code>\bar x</code></td>
+            <td><span class="keybinding">n</span> <code>\bar x</code></td>
+            <td><span class="keybinding">o</span> <code>\overline{x\dots}</code></td>
           </tr>
           <tr>
-            <td><span class="keybinding">O</span> or <span class="keybinding">w</span> <code>\overline{x\dots}</code></td>
             <td><span class="keybinding">p</span> <code>x_\perp</code></td>
             <td><span class="keybinding">P</span> <code>\pm x</code></td>
+            <td><span class="keybinding">q</span> <code>= x</code></td>
           </tr>
           <tr>
-            <td><span class="keybinding">q</span> <code>= x</code></td>
             <td><span class="keybinding">r</span> <code>\mathrm x</code> (roman)</td>
             <td><span class="keybinding">s</span> <code>\mathsf x</code> (sans-serif)</td>
+            <td><span class="keybinding">S</span> <code>\mathsfit x</code> (italic sans)</td>
           </tr>
           <tr>
-            <td><span class="keybinding">S</span> <code>\mathsfit x</code> (italic sans)</td>
             <td><span class="keybinding">t</span> <code>\to x</code></td>
             <td><span class="keybinding">T</span> <code>\widetilde{x\dots}</code></td>
-          </tr>
-          <tr>
             <td><span class="keybinding">u</span> <code>\breve x</code></td>
-            <td><span class="keybinding">U</span> <code>\utilde x</code></td>
-            <td><span class="keybinding">v</span> <code>\vec x</code></td>
           </tr>
           <tr>
-            <td><span class="keybinding">V</span> <code>\check x</code></td>
+            <td><span class="keybinding">U</span> <code>\utilde{x\dots}</code></td>
+            <td><span class="keybinding">v</span> <code>\vec x</code></td>
+            <td><span class="keybinding">V</span> <code>\overrightharpoon{x\dots}</code></td>
+          </tr>
+          <tr>
+            <td><span class="keybinding">w</span> <code>\check x</code></td>
             <td><span class="keybinding">W</span> <code>\widecheck{x\dots}</code></td>
             <td><span class="keybinding">x</span> <code>\boxed x</code> (box)</td>
           </tr>
@@ -697,12 +696,17 @@
           <tr>
             <td><span class="keybinding">~</span> <code>\tilde x</code></td>
             <td><span class="keybinding">/</span> <code>1/x</code></td>
-            <td><span class="keybinding">_</span> <code>\underline x</code></td>
+            <td><span class="keybinding">_</span> <code>\underline{x\dots}</code></td>
           </tr>
           <tr>
+            <td><span class="keybinding">!</span> <code>\neg x</code></td>
             <td><span class="keybinding">\</span> <code>\bcancel x</code></td>
             <td><span class="keybinding">[</span> <code>\small x</code> (smaller)</td>
+	  </tr>
+	  <tr>
             <td><span class="keybinding">]</span> <code>\large x</code> (larger)</td>
+            <td><span class="keybinding">{</span> <code>\overbrace{x\dots}</code></td>
+            <td><span class="keybinding">}</span> <code>\underbrace{x\dots}</code></td>
           </tr>
       </tbody></table>
 
@@ -726,7 +730,7 @@
           </tr>
           <tr>
             <td><span class="keybinding">F</span> <code>x\quad\mathrm{iff}\quad y</code></td>
-            <td><span class="keybinding">g</span> <code>x\gets y</code></td>
+            <td><span class="keybinding">g</span> <code>x\gets y</code> (<strong>g</strong>ets)</td>
             <td>
 	      <span class="keybinding">k</span> or <span class="keybinding">|</span>
 	      <code>\left.x\,\middle\vert\,y\right.</code>
@@ -734,71 +738,75 @@
           </tr>
           <tr>
             <td><span class="keybinding">l</span> <code>x\parallel y</code></td>
+            <td><span class="keybinding">m</span> <code>x\pmod y</code></td>
             <td><span class="keybinding">M</span> <code>x\mp y</code></td>
-            <td><span class="keybinding">n</span> <code>x\quad\mathrm{when}\quad y</code></td>
           </tr>
           <tr>
+            <td><span class="keybinding">n</span> <code>x\quad\mathrm{whe\mathbf{n}}\quad y</code></td>
             <td><span class="keybinding">o</span> <code>x\circ y</code></td>
             <td><span class="keybinding">O</span> <code>x\odot y</code></td>
-            <td><span class="keybinding">p</span> <code>x\perp y</code></td>
           </tr>
           <tr>
+            <td><span class="keybinding">p</span> <code>x\perp y</code></td>
             <td><span class="keybinding">P</span> <code>x\pm y</code></td>
             <td><span class="keybinding">q</span> <code>x\quad\mathrm{and}\quad y</code></td>
-            <td><span class="keybinding">Q</span> <code>x\quad\mathrm{or}\quad y</code></td>
           </tr>
           <tr>
-            <td><span class="keybinding">r</span> <code>x\quad\mathrm{for}\quad y</code></td>
+            <td><span class="keybinding">Q</span> <code>x\quad\mathrm{or}\quad y</code></td>
+            <td><span class="keybinding">r</span> <code>x\quad\mathrm{fo\mathbf{r}}\quad y</code></td>
             <td>
 	      <span class="keybinding">s</span> or
 	      <span class="keybinding">&nbsp;</span>
 	      <code>x\,y</code>
 	    </td>
-            <td><span class="keybinding">t</span> <code>x\to y</code></td>
           </tr>
           <tr>
+            <td><span class="keybinding">t</span> <code>x\to y</code></td>
             <td><span class="keybinding">T</span> <code>x\longrightarrow y</code></td>
             <td><span class="keybinding">u</span> <code>x\cup y</code></td>
-            <td><span class="keybinding">v</span> <code>x\vee y</code></td>
           </tr>
           <tr>
+            <td><span class="keybinding">v</span> <code>x\vee y</code></td>
             <td><span class="keybinding">V</span> <code>x\veebar y</code></td>
             <td><span class="keybinding">w</span> <code>x\wedge y</code></td>
-            <td><span class="keybinding">W</span> <code>x\barwedge y</code></td>
           </tr>
           <tr>
+            <td><span class="keybinding">W</span> <code>x\barwedge y</code></td>
             <td><span class="keybinding">x</span> <code>x\times y</code></td>
             <td><span class="keybinding">X</span> <code>x\otimes y</code></td>
-            <td><span class="keybinding">[</span> <code>x\llcorner y</code></td>
           </tr>
           <tr>
+            <td><span class="keybinding">[</span> <code>x\llcorner y</code></td>
             <td><span class="keybinding">]</span> <code>x\lrcorner y</code></td>
             <td><span class="keybinding">=</span> <code>x\Rightarrow y</code></td>
-            <td><span class="keybinding">-</span> <code>x\ominus y</code></td>
           </tr>
           <tr>
+            <td><span class="keybinding">-</span> <code>x\ominus y</code></td>
             <td><span class="keybinding">+</span> <code>x\oplus y</code></td>
             <td><span class="keybinding">.</span> <code>x\cdot y</code></td>
-            <td><span class="keybinding">,</span> <code>x,y</code></td>
           </tr>
           <tr>
+            <td><span class="keybinding">,</span> <code>x,y</code></td>
             <td><span class="keybinding">&gt;</span> <code>x\cdots y</code></td>
             <td><span class="keybinding">&lt;</span> <code>\left\langle x,y\right\rangle</code></td>
-            <td><span class="keybinding">(</span> <code>\left(x,y\right)</code></td>
           </tr>
           <tr>
+            <td><span class="keybinding">(</span> <code>\left(x,y\right)</code></td>
             <td><span class="keybinding">*</span> <code>x*y</code></td>
             <td><span class="keybinding">:</span> <code>x : y</code></td>
-            <td><span class="keybinding">;</span> <code>x;y</code></td>
           </tr>
           <tr>
+            <td><span class="keybinding">;</span> <code>x;y</code></td>
             <td><span class="keybinding">`</span> <code>x^\mathrm{T} y</code></td>
             <td><span class="keybinding">/</span> <code>x/y</code></td>
-            <td><span class="keybinding">\</span> <code>x\backslash y</code></td>
 	  </tr>
 	  <tr>
-            <td><span class="keybinding">%</span> <code>x\pmod y</code></td>
-            <td colspan="2"><span class="keybinding">&#39;</span> <em>conjunction</em> (see below)</td>
+            <td><span class="keybinding">\</span> <code>x\backslash y</code></td>
+            <td><span class="keybinding">%</span> <code>x\div y</code></td>
+	    <td></td>
+	  </tr>
+	  <tr>
+            <td colspan="3"><span class="keybinding">&#39;</span> <em>conjunction</em> (see below)</td>
           </tr>
       </tbody></table>
       <p>
@@ -907,7 +915,7 @@
       </h2>
       <p>
 	This prefix has commands for building different kinds of expression structures and
-	applying common functions and operators.
+	for applying common functions and operators.
       </p>
       <p><strong>Algebra and Calculus:</strong></p>
       <table class="keybindings"><tbody>
@@ -924,12 +932,22 @@
 	    <td><span class="keybinding">I</span> <code>x\enspace y \to \int_x^y</code></td>
 	  </tr>
 	  <tr>
+	    <td>
+              <span class="keybinding">=</span>
+	      <code>x\enspace y\enspace z \to \displaystyle\sum_{x=y}^z</code>
+	    </td>
+	    <td>
+              <span class="keybinding">+</span>
+	      <code>x\enspace y \to \displaystyle\sum_{x\ge y}^{\phantom z}</code>
+	    </td>
+	  </tr>
+	  <tr>
             <td><span class="keybinding">q</span> <code>\sqrt{x}</code></td>
 	    <td><span class="keybinding">Q</span> <code>\sqrt[3]{x}</code></td>
 	  </tr>
 	  <tr>
-	    <td><span class="keybinding">M</span> <code>\mathrm{Im}(x)</code></td>
-	    <td><span class="keybinding">R</span> <code>\mathrm{Re}(x)</code></td>
+	    <td><span class="keybinding">m</span> <code>\mathrm{Im}(x)</code></td>
+	    <td><span class="keybinding">M</span> <code>\mathrm{Re}(x)</code></td>
 	  </tr>
 	  <tr>
             <td><span class="keybinding">e</span> <code>\mathrm{e}^x</code></td>
@@ -989,7 +1007,9 @@
       <ul class="keybindings">
         <li><span class="keybinding">o</span> <code>f\enspace x \to f(x)</code></li>
         <li><span class="keybinding">r</span> <code>f\enspace x\enspace y \to f(x,y)</code></li>
+        <li><span class="keybinding">R</span> <code>f\enspace x\enspace y\enspace z \to f(x,y,z)</code></li>
         <li><span class="keybinding">k</span> <code>f\enspace x\enspace y \to f(x\,|\,y)</code></li>
+        <li><span class="keybinding">K</span> <code>f\enspace x\enspace y\enspace z \to f(x,y\,|\,z)</code></li>
         <li><span class="keybinding">[</span> <code>f\enspace x \to f[x]</code></li>
 	<li><span class="keybinding">]</span> <code>f\enspace x \to f\{x\}</code></li>
       </ul>
@@ -1011,19 +1031,25 @@
       <p><strong>Probability and Statistics:</strong></p>
       <table class="keybindings"><tbody>
 	  <tr>
-	    <td><span class="keybinding">p</span> <code>x \to \Pr{(x)}</code></td>
+	    <td>
+	      <span class="keybinding">p</span>
+	      <code>x \to \mathbb{P}{[x]}</code>
+	    </td>
 	    <td><em>probability</em></td>
 	  </tr>
 	  <tr>
-	    <td><span class="keybinding">P</span> <code>x\enspace y \to \Pr{(x\,\vert\,y)}</code></td>
+	    <td>
+	      <span class="keybinding">P</span>
+	      <code>x\enspace y \to \mathbb{P}{[x\,\vert\,y]}</code>
+	    </td>
 	    <td><em>conditional probability</em></td>
 	  </tr>
 	  <tr>
-            <td><span class="keybinding">v</span> <code>x \to \operatorname{Var}(x)</code></td>
+            <td><span class="keybinding">v</span> <code>x \to \mathrm{Var}{[x]}</code></td>
 	    <td><em>variance</em></td>
 	  </tr>
 	  <tr>
-	    <td><span class="keybinding">V</span> <code>x\enspace y \to \operatorname{Cov}(x,y)</code></td>
+	    <td><span class="keybinding">V</span> <code>x\enspace y \to \mathrm{Cov}{[x,y]}</code></td>
 	    <td><em>covariance</em></td>
 	  </tr>
 	  <tr>
@@ -1056,13 +1082,6 @@
            "Dissolve" an expression, breaking it apart into its component parts if possible.
           Delimiters will be removed, fractions disassembled, and matrix elements put
           on the stack in row-major order.
-        </li>
-        <li>
-          <span class="keybinding">=</span>
-	  <code>x\enspace y\enspace z \to \displaystyle\sum_{x=y}^z</code>
-          &nbsp;&nbsp;
-          <span class="keybinding">+</span>
-	  <code>x\enspace y \to \displaystyle\sum_{x\ge y}</code>
         </li>
 	<li>
 	  <span class="keybinding">|</span> <code>x\enspace y \to \left.x\right\vert_{y}</code>
@@ -1097,7 +1116,7 @@
       <ul class="keybindings">
 	<li>
 	  <span class="keybinding">,</span>
-          Split a long equations across multiple lines.  The stack top must be an expression
+          Split a long equation across multiple lines.  The stack top must be an expression
           just joined with an <a href="#infix">infix</a> or <a href="#relational">relational</a> operator.
           This command inserts a line break after the operator.  A second application of this command to the
           same expression will change it to break before the operator instead, and a third will put it back to not
@@ -1155,8 +1174,8 @@
             <td><span class="keybinding">Q</span> <code>x \to \frac{\partial^2}{\partial x^2}</code></td>
           </tr>
           <tr>
-            <td><span class="keybinding">m</span> <code>y\enspace x \to \frac{\partial^2}{\partial y\,\partial x}</code></td>
-            <td><span class="keybinding">M</span> <code>f\enspace y\enspace x \to \frac{\partial^2 f}{\partial y\,\partial x}</code></td>
+            <td><span class="keybinding">m</span> <code>x\enspace y \to \frac{\partial^2}{\partial x\,\partial y}</code></td>
+            <td><span class="keybinding">M</span> <code>f\enspace x\enspace y \to \frac{\partial^2 f}{\partial x\,\partial y}</code></td>
           </tr>
           <tr>
             <td><span class="keybinding">k</span> <code>y\enspace x \to \frac{dy}{dx}</code></td>
@@ -1168,11 +1187,11 @@
           </tr>
           <tr>
             <td><span class="keybinding">p</span> <code>x \to \partial x</code></td>
-            <td><span class="keybinding">P</span> <code>y\enspace x \to \partial_x y</code></td>
+            <td><span class="keybinding">P</span> <code>x\enspace y \to \partial_y x</code></td>
           </tr>
           <tr>
             <td><span class="keybinding">g</span> <code>x \to \nabla x</code></td>
-            <td><span class="keybinding">G</span> <code>y\enspace x \to \nabla_x y</code></td>
+            <td><span class="keybinding">G</span> <code>x\enspace y \to \nabla_y x</code></td>
           </tr>
           <tr>
             <td><span class="keybinding">.</span> <code>x \to \nabla\cdot x</code></td>
@@ -1180,7 +1199,7 @@
           </tr>
           <tr>
             <td><span class="keybinding">l</span> <code>x \to \nabla^2 x</code></td>
-            <td><span class="keybinding">L</span> <code>x \to \Box^2 x</code></td>
+            <td><span class="keybinding">n</span> <code>x \to \Delta x</code> (i<strong>n</strong>crement)</td>
           </tr>
           <tr>
             <td><span class="keybinding">d</span> <code>x \to dx</code></td>
@@ -2111,6 +2130,70 @@
         For maximum browser compatibility, Control and Alt keys are not required.
         However, these Control key based shortcuts are available for optional use:
       </p>
+
+      <!-- <table class="keybindings"><tbody>
+          <tr>
+	    <th>Shortcut</th>
+	    <th>Effect</th>
+	    <th>Same As</th>
+	  </tr>
+	  <tr>
+	    <td><span class="keybinding">Ctrl+0</span></td>
+	    <td><code>x \to x_0</code></td>
+	    <td><span class="keybinding">.</span><span class="keybinding">0</span></td>
+	  </tr>
+	  <tr>
+	    <td><span class="keybinding">Ctrl+1</span></td>
+	    <td><code>x \to x^{-1}</code></td>
+	    <td><span class="keybinding">.</span><span class="keybinding">1</span></td>
+	  </tr>
+	  <tr>
+	    <td><span class="keybinding">Ctrl+2</span></td>
+	    <td><code>x \to x^2</code></td>
+	    <td><span class="keybinding">.</span><span class="keybinding">2</span></td>
+	  </tr>
+	  <tr>
+	    <td><span class="keybinding">Ctrl+3</span></td>
+	    <td><code>x \to x^3</code></td>
+	    <td><span class="keybinding">.</span><span class="keybinding">3</span></td>
+	  </tr>
+	  <tr>
+	    <td><span class="keybinding">Ctrl+4</span></td>
+	    <td><code>x \to x^4</code></td>
+	    <td><span class="keybinding">.</span><span class="keybinding">4</span></td>
+	  </tr>
+	  <tr>
+	    <td><span class="keybinding">Ctrl+a</span></td>
+	    <td>Swap the top two stack items</td>
+	    <td><span class="keybinding">Tab</span><span class="keybinding">a</span></td>
+	  </tr>
+	  <tr>
+	    <td><span class="keybinding">Ctrl+b</span></td>
+	    <td>Apply a bold font to the stack top</td>
+	    <td><span class="keybinding">]</span></td>
+	  </tr>
+	  <tr>
+	    <td><span class="keybinding">Ctrl+c</span></td>
+	    <td>Copy the stack top to the clipboard</td>
+	    <td><span class="keybinding">Tab</span><span class="keybinding">c</span></td>
+	  </tr>
+	  <tr>
+	    <td><span class="keybinding">Ctrl+e</span></td>
+	    <td><code>x \to \mathrm{e}^x</code></td>
+	    <td><span class="keybinding">/</span><span class="keybinding">e</span></td>
+	  </tr>
+	  <tr>
+	    <td><span class="keybinding">Ctrl+i</span></td>
+	    <td>Move the stack top into the document at the current selection position</td>
+	    <td><span class="keybinding">Tab</span><span class="keybinding">i</span></td>
+	  </tr>
+	  <tr>
+	    <td><span class="keybinding">Ctrl+j</span></td>
+	    <td>Move the current document selection back onto the stack</td>
+	    <td><span class="keybinding">Tab</span><span class="keybinding">j</span></td>
+	  </tr>
+      </tbody></table>  -->
+      
       <ul class="keybindings">
         <li><span class="keybinding">Ctrl+0</span>
           Add a 0 subscript: <code>x_0</code>
@@ -2151,6 +2234,11 @@
           <code>f\enspace x\enspace y \to f(x\,|\,y)</code>
           (same as <span class="keybinding">/</span><span class="keybinding">k</span>)
         </li>
+        <li>
+          <span class="keybinding">Ctrl+K</span>
+          <code>f\enspace x\enspace y\enspace z \to f(x,y\,|\,z)</code>
+          (same as <span class="keybinding">/</span><span class="keybinding">K</span>)
+        </li>
         <li><span class="keybinding">Ctrl+l</span>
           Recenter the document view around the current document selection
           (same as <span class="keybinding">Tab</span><span class="keybinding">l</span>)
@@ -2172,6 +2260,11 @@
 	  <span class="keybinding">Ctrl+r</span>
           <code>f\enspace x\enspace y \to f(x,y)</code>
           (same as <span class="keybinding">/</span><span class="keybinding">r</span>)
+        </li>
+        <li>
+	  <span class="keybinding">Ctrl+R</span>
+          <code>f\enspace x\enspace y\enspace z \to f(x,y,z)</code>
+          (same as <span class="keybinding">/</span><span class="keybinding">R</span>)
         </li>
         <li>
 	  <span class="keybinding">Ctrl+s</span>
