@@ -9,8 +9,8 @@
     <link rel="manifest" href="manifest.json" />
     <!-- <link rel="icon" type="image/png" sizes="64x64" href="favicon-64x64.png" /> -->
     <title>rpnlatex</title>
-    <script type="module" crossorigin src="./assets/index-3FG7sueB.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-DEEgHfDO.css">
+    <script type="module" crossorigin src="./assets/index-mxR_29VE.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-IrOd_7ju.css">
   </head>
   <body id="body">
     <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -56,7 +56,7 @@
 	size as well as its "type": a symbolic expression (grey) or a piece of text (blue).
       </p>
       <p>
-        This editor is designed to be operated entirely from the keyboard.  Operations are performed using
+        This editor is designed to be operated entirely from the keyboard.  Most operations are performed using
         single keystrokes or pairs of keystrokes (a <em>prefix</em> key followed by a <em>subcommand</em> key).
       </p>
       <p>
@@ -160,17 +160,16 @@
 	<li><span class="keybinding">#</span> Numerically <a href="#evaluate">evaluate</a> expressions.</li>
         <li><span class="keybinding">;</span> Insert <a href="#greek">lowercase Greek</a> letters.</li>
         <li><span class="keybinding">:</span> Insert <a href="#greek">uppercase Greek</a> letters.</li>
-        <li><span class="keybinding" id="help_insert_script">&amp;</span>
-          Insert script-style uppercase letters such as: <code>\mathscr{ABCDE}</code>;
-          <span class="keybinding">&amp;</span><span class="keybinding">&amp;</span> inserts a literal &amp;.
-        </li>
-        <li id="help_insert_blackboard"><span class="keybinding">%</span>
-          Insert blackboard-style uppercase letters: <code>\mathbb{ABCDE}</code>;
-          <span class="keybinding">%</span><span class="keybinding">%</span> inserts a literal %.
-        </li>
         <li id="help_insert_calligraphic"><span class="keybinding">@</span>
-          Insert calligraphic-style uppercase letters: <code>\mathcal{ABCDE}</code>;
-          <span class="keybinding">@</span><span class="keybinding">@</span> inserts a literal @.
+          Insert calligraphic-style uppercase letters: <code>\mathcal{ABCDE}</code>
+        </li>
+        <li>
+	  <span class="keybinding" id="help_insert_script">&amp;</span>
+          Insert script-style uppercase letters: <code>\mathscr{ABCDE}</code>
+        </li>
+        <li id="help_insert_blackboard">
+	  <span class="keybinding">%</span>
+          Insert blackboard-style uppercase letters: <code>\mathbb{ABCDE}</code>
         </li>
         <li><span class="keybinding">$</span> Change <a href="#configuration">configuration settings</a>.</li>
         <li>
@@ -212,7 +211,13 @@
 	    <span class="keybinding">@</span> can be used to create a <code>\pi</code> symbol, as a special case.
 	    For example: <kbd>1//2@i</kbd> <code>\to \frac{1}{2\pi i}</code>.
 	  </li>
-	  <li><code>x!</code> factorial notation is allowed.</li>
+	  <li>
+	    <span class="keybinding">'</span> can be used to add one or more "prime" superscripts:
+	    <code>x^{\prime\prime}</code>.
+	  </li>
+	  <li>
+	    <span class="keybinding">!</span> for factorial notation
+	    (<code>x!</code>) is allowed.
 	  <li>
 	    Expressions can be parenthesized, e.g. <code>(x+y)</code>.  Square brackets and curly braces may also
 	    be used, but they have to be properly matched.
@@ -295,9 +300,15 @@
           <li>
             Bold and italic words may be entered using <kbd>**bold**</kbd> and <kbd>//italic//</kbd> syntax.
           </li>
+	  <li>
+	    Short inline math expressions of the kind allowed in <em>math entry</em> mode
+	    can be included between pairs of <span class="keybinding">$</span> symbols
+	    (for example: <kbd>$x+y$</kbd>).
+	    This syntax is limited, so more complex expressions can be included by using
+	    <span class="keybinding">[</span><span class="keybinding">]</span> for a placeholder
+	    and filling in the expression later.
+	  </li>
         </ul>
-        As with <em>math entry</em> mode, placeholders can be included in text objects using
-        <span class="keybinding">[</span><span class="keybinding">]</span>.
       </p>
 
       <h2>
@@ -340,10 +351,15 @@
         <li><span class="keybinding">a</span> <em>(Sw<strong>a</strong>p)</em>
 	  Reverse the order of the top N items (default 2).
 	</li>
-        <li><span class="keybinding">d</span>
+        <li>
+	  <span class="keybinding">d</span>
 	  <em>(Drop)</em> Remove the top N items (default 1).
           <span class="keybinding">Backspace</span> can also be used by itself to drop single items from the stack
           instead of <span class="keybinding">Tab</span><span class="keybinding">d</span>.
+	</li>
+	<li>
+	  <span class="keybinding">k</span>
+	  <em>(Keep)</em> Remove all but the top N items (default 1).
 	</li>
         <li><span class="keybinding">n</span> <em>(Nip)</em> Delete the Nth item from the top (default 2).</li>
         <li><span class="keybinding">o</span> <em>(Over)</em> Put a copy of the Nth item from the top onto the stack (default 2).</li>
@@ -411,10 +427,13 @@
         <li>
           <span class="keybinding">c</span>
           Copy the stack top into an internal clipboard slot.
+	  A prefix argument may optionally be entered to use a different
+	  slot than the default of 1
+	  (e.g. <span class="keybinding">Tab</span><span class="keybinding">5</span><span class="keybinding">c</span>).
         </li>
         <li>
           <span class="keybinding">v</span>
-          Paste the item most recently copied to the clipboard
+          Paste the item copied into a clipboard slot
           (with <span class="keybinding">Tab</span><span class="keybinding">c</span>) onto the stack.
         </li>
         <li>
@@ -475,6 +494,11 @@
       <p>
         To download a .zip archive, click the 'Prepare Export' link; this will build the archive
         from your browser's storage and then present you a download link.
+      </p>
+      <p>
+	You can also export individual documents as <kbd>.json</kbd> files using the
+	<span class="keybinding">x</span> command, and import them with the file
+	upload field.
       </p>
 
       <h2>
@@ -554,6 +578,13 @@
             <td><span class="keybinding">&darr;</span> <code>\downarrow</code></td>
             <td><span class="keybinding">&larr;</span> <code>\leftarrow</code></td>
             <td><span class="keybinding">&rarr;</span> <code>\rightarrow</code></td>
+	  </tr>
+	  <tr>
+            <td><span class="keybinding">@</span> <code>@</code></td>
+            <td><span class="keybinding">#</span> <code>\#</code></td>
+            <td><span class="keybinding">$</span> <code>\$</code></td>
+            <td><span class="keybinding">%</span> <code>\%</code></td>
+            <td><span class="keybinding">&amp;</span> <code>\&</code></td>
 	  </tr>
       </tbody></table>
       <p>
@@ -660,7 +691,7 @@
           </tr>
           <tr>
             <td><span class="keybinding">t</span> <code>\to x</code></td>
-            <td><span class="keybinding">T</span> <code>\widetilde{x\dots}</code></td>
+            <td><span class="keybinding">T</span> <code>\longrightarrow x</code></td>
             <td><span class="keybinding">u</span> <code>\breve x</code></td>
           </tr>
           <tr>
@@ -675,42 +706,42 @@
           </tr>
           <tr>
             <td><span class="keybinding">X</span> <code>\sout x</code> <em>(crossout)</em></td>
+            <td><span class="keybinding">Y</span> <code>\widetilde{x\dots}</code></td>
             <td><span class="keybinding">z</span> <code>\cancel x</code> <em>(cancel)</em></td>
-            <td><span class="keybinding">.</span> <code>\dot x</code></td>
           </tr>
           <tr>
+            <td><span class="keybinding">.</span> <code>\dot x</code></td>
             <td><span class="keybinding">&gt;</span> <code>x.</code></td>
             <td><span class="keybinding">&quot;</span> <code>\ddot x</code></td>
-            <td><span class="keybinding">&nbsp;</span> <code>x\,</code> <em>(append space)</em></td>
           </tr>
           <tr>
+            <td><span class="keybinding">&nbsp;</span> <code>x\,</code> <em>(append space)</em></td>
             <td><span class="keybinding">&#39;</span> <code>x'</code></td>
             <td><span class="keybinding">*</span> <code>x^{*}</code></td>
-            <td><span class="keybinding">=</span> <code>\Rightarrow x</code></td>
           </tr>
           <tr>
+            <td><span class="keybinding">=</span> <code>\Rightarrow x</code></td>
             <td><span class="keybinding">-</span> <code>-x</code></td>
             <td><span class="keybinding">+</span> <code>+x</code></td>
-            <td><span class="keybinding">`</span> <code>x^\mathrm{T}</code> <em>(transpose)</em></td>
           </tr>
           <tr>
+            <td><span class="keybinding">`</span> <code>x^\mathrm{T}</code> <em>(transpose)</em></td>
             <td><span class="keybinding">~</span> <code>\tilde x</code></td>
             <td><span class="keybinding">/</span> <code>1/x</code></td>
-            <td><span class="keybinding">_</span> <code>\underline{x\dots}</code></td>
           </tr>
           <tr>
+            <td><span class="keybinding">_</span> <code>\underline{x\dots}</code></td>
             <td><span class="keybinding">!</span> <code>\neg x</code></td>
             <td><span class="keybinding">\</span> <code>\bcancel x</code></td>
-            <td><span class="keybinding">[</span> <code>\small x</code> <em>(smaller)</em></td>
 	  </tr>
 	  <tr>
+            <td><span class="keybinding">[</span> <code>\small x</code> <em>(smaller)</em></td>
             <td><span class="keybinding">]</span> <code>\large x</code> <em>(larger)</em></td>
             <td><span class="keybinding">{</span> <code>\overbrace{x\dots}</code></td>
-            <td><span class="keybinding">}</span> <code>\underbrace{x\dots}</code></td>
           </tr>
 	  <tr>
+            <td><span class="keybinding">}</span> <code>\underbrace{x\dots}</code></td>
 	    <td colspan="2"><span class="keybinding">Tab</span> <code>\quad x</code> <em>(indent)</em></td>
-	    <td></td>
 	  </tr>
       </tbody></table>
 
@@ -797,7 +828,7 @@
           <tr>
             <td><span class="keybinding">(</span> <code>\left(x,y\right)</code></td>
             <td><span class="keybinding">*</span> <code>x*y</code></td>
-            <td><span class="keybinding">:</span> <code>x : y</code></td>
+            <td><span class="keybinding">:</span> <code>x\colon y</code></td>
           </tr>
           <tr>
             <td><span class="keybinding">;</span> <code>x;y</code></td>
@@ -1062,6 +1093,16 @@
         <li><span class="keybinding">[</span> <code>f\enspace x \to f[x]</code></li>
 	<li><span class="keybinding">]</span> <code>f\enspace x \to f\{x\}</code></li>
       </ul>
+      <p>
+	<strong>NOTE:</strong>
+	These commands should be used instead of simply concatenating the function name to
+	its (parenthesized) argument(s) with <span class="keybinding">&nbsp;</span>.
+	The spacing is tighter to match normal function notation.
+	Compare: <code>f{\left(x\right)}</code> vs. <code>f\left(x\right)</code>.
+	Other function patterns can be created by first building an argument list such as
+	<code>x,y\,|\,z,w</code> and then applying to <code>f</code> with
+	<span class="keybinding">/</span><span class="keybinding">o</span>.
+      </p>
 
       <p><strong>Vertical Stacking:</strong></p>
       <ul class="keybindings">
@@ -1075,6 +1116,10 @@
 	  &nbsp;&nbsp;
 	  <span class="keybinding">U</span> <code>x\enspace y \to \underset{y}{x}</code>
 	</li>
+        <!-- <li>
+	  <span class="keybinding">J</span> <code>x\enspace y \to \displaystyle{x\atop y}\enspace</code>
+	  (<strong>j</strong>oin vertically)
+	</li> -->
       </ul>
 
       <p><strong>Probability and Statistics:</strong></p>
@@ -1372,6 +1417,17 @@
         <code>\left[\frac{x^2}{2}\right]_0^1</code>
       </p>
 
+      <p>
+	<strong>Integral Sign + Limits:</strong>
+	Using the prefix <span class="keybinding">/</span><span class="keybinding">j</span>
+	instead of <span class="keybinding">/</span><span class="keybinding">i</span>
+	works like the above, except that the integral sign itself is created too,
+	rather than it having to exist beforehand.
+	Example:
+	<span class="keybinding">/</span><span class="keybinding">j</span><span class="keybinding">r</span>
+	<code>\to \int_{-\infty}^{\infty}</code>
+      </p>
+
       <h2>
         <span class="keybinding">/</span><span class="keybinding">f</span>
 	<a name="named_operators" id="help_named_operators">Named Operators</a>
@@ -1634,6 +1690,10 @@
           </tr>
       </tbody></table>
       <p>
+	A column matrix can be entered by first building a row matrix, then transposing
+	with <span class="keybinding">|</span><span class="keybinding">T</span>.
+      </p>
+      <p>
         To change the bracket type of an existing matrix on the stack, use
         <span class="keybinding">|</span><span class="keybinding">t</span> followed by one
         of the type keys above.  For example
@@ -1747,8 +1807,8 @@
           <br />
           <code>
             \begin{gathered}
-              x^2 : x \ge 0 \\
-              0 : x &lt; 0
+              x^2 \colon x \ge 0 \\
+              0 \colon x &lt; 0
             \end{gathered}
             \longrightarrow
             \begin{cases}
@@ -1770,8 +1830,8 @@
           <br />
           <code>
             \begin{gathered}
-              x^2 : x \ge 1 \\
-              x^3 : 0 \le x \le 1 \\
+              x^2 \colon x \ge 1 \\
+              x^3 \colon 0 \le x \le 1 \\
               x^4
             \end{gathered}
             \longrightarrow
@@ -1946,7 +2006,6 @@
           <strong>NOTE:</strong> Currently the variable names must be single-letter only (Greek letters allowed),
           and only one variable substitution per expression is supported.
         </li>
-        <li><span class="keybinding">#</span> Put a literal # on the stack.</li>
       </ul>
       <p>
 	<strong>NOTE:</strong> Trigonometric functions use radians by default, but degrees
@@ -2074,7 +2133,7 @@
         <span class="keybinding">:</span><span class="keybinding">:</span> can be used as alternatives to
         <span class="keybinding">,</span><span class="keybinding">;</span> and
         <span class="keybinding">,</span><span class="keybinding">:</span>
-	to insert literal semicolons or colons.
+	to join two expressions with a semicolon or colon.
       </p>
       <p>
         <strong>NOTE:</strong>
@@ -2092,10 +2151,7 @@
       </p>
       <ul class="keybindings">
         <li>
-          <span class="keybinding">&uarr;</span>
-          <span class="keybinding">&darr;</span>
-          <span class="keybinding">&larr;</span>
-          <span class="keybinding">&rarr;</span>
+          <span class="keybinding">&uarr;</span><span class="keybinding">&darr;</span><span class="keybinding">&larr;</span><span class="keybinding">&rarr;</span>
           Switch the position of the stack panel relative to the document panel.
         </li>
         <li>
@@ -2160,16 +2216,6 @@
           Force a page reload (restarting the app).
         </li>
         <li>
-          <span class="keybinding">$</span>
-          Put a literal $ symbol onto the stack.
-        </li>
-        <li>
-          <span class="keybinding">!</span>
-          Put an object onto the stack that uses all of the available fonts.
-          This is meant to force your browser to cache the fonts for offline use
-          (normally fonts are loaded from the server on demand).
-        </li>
-        <li>
           <span class="keybinding">)</span>
           Disable <em>autoparenthesization</em>.  Normally, parentheses are inserted
           automatically by certain operations where they are unambiguously required.
@@ -2187,8 +2233,9 @@
         <a name="control_keys" id="help_control_keys">Control Keys</a>
       </h2>
       <p>
-        For maximum browser compatibility, Control and Alt keys are not required.
-        However, these Control key based shortcuts are available for optional use:
+        For maximum browser compatibility, Control/Alt/Command keys are not required.
+        However the following Control key based shortcuts are available for optional use.
+	On MacOS, the Command key also functions as an alias to Control.
       </p>
 
       <ul class="keybindings">
