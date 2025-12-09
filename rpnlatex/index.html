@@ -9,8 +9,8 @@
     <link rel="manifest" href="manifest.json">
     <!-- <link rel="icon" type="image/png" sizes="64x64" href="favicon-64x64.png"> -->
     <title>rpnlatex</title>
-    <script type="module" crossorigin src="./assets/index-ClAIm0S8.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-CcYheSQe.css">
+    <script type="module" crossorigin src="./assets/index-7YQdKyZS.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-CCe0Q7I5.css">
   </head>
   <body id="body">
     <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -20,7 +20,7 @@
 
     <!-- The entire user manual is inline here, to be unhidden at runtime when requested. -->
     <div id="helptext" style="display: none;">
-      <div class="version_info">rpnlatex v1.4.1</div>
+      <div class="version_info">rpnlatex v1.4.2</div>
       <h1>User Guide</h1>
       <p>
         Scroll this text up and down with
@@ -68,20 +68,29 @@
       <h2>Single-Key Commands</h2>
       <ul class="keybindings">
         <li>
-          <span class="k">?</span>
-          Show this user guide.
-          Typing <span class="k">?</span> a second time will "dock" the user guide
-          into the document section for easier reference.  While docked, the user guide can be
-          scrolled with the <span class="k">&uarr;</span><span class="k">&darr;</span> arrow keys.
-          Typing <span class="k">?</span> a third time will then close the user guide and
-          reveal the document section again.
+          <p>
+            <span class="k">?</span> Show this user guide.
+            Typing <span class="k">?</span> a second time will &quot;dock&quot; the user guide
+            into the document section for easier reference.  While docked, the user guide can be
+            scrolled with the <span class="k">&uarr;</span> <span class="k">&darr;</span> arrow keys.
+            Typing <span class="k">?</span> a third time will then close the user guide and
+            reveal the document section again.
+          </p>
+          <p>
+            <strong>NOTE:</strong> While the user guide popup is visible (and not docked),
+            its font size can be adjusted with <span class="k">+</span> and <span class="k">-</span>
+            (and reset with <span class="k">0</span>).  This is in addition to
+            the overall zoom level which can be set using the <span class="k">$</span>
+            <a href="#help_configuration">configuration</a> commands described later.
+          </p>
         </li>
         <li>
-          <span class="k">a-z</span><span class="k">A-Z</span><span class="k">0-9</span>
+          <span class="k">a-z</span> <span class="k">A-Z</span> <span class="k">0-9</span>
           Place a single letter or digit onto the stack.
         </li>
         <li>
-          <span class="k">+</span><span class="k">-</span><span class="k">&lt;</span><span class="k">&gt;</span><span class="k">*</span>
+          <span class="k">+</span> <span class="k">-</span>
+          <span class="k">&lt;</span> <span class="k">&gt;</span> <span class="k">*</span>
           Join two expressions with the corresponding operator between them
           (<code>x\cdot y</code> in the case of <span class="k">*</span>).
         </li>
@@ -97,15 +106,11 @@
           Make subscript: <code>x\enspace y \Rightarrow x_y</code>
         </li>
         <li>
-          <span class="k">Shift+Enter</span>
-          Start <a href="#help_edit_text">editing</a> the stack top as text.
-        </li>
-        <li>
           <span class="k">Backspace</span>
           Drop the top item from the stack.
         </li>
         <li>
-          <span class="k">(</span><span class="k">[</span><span class="k">{</span>
+          <span class="k">(</span> <span class="k">[</span> <span class="k">{</span>
           Enclose the stack top in paired delimiters: <code>(x), [x], \{x\}</code>.
           These delimiters automatically adjust to fit their contents.
         </li>
@@ -118,20 +123,30 @@
           Append a <kbd>!</kbd> to the stack top (factorial notation).
         </li>
         <li>
-          <span class="k">&uarr;</span><span class="k">&darr;</span>
+          <span class="k">&uarr;</span> <span class="k">&darr;</span>
           <em>(up/down arrows)</em> Move the document selection indicator up or down.
         </li>
         <li>
-          <span class="k">Shift+&uarr;</span><span class="k">Shift+&darr;</span>
-          Shift the selected document item up or down within the document.
-        </li>
-        <li>
-          <span class="k">&larr;</span><span class="k">&rarr;</span>
+          <span class="k">&larr;</span> <span class="k">&rarr;</span>
           <em>(left/right arrows)</em> Scroll the stack panel left or right if the contents are too wide.
         </li>
         <li>
-          <span class="k">Shift+&larr;</span><span class="k">Shift+&rarr;</span>
+          <span class="k">Shift</span><span class="k">&uarr;</span>
+          <span class="k">Shift</span><span class="k">&darr;</span>
+          Shift the selected document item up or down within the document.
+        </li>
+        <li>
+          <span class="k">Shift</span><span class="k">&larr;</span>
+          <span class="k">Shift</span><span class="k">&rarr;</span>
           Scroll the document panel left or right.
+        </li>
+        <li>
+          <span class="k">Shift</span><span class="k">Enter</span>
+          Start <a href="#help_edit_text">editing</a> the stack top as text.
+        </li>
+        <li>
+          <span class="k">Shift</span><span class="k">Backspace</span>
+          Drop the second item from the top from the stack.
         </li>
       </ul>
 
@@ -147,7 +162,7 @@
         Typing the prefix keys below while this user guide is being shown
         will jump directly to the corresponding section.
         <span class="k">Backspace</span> returns here to this list
-        of prefixes.  (This does not apply if the user guide is "docked" into the
+        of prefixes.  (This does not apply if the user guide is &quot;docked&quot; into the
         document area via <span class="k">?</span><span class="k">?</span>.)
       </p>
       <ul class="keybindings">
@@ -160,23 +175,23 @@
         <li><span class="k">=</span> Combine two expressions with a <a href="#help_relational">relational operator</a>.</li>
         <li><span class="k">/</span> Apply various <a href="#help_operators">functions and operations</a>.</li>
         <li>
-          <span class="k">/</span><span class="k">d</span> and
-          <span class="k">/</span><span class="k">D</span> and
+          <span class="k">/</span><span class="k">d</span>&nbsp;
+          <span class="k">/</span><span class="k">D</span>&nbsp;
           <span class="k">/</span><span class="k">v</span>
           Build different kinds of <a href="#help_derivatives">derivatives</a>.
         </li>
         <li>
-          <span class="k">/</span><span class="k">i</span> and
+          <span class="k">/</span><span class="k">i</span>&nbsp;
           <span class="k">/</span><span class="k">I</span>
           Apply <a href="#help_integrals">integral limits</a>.
         </li>
-        <li><span class="k">/</span><span class="k">f</span> Create <a href="#help_named_operators">named operators</a>.</li>
+        <li><span class="k">/</span><span class="k">f</span> Apply <a href="#help_named_operators">named operators</a>.</li>
         <li><span class="k">)</span> Add paired <a href="#help_delimiters">delimiters</a> to an expression.</li>
         <li><span class="k">|</span> Manipulate <a href="#help_arrays">arrayed structures</a> like matrices, vectors, or lists.</li>
-        <li><span class="k">~</span> Create <a href="#help_tensors">tensor</a> expressions using index notation.</li>
+        <li><span class="k">~</span> Build <a href="#help_tensors">tensor</a> expressions using index notation.</li>
         <li><span class="k">_</span> Manipulate subexpressions with <a href="#help_dissect">dissect</a> mode.</li>
         <li><span class="k">#</span> Perform <a href="#help_cas">symbolic algebra and calculus</a> operations.</li>
-        <li><span class="k">;</span> Create <a href="#help_greek">Greek letters</a>.</li>
+        <li><span class="k">;</span> <span class="k">:</span> Create <a href="#help_greek">Greek letters</a>.</li>
         <li id="help_insert_calligraphic">
           <span class="k">@</span>
           Create calligraphic-style uppercase letters: <code>\mathcal{ABCDE}</code>
@@ -251,7 +266,7 @@
         </li>
       </ul>
       <p>
-        <span class="k">Esc</span> (or <span class="k">Ctrl+z</span>)
+        <span class="k">Esc</span> (or <span class="k">Ctrl</span><span class="k">z</span>)
         will cancel math entry mode.
       </p>
       <p>
@@ -265,7 +280,7 @@
       </p>
       <p>
         <strong>Plain Text Entry:</strong>
-        Typing <span class="k">Shift+Enter</span> instead of <span class="k">Enter</span>
+        Typing <span class="k">Shift</span><span class="k">Enter</span> instead of <span class="k">Enter</span>
         will typeset your entry in a roman (non-italic) font instead of the normal italic math font,
         and it will not be parsed as a math expression, so you can use any text you want.  This can be
         used to include normal English words or phrases in math expressions.
@@ -296,9 +311,9 @@
         For example: <kbd>\\boxdot</kbd> <code>\Rightarrow\boxdot</code>
       </p>
       <p>
-        One-argument LaTeX commands can be created using <span class="k">Shift+Enter</span> instead of
+        One-argument LaTeX commands can be created using <span class="k">Shift</span><span class="k">Enter</span> instead of
         <span class="k">Enter</span>.
-        For example: <span class="k">x</span><kbd>\\utilde</kbd><span class="k">Shift+Enter</span>
+        For example: <span class="k">x</span><kbd>\\utilde</kbd><span class="k">Shift</span><span class="k">Enter</span>
         <code>\Rightarrow\utilde{x}</code>
       </p>
 
@@ -335,7 +350,7 @@
           Bold and italic words may be entered using <kbd>**bold**</kbd> and <kbd>//italic//</kbd> syntax.
         </li>
         <li>
-          Finishing the text entry with <span class="k">Shift+Enter</span> will
+          Finishing the text entry with <span class="k">Shift</span><span class="k">Enter</span> will
           create a section header instead (with a larger font and underline).  You can later toggle
           whether or not the text object is a section header with the
           <span class="k">/</span><span class="k">&quot;</span> command.
@@ -343,13 +358,13 @@
       </ul>
 
       <h2 id="help_edit_text">
-        <span class="k">Shift+Enter</span> Edit as Text
+        <span class="k">Shift</span><span class="k">Enter</span> Edit as Text
       </h2>
       <p>
         Expressions and text objects that were created with
         <a href="#help_math_entry">math entry</a> or <a href="#help_text_entry">text entry</a> modes
         may be brought back into the math or text entry editor for further editing
-        with <span class="k">Shift+Enter</span>.
+        with <span class="k">Shift</span><span class="k">Enter</span>.
         Simple expressions like numbers and variables may also be editable even
         if they were not created with math/text entry mode.
       </p>
@@ -392,7 +407,12 @@
           <span class="k">k</span>
           <em>(Keep)</em> Remove all but the top N items (default 1).
         </li>
-        <li><span class="k">n</span> <em>(Nip)</em> Delete the Nth item from the top (default 2).</li>
+        <li>
+          <span class="k">n</span> <em>(Nip)</em>
+          Delete the Nth item from the top (default 2).
+          <span class="k">Shift</span><span class="k">Backspace</span> or
+          <span class="k">Ctrl</span><span class="k">Backspace</span> also do this.
+        </li>
         <li><span class="k">o</span> <em>(Over)</em> Put a copy of the Nth item from the top onto the stack (default 2).</li>
         <li><span class="k">r</span> <em>(Rotate)</em> Move the Nth item from the top to the stack top (default 3). </li>
         <li><span class="k">t</span> <em>(Tuck)</em> Copy the stack top into the Nth stack position (default 2).</li>
@@ -402,9 +422,9 @@
         <strong>Document Operations:</strong>
         These commands transfer items between the stack and the document.
         The document has a shaded <em>selection indicator</em> which you can
-        move with the <span class="k">&uarr;</span><span class="k">&darr;</span>
+        move with the <span class="k">&uarr;</span> <span class="k">&darr;</span>
         arrow keys (without using the <span class="k">Tab</span> prefix).
-        <span class="k">Shift+&uarr;</span> and <span class="k">Shift+&darr;</span>
+        <span class="k">Shift</span><span class="k">&uarr;</span> and <span class="k">Shift</span><span class="k">&darr;</span>
         will shift the selected item up or down within the document.
       </p>
       <p>
@@ -444,9 +464,9 @@
           Recenter the document view around the current selection indicator.
         </li>
         <li>
-          <span class="k">&larr;</span><span class="k">&rarr;</span>
+          <span class="k">&larr;</span> <span class="k">&rarr;</span>
           <em>(left/right arrows)</em> Scroll the document panel left or right if the contents are too wide.
-          <span class="k">Shift+&larr;</span> and <span class="k">Shift+&rarr;</span>
+          <span class="k">Shift</span><span class="k">&larr;</span> and <span class="k">Shift</span><span class="k">&rarr;</span>
           can also be used without the <span class="k">Tab</span> prefix.
         </li>
       </ul>
@@ -457,7 +477,7 @@
         <li><span class="k">z</span>
           <em>Undo:</em> Revert the stack and document back to the last 
           state they were in.
-          <span class="k">Ctrl+z</span> is a shortcut for this.
+          <span class="k">Ctrl</span><span class="k">z</span> is a shortcut for this.
         </li>
         <li>
           <span class="k">y</span> <em>Redo:</em> Replay states that were
@@ -529,7 +549,7 @@
       <p>
         <strong>NOTE:</strong>
         You can use <span class="k">Tab</span><span class="k">s</span>
-        or <span class="k">Ctrl+s</span> from the main screen to save the current
+        or <span class="k">Ctrl</span><span class="k">s</span> from the main screen to save the current
         document without opening the file manager first.
       </p>
 
@@ -913,7 +933,7 @@
         creates: <code>x\quad\mathrm{iff}\quad y</code>.
         This <em>conjunction</em> command starts a special text entry mode where you can
         type in whatever phrase you want instead.  Using <span class="k">Enter</span>
-        creates an ordinary conjunction, while <span class="k">Shift+Enter</span>
+        creates an ordinary conjunction, while <span class="k">Shift</span><span class="k">Enter</span>
         will make it bolded.
       </p>
 
@@ -928,35 +948,39 @@
       <p>Equality-like relations:</p>
       <table class="keybindings"><tbody>
           <tr>
-            <td><span class="k">a</span> <code>x\approx y</code> <em>(approx)</em></td>
-            <td><span class="k">c</span> <code>x\cong y</code> <em>(congruent)</em></td>
+            <td><span class="k">a</span> <code>x\approx y</code> <em>(<strong>a</strong>pprox)</em></td>
+            <td><span class="k">c</span> <code>x\cong y</code> <em>(<strong>c</strong>ongruent)</em></td>
           </tr>
           <tr>
             <td><span class="k">e</span> <code>x\equiv y</code></td>
             <td><span class="k">E</span> <code>x\iff y</code></td>
           </tr>
           <tr>
-            <td><span class="k">f</span> <code>x\Leftarrow y</code> <em>(from)</em></td>
-            <td><span class="k">i</span> <code>x\in y</code> <em>(in)</em></td>
+            <td><span class="k">f</span> <code>x\Leftarrow y</code> <em>(<strong>f</strong>rom)</em></td>
+            <td><span class="k">g</span> <code>x\gets y</code> <em>(<strong>g</strong>ets)</em></td>
           </tr>
           <tr>
+            <td><span class="k">i</span> <code>x\in y</code> <em>(<strong>i</strong>n)</em></td>
             <td><span class="k">I</span> <code>x\notin y</code></td>
-            <td><span class="k">m</span> <code>x\mapsto y</code> <em>(maps to)</em></td>
           </tr>
           <tr>
+            <td><span class="k">m</span> <code>x\mapsto y</code> <em>(<strong>m</strong>aps to)</em></td>
             <td><span class="k">o</span> <code>x\circeq y</code></td>
-            <td><span class="k">=</span> or <span class="k">q</span> <code>x = y</code></td>
           </tr>
           <tr>
+            <td><span class="k">=</span> or <span class="k">q</span> <code>x = y</code></td>
             <td><span class="k">!</span> or <span class="k">n</span> <code>x\ne y</code></td>
-            <td><span class="k">p</span> <code>x\propto y</code> <em>(proportional)</em></td>
+          </tr>
+          <tr>
+            <td><span class="k">p</span> <code>x\propto y</code> <em>(<strong>p</strong>roportional)</em></td>
+            <td><span class="k">t</span> <code>x\to y</code></td>
           </tr>
           <tr>
             <td><span class="k">;</span> <code>x\coloncolon y</code></td>
             <td><span class="k">:</span> <code>x\coloneqq y</code></td>
           </tr>
           <tr>
-            <td><span class="k">~</span> or <span class="k">t</span> <code>x\sim y</code></td>
+            <td><span class="k">~</span> <code>x\sim y</code></td>
             <td><span class="k">.</span> <code>x\doteq y</code></td>
           </tr>
           <tr>
@@ -1173,10 +1197,10 @@
         <span class="k">Ctrl</span> key shortcuts:
       </p>
       <ul class="keybindings">
-        <li><span class="k">Ctrl+x</span><code>\quad f\Rightarrow f(x)</code></li>
-        <li><span class="k">Ctrl+t</span><code>\quad f\Rightarrow f(t)</code></li>
-        <li><span class="k">Ctrl+f</span><code>\quad x\Rightarrow f(x)</code></li>
-        <li><span class="k">Ctrl+g</span><code>\quad x\Rightarrow g(x)</code></li>
+        <li><span class="k">Ctrl</span><span class="k">x</span> <code>f\Rightarrow f(x)</code></li>
+        <li><span class="k">Ctrl</span><span class="k">t</span> <code>f\Rightarrow f(t)</code></li>
+        <li><span class="k">Ctrl</span><span class="k">f</span> <code>x\Rightarrow f(x)</code></li>
+        <li><span class="k">Ctrl</span><span class="k">g</span> <code>x\Rightarrow g(x)</code></li>
       </ul>
 
       <p><strong>Vertical Stacking:</strong></p>
@@ -1342,7 +1366,7 @@
         </li>
         <li>
           <strong>NOTE:</strong>
-          Using <span class="k">Shift+Enter</span> will automatically enclose the tag string
+          Using <span class="k">Shift</span><span class="k">Enter</span> will automatically enclose the tag string
           in parentheses, useful for equation numbers like <kbd>(1)</kbd>.
         </li>
       </ul>
@@ -1434,47 +1458,32 @@
           </tr>
           <tr>
             <td colspan="2">
-              <span class="k">i</span> or <span class="k">I</span> or
-              <span class="k">&nbsp;</span>
-              <code>x\enspace y \Rightarrow x\,dy</code> (see below)
+              <span class="k">i</span> or <span class="k">&nbsp;</span>
+              <code>x\enspace y \Rightarrow x\,dy</code>
             </td>
           </tr>
       </tbody></table>
       <p>
-        <strong>Integral Spacing:</strong>
-        <span class="k">i</span> and <span class="k">I</span> and
-        <span class="k">&nbsp;</span>
-        are meant for attaching a differential to an existing integral expression
-        (or an ordinary expression as in <code>x^2\,dx</code>) with appropriate spacing.
-        The difference between the three is where the spacing goes:
-      </p>
-      <ul class="keybindings">
-        <li>
-          <span class="k">i</span> Space goes before the differential.  This is the usual
-          "textbook" case, e.g.
-          <code>\int x^2\,dx</code>
-        </li>
-        <li>
-          <span class="k">I</span> Space goes after the differential, for when you want to
-          concatenate the integrand afterwards:
-          <code>\int dx\,x^2</code>
-        </li>
-        <li>
-          <span class="k">&nbsp;</span> No spacing around the differential, for simple cases like
-          <code>\int dx</code>
-        </li>
-      </ul>
-      <p>
         <strong>Differential Forms:</strong>
-        The <span class="k">f</span> and <span class="k">F</span>
+        The <span class="k">d</span> <span class="k">2</span> <span class="k">3</span>
+        <span class="k">4</span> <span class="k">f</span> <span class="k">F</span>
         commands for building differential forms will pull out minus signs as needed, as in:
         <code>-y\enspace x \Rightarrow -dy \wedge dx</code>.
-        When concatenating differential forms to integral expressions, use
-        <span class="k">,</span><span class="k">&nbsp;</span>
-        instead of <span class="k">&nbsp;</span> to avoid parenthesizing the differential form.
-        For example:
-        <code>\int f{(x,y)}\,dx\wedge dy</code> instead of
-        <code>\int f{(x,y)} \left(dx\wedge dy\right)</code>.
+        Differential forms concatenated with other expressions automatically receive some
+        extra spacing to match traditional math notation:
+        <code>\int x^2\,dx</code>, <code>\int dx\,x^2</code>,
+        <code>\int dx</code>, <code>\int f(x,y)\,dx\wedge dy</code>.
+      </p>
+      <p>
+        The <span class="k">i</span> or <span class="k">&nbsp;</span>
+        commands can be used to immediately create a differential
+        and concatenate it to an existing integral expression, for example:
+        <code>x \Rightarrow \int x^2\,dx</code>.
+      </p>
+      <p>
+        <strong>NOTE:</strong> Higher-order differential forms can be created by
+        joining with <span class="k">,</span><span class="k">w</span> (wedge):
+        <code>dx\wedge dy\wedge dz,\, dw \Rightarrow dx\wedge dy\wedge dz\wedge dw</code>
       </p>
       <p>
         <strong>Alternative Notation:</strong>
@@ -2518,11 +2527,11 @@
 
           
       <h2 id="help_greek">
-        <span class="k">;</span> Greek Letters
+        <span class="k">;</span>&nbsp;<span class="k">:</span> Greek Letters
       </h2>
       <p>
-        <strong>NOTE:</strong> <span class="k">:</span> may optionally be used
-        as an alias for <span class="k">;</span>.
+        <strong>NOTE:</strong> Either <span class="k">:</span> or <span class="k">;</span>
+        may be used to create these letters; they behave identically.
       </p>
       <p>Lowercase Greek letters:</p>
       <table class="keybindings"><tbody>
@@ -2648,7 +2657,8 @@
       </p>
       <ul class="keybindings">
         <li>
-          <span class="k">&uarr;</span><span class="k">&darr;</span><span class="k">&larr;</span><span class="k">&rarr;</span>
+          <span class="k">&uarr;</span> <span class="k">&darr;</span>
+          <span class="k">&larr;</span> <span class="k">&rarr;</span>
           Switch the position of the stack panel relative to the document panel.
         </li>
         <li>
@@ -2656,6 +2666,17 @@
           Set the percentage of the window width (or height) that the stack panel will occupy.
           The percentage is given by the prefix argument:
           <span class="k">$</span><span class="k">0</span><span class="k">s</span> to <span class="k">$</span><span class="k">9</span><span class="k">s</span> for 0% to 90%, or <span class="k">$</span><span class="k">*</span><span class="k">s</span> for 100%.  Default is 50%.
+        </li>
+        <li>
+          <span class="k">+</span> or <span class="k">z</span>
+          Increase the text zoom factor in steps of 5%.  A prefix argument can
+          be used to jump up multiple steps at once.  A prefix argument of
+          <span class="k">*</span> or <span class="k">0</span>
+          resets the zoom factor back to the default.
+        </li>
+        <li>
+          <span class="k">-</span> or <span class="k">Z</span>
+          Decrease the text zoom factor.
         </li>
         <li>
           <span class="k">m</span>
@@ -2674,15 +2695,6 @@
           and <span class="k">$</span><span class="k">M</span>.  Long equations will wrap around to
           multiple lines in inline display mode, while full-size mode requires the use of the
           <span class="k">/</span><span class="k">,</span> equation splitting command to insert line breaks.
-        </li>
-        <li>
-          <span class="k">z</span> or <span class="k">+</span>
-          Increase the text zoom factor in steps of 5%.  A prefix argument can be used to jump up multiple steps at once.  A prefix argument of <span class="k">*</span> resets the zoom factor back to the default.
-        </li>
-        <li>
-          <span class="k">Z</span> or <span class="k">-</span>
-          Like <span class="k">z</span> or <span class="k">+</span>
-          but decrease the zoom factor instead.
         </li>
         <li>
           <span class="k">f</span>
@@ -2743,134 +2755,129 @@
       </p>
 
       <ul class="keybindings">
-        <li><span class="k">Ctrl+0</span>
-          Add a 0 subscript: <code>x_0</code>
-          (same as <span class="k">.</span><span class="k">0</span>)
-        </li>
         <li>
-          <span class="k">Ctrl+1</span> <span class="k">Ctrl+2</span>
-          <span class="k">Ctrl+3</span> <span class="k">Ctrl+4</span>
-          Add other superscripts: <code>x^{-1}, x^2, x^3, x^4</code>
-          (same as <span class="k">.</span><span class="k">1</span>, etc.)
+          <span class="k">Ctrl</span><span class="k">0-4</span>
+          Add common subscripts and superscripts: <code>x_0, x^{-1}, x^2, x^3, x^4</code>
+          (same as <span class="k">.</span><span class="k">0-4</span>)
         </li>
-        <li><span class="k">Ctrl+a</span>
+        <li><span class="k">Ctrl</span><span class="k">a</span>
           Swap the top two stack top items
           (same as <span class="k">Tab</span><span class="k">a</span>)
         </li>
-        <li><span class="k">Ctrl+b</span>
+        <li><span class="k">Ctrl</span><span class="k">b</span>
           Apply a bold font to the stack top
           (same as <span class="k">]</span>)
         </li>
-        <li><span class="k">Ctrl+c</span>
+        <li><span class="k">Ctrl</span><span class="k">c</span>
           Copy stack top to clipboard
           (same as <span class="k">Tab</span><span class="k">c</span>)
         </li>
-        <li><span class="k">Ctrl+e</span>
+        <li><span class="k">Ctrl</span><span class="k">e</span>
           <code>x \Rightarrow \mathrm{e}^x</code>
           (same as <span class="k">/</span><span class="k">e</span>)
         </li>
-        <li><span class="k">Ctrl+f</span>
+        <li><span class="k">Ctrl</span><span class="k">f</span>
           <code>x \Rightarrow f(x)</code>
         </li>
-        <li><span class="k">Ctrl+g</span>
+        <li><span class="k">Ctrl</span><span class="k">g</span>
           <code>x \Rightarrow g(x)</code>
         </li>
-        <li><span class="k">Ctrl+i</span>
+        <li><span class="k">Ctrl</span><span class="k">i</span>
           Move the stack top into the document at the current selection position
           (same as <span class="k">Tab</span><span class="k">i</span>)
         </li>
-        <li><span class="k">Ctrl+j</span>
+        <li><span class="k">Ctrl</span><span class="k">j</span>
           Move the current document selection back onto the stack
           (same as <span class="k">Tab</span><span class="k">j</span>)
         </li>
         <li>
-          <span class="k">Ctrl+k</span>
+          <span class="k">Ctrl</span><span class="k">k</span>
           <code>f\enspace x\enspace y \Rightarrow f(x\,|\,y)</code>
           (same as <span class="k">/</span><span class="k">k</span>)
         </li>
         <li>
-          <span class="k">Ctrl+K</span>
+          <span class="k">Ctrl</span><span class="k">K</span>
           <code>f\enspace x\enspace y\enspace z \Rightarrow f(x,y\,|\,z)</code>
           (same as <span class="k">/</span><span class="k">K</span>)
         </li>
-        <li><span class="k">Ctrl+l</span>
+        <li><span class="k">Ctrl</span><span class="k">l</span>
           Recenter the document view around the current document selection
           (same as <span class="k">Tab</span><span class="k">l</span>)
         </li>
-        <li><span class="k">Ctrl+m</span>
+        <li><span class="k">Ctrl</span><span class="k">m</span>
           <code>x \Rightarrow -x</code>
           (same as <span class="k">.</span><span class="k">-</span>)
         </li>
-        <li><span class="k">Ctrl+o</span>
+        <li><span class="k">Ctrl</span><span class="k">o</span>
           <code>f\enspace x \Rightarrow f(x)</code>
           (same as <span class="k">/</span><span class="k">o</span>)
         </li>
         <li>
-          <span class="k">Ctrl+p</span>
+          <span class="k">Ctrl</span><span class="k">p</span>
           Enclose the stack top in parentheses
           (same as <span class="k">(</span>)
         </li>
         <li>
-          <span class="k">Ctrl+r</span>
+          <span class="k">Ctrl</span><span class="k">r</span>
           <code>f\enspace x\enspace y \Rightarrow f(x,y)</code>
           (same as <span class="k">/</span><span class="k">r</span>)
         </li>
         <li>
-          <span class="k">Ctrl+R</span>
+          <span class="k">Ctrl</span><span class="k">R</span>
           <code>f\enspace x\enspace y\enspace z \Rightarrow f(x,y,z)</code>
           (same as <span class="k">/</span><span class="k">R</span>)
         </li>
         <li>
-          <span class="k">Ctrl+s</span>
+          <span class="k">Ctrl</span><span class="k">s</span>
           Save the current document
           (same as <span class="k">Tab</span><span class="k">s</span>)
         </li>
-        <li><span class="k">Ctrl+t</span>
+        <li><span class="k">Ctrl</span><span class="k">t</span>
           <code>f \Rightarrow f(t)</code>
         </li>
-        <li><span class="k">Ctrl+u</span>
+        <li><span class="k">Ctrl</span><span class="k">u</span>
           Make superscript (same as <span class="k">`</span>)
         </li>
-        <li><span class="k">Ctrl+v</span>
+        <li><span class="k">Ctrl</span><span class="k">v</span>
           Paste clipboard to stack top
           (same as <span class="k">Tab</span><span class="k">v</span>)
         </li>
-        <li><span class="k">Ctrl+w</span>
+        <li><span class="k">Ctrl</span><span class="k">w</span>
           Put the stack top into a temporary &quot;floating&quot; spot, or put it back
           on the stack again
           (same as <span class="k">Tab</span><span class="k">w</span>)
         </li>
-        <li><span class="k">Ctrl+x</span>
+        <li><span class="k">Ctrl</span><span class="k">x</span>
           <code>f \Rightarrow f(x)</code>
         </li>
-        <li><span class="k">Ctrl+z</span>
+        <li><span class="k">Ctrl</span><span class="k">z</span>
           Undo last action
           (same as <span class="k">Tab</span><span class="k">z</span>)
         </li>
         <li>
-          <span class="k">Ctrl+y</span> Redo actions undone by 'undo'
+          <span class="k">Ctrl</span><span class="k">y</span> Redo actions undone by 'undo'
           (same as <span class="k">Tab</span><span class="k">y</span>)
         </li>
         <li>
-          <span class="k">Ctrl+/</span>
+          <span class="k">Ctrl</span><span class="k">/</span>
           <code>x\enspace y \Rightarrow \displaystyle{\frac{x}{y}}</code>
           (same as <span class="k">/</span><span class="k">/</span>)
         </li>
         <li>
-          <span class="k">Ctrl+\</span>
+          <span class="k">Ctrl</span><span class="k">\</span>
           <code>x \Rightarrow \displaystyle{\frac{1}{x}}</code>
           (same as <span class="k">/</span><span class="k">1</span>)
         </li>
         <li>
-          <span class="k">Ctrl+,</span> Join two items with a comma
+          <span class="k">Ctrl</span><span class="k">,</span> Join two items with a comma
           (same as <span class="k">,</span><span class="k">,</span>)
         </li>
         <li>
-          <span class="k">Ctrl+Space</span> Join two items with a thin space
+          <span class="k">Ctrl</span><span class="k">Space</span> Join two items with a thin space
           (same as <span class="k">,</span><span class="k">&nbsp;</span>)
         </li>
         <li>
-          <span class="k">Ctrl+Backspace</span> Delete the secondmost item from the stack top
+          <span class="k">Ctrl</span><span class="k">Backspace</span> Delete the secondmost item from the stack top
           (same as <span class="k">Tab</span><span class="k">n</span>)
         </li>
       </ul>
