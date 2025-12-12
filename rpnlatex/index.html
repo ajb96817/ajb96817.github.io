@@ -9,8 +9,8 @@
     <link rel="manifest" href="manifest.json">
     <!-- <link rel="icon" type="image/png" sizes="64x64" href="favicon-64x64.png"> -->
     <title>rpnlatex</title>
-    <script type="module" crossorigin src="./assets/index-7YQdKyZS.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-CCe0Q7I5.css">
+    <script type="module" crossorigin src="./assets/index-BlABf_-O.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-CD7b7_aS.css">
   </head>
   <body id="body">
     <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -54,7 +54,7 @@
       </p>
       <p>
         Note that items on the stack have a small colored bar shown to the left of them.  This indicates the item's
-        size as well as its "type": a symbolic expression (grey) or a piece of text (blue).
+        size as well as its &quot;type&quot;: usually a symbolic expression (grey) or a piece of text (blue).
       </p>
       <p>
         This editor is designed to be operated entirely from the keyboard.  Most operations are performed using
@@ -63,6 +63,11 @@
       <p>
         Invalid or unassigned key inputs are silently ignored.
         Other errors are signaled by a brief flash of the screen.
+      </p>
+      <p>
+        Several <a href="#help_examples">examples</a> of how to create different
+        math formulas are available at the end of this User Guide.  You can jump
+        directly to the examples by pressing <span class="k">x</span>.
       </p>
 
       <h2>Single-Key Commands</h2>
@@ -96,7 +101,8 @@
         </li>
         <li>
           <span class="k">&nbsp;</span> <em>(space)</em>
-          Concatenate the top two stack entries.
+          Concatenate the top two stack items.  This can also be used to create longer
+          integers from individual digits.
         </li>
         <li>
           <span class="k">^</span> or <span class="k">`</span> <em>(backtick)</em>
@@ -108,6 +114,10 @@
         <li>
           <span class="k">Backspace</span>
           Drop the top item from the stack.
+        </li>
+        <li>
+          <span class="k">Shift&nbsp;Backspace</span>
+          Drop the secondmost top item from the stack.
         </li>
         <li>
           <span class="k">(</span> <span class="k">[</span> <span class="k">{</span>
@@ -124,35 +134,31 @@
         </li>
         <li>
           <span class="k">&uarr;</span> <span class="k">&darr;</span>
-          <em>(up/down arrows)</em> Move the document selection indicator up or down.
+          <em>(up+down arrows)</em> Move the document selection indicator up or down.
         </li>
         <li>
           <span class="k">&larr;</span> <span class="k">&rarr;</span>
-          <em>(left/right arrows)</em> Scroll the stack panel left or right if the contents are too wide.
+          <em>(left+right arrows)</em> Scroll the stack panel left or right if the contents are too wide.
         </li>
         <li>
-          <span class="k">Shift</span><span class="k">&uarr;</span>
-          <span class="k">Shift</span><span class="k">&darr;</span>
-          Shift the selected document item up or down within the document.
+          <span class="k">Shift&nbsp;&uarr;</span>
+          <span class="k">Shift&nbsp;&darr;</span>
+          Shift&nbsp;the selected document item up or down within the document.
         </li>
         <li>
-          <span class="k">Shift</span><span class="k">&larr;</span>
-          <span class="k">Shift</span><span class="k">&rarr;</span>
+          <span class="k">Shift&nbsp;&larr;</span>
+          <span class="k">Shift&nbsp;&rarr;</span>
           Scroll the document panel left or right.
         </li>
         <li>
-          <span class="k">Shift</span><span class="k">Enter</span>
+          <span class="k">Shift&nbsp;Enter</span>
           Start <a href="#help_edit_text">editing</a> the stack top as text.
-        </li>
-        <li>
-          <span class="k">Shift</span><span class="k">Backspace</span>
-          Drop the second item from the top from the stack.
         </li>
       </ul>
 
       <h2 id="help_prefix_keys">Prefix Keys</h2>
       <p>
-        All other operations require <em>prefix keys</em> to be typed first.  These keys
+        Most other commands require <em>prefix keys</em> to be typed first.  These keys
         switch into a corresponding <em>mode</em>.  The current mode is displayed in grey in the upper-right
         corner of the stack.  Each mode has its own keymap of operations, which are detailed in the following
         sections.
@@ -162,8 +168,10 @@
         Typing the prefix keys below while this user guide is being shown
         will jump directly to the corresponding section.
         <span class="k">Backspace</span> returns here to this list
-        of prefixes.  (This does not apply if the user guide is &quot;docked&quot; into the
-        document area via <span class="k">?</span><span class="k">?</span>.)
+        of prefixes.  If the user guide is &quot;docked&quot; into the
+        document area via <span class="k">?</span><span class="k">?</span>
+        you can instead jump by using the <span class="k">Tab</span><span class="k">?</span>
+        prefix first.
       </p>
       <ul class="keybindings">
         <li><span class="k">\</span> Input a longer character string or formula with <a href="#help_math_entry">math entry</a> mode.</li>
@@ -266,7 +274,7 @@
         </li>
       </ul>
       <p>
-        <span class="k">Esc</span> (or <span class="k">Ctrl</span><span class="k">z</span>)
+        <span class="k">Esc</span> (or <span class="k">Ctrl&nbsp;z</span>)
         will cancel math entry mode.
       </p>
       <p>
@@ -280,7 +288,7 @@
       </p>
       <p>
         <strong>Plain Text Entry:</strong>
-        Typing <span class="k">Shift</span><span class="k">Enter</span> instead of <span class="k">Enter</span>
+        Typing <span class="k">Shift&nbsp;Enter</span> instead of <span class="k">Enter</span>
         will typeset your entry in a roman (non-italic) font instead of the normal italic math font,
         and it will not be parsed as a math expression, so you can use any text you want.  This can be
         used to include normal English words or phrases in math expressions.
@@ -301,20 +309,20 @@
       </p>
       <p>
         <strong>NOTE:</strong> The <span class="k">/</span><span class="k">f</span>
-        command prefix can also be used to create commonly-used named operators.
+        <a href="#help_named_operators">named operator</a> prefix can also be used
+        to create commonly-used named operators.
       </p>
       <p>
         <strong>LaTeX Entry:</strong>
         Typing another <span class="k">\</span>
         after the first one will instead switch into <em>LaTeX entry</em> mode where you can enter an arbitrary
-        zero-argument LaTeX command.  This can be used to create any standard LaTeX symbol.
-        For example: <kbd>\\boxdot</kbd> <code>\Rightarrow\boxdot</code>
+        zero-argument LaTeX command.  This can be used to create any standard LaTeX symbol:
+        <code>\mathtt{\backslash\backslash boxdot}\Rightarrow\boxdot</code>
       </p>
       <p>
-        One-argument LaTeX commands can be created using <span class="k">Shift</span><span class="k">Enter</span> instead of
-        <span class="k">Enter</span>.
-        For example: <span class="k">x</span><kbd>\\utilde</kbd><span class="k">Shift</span><span class="k">Enter</span>
-        <code>\Rightarrow\utilde{x}</code>
+        One-argument LaTeX commands can be created using <span class="k">Shift&nbsp;Enter</span> instead of
+        <span class="k">Enter</span>.  The stack top becomes the argument:
+        <code>x^2 \Rightarrow \mathtt{\backslash\backslash utilde} \Rightarrow \utilde{x^2}</code>
       </p>
 
       <h2 id="help_text_entry">
@@ -350,7 +358,7 @@
           Bold and italic words may be entered using <kbd>**bold**</kbd> and <kbd>//italic//</kbd> syntax.
         </li>
         <li>
-          Finishing the text entry with <span class="k">Shift</span><span class="k">Enter</span> will
+          Finishing the text entry with <span class="k">Shift&nbsp;Enter</span> will
           create a section header instead (with a larger font and underline).  You can later toggle
           whether or not the text object is a section header with the
           <span class="k">/</span><span class="k">&quot;</span> command.
@@ -358,13 +366,13 @@
       </ul>
 
       <h2 id="help_edit_text">
-        <span class="k">Shift</span><span class="k">Enter</span> Edit as Text
+        <span class="k">Shift&nbsp;Enter</span> Edit as Text
       </h2>
       <p>
         Expressions and text objects that were created with
         <a href="#help_math_entry">math entry</a> or <a href="#help_text_entry">text entry</a> modes
         may be brought back into the math or text entry editor for further editing
-        with <span class="k">Shift</span><span class="k">Enter</span>.
+        with <span class="k">Shift&nbsp;Enter</span>.
         Simple expressions like numbers and variables may also be editable even
         if they were not created with math/text entry mode.
       </p>
@@ -410,8 +418,8 @@
         <li>
           <span class="k">n</span> <em>(Nip)</em>
           Delete the Nth item from the top (default 2).
-          <span class="k">Shift</span><span class="k">Backspace</span> or
-          <span class="k">Ctrl</span><span class="k">Backspace</span> also do this.
+          <span class="k">Shift&nbsp;Backspace</span> or
+          <span class="k">Ctrl&nbsp;Backspace</span> also do this.
         </li>
         <li><span class="k">o</span> <em>(Over)</em> Put a copy of the Nth item from the top onto the stack (default 2).</li>
         <li><span class="k">r</span> <em>(Rotate)</em> Move the Nth item from the top to the stack top (default 3). </li>
@@ -424,7 +432,7 @@
         The document has a shaded <em>selection indicator</em> which you can
         move with the <span class="k">&uarr;</span> <span class="k">&darr;</span>
         arrow keys (without using the <span class="k">Tab</span> prefix).
-        <span class="k">Shift</span><span class="k">&uarr;</span> and <span class="k">Shift</span><span class="k">&darr;</span>
+        <span class="k">Shift&nbsp;&uarr;</span> and <span class="k">Shift&nbsp;&darr;</span>
         will shift the selected item up or down within the document.
       </p>
       <p>
@@ -465,8 +473,8 @@
         </li>
         <li>
           <span class="k">&larr;</span> <span class="k">&rarr;</span>
-          <em>(left/right arrows)</em> Scroll the document panel left or right if the contents are too wide.
-          <span class="k">Shift</span><span class="k">&larr;</span> and <span class="k">Shift</span><span class="k">&rarr;</span>
+          <em>(left+right arrows)</em> Scroll the document panel left or right if the contents are too wide.
+          <span class="k">Shift&nbsp;&larr;</span> and <span class="k">Shift&nbsp;&rarr;</span>
           can also be used without the <span class="k">Tab</span> prefix.
         </li>
       </ul>
@@ -477,7 +485,7 @@
         <li><span class="k">z</span>
           <em>Undo:</em> Revert the stack and document back to the last 
           state they were in.
-          <span class="k">Ctrl</span><span class="k">z</span> is a shortcut for this.
+          <span class="k">Ctrl&nbsp;z</span> is a shortcut for this.
         </li>
         <li>
           <span class="k">y</span> <em>Redo:</em> Replay states that were
@@ -510,7 +518,7 @@
         </li>
         <li>
           <span class="k">f</span>
-          Open the File Manager (see below).
+          Open the <a href="#help_files">File Manager</a> (see below).
         </li>
         <li>
           <span class="k">s</span>
@@ -519,6 +527,14 @@
         <li>
           <span class="k">X</span>
           Clear the the entire stack and document.
+        </li>
+        <li>
+          <span class="k">?</span>
+          If this user guide is &quot;docked&quot; into the document area
+          via <span class="k">?</span><span class="k">?</span>, this can be used
+          to jump to the documentation section for a given prefix key.
+          For example, <span class="k">Tab</span><span class="k">?</span><span class="k">=</span>
+          jumps to the section about relational operators.
         </li>
         <li>
           <span class="k">!</span> <em>Export document:</em>
@@ -549,15 +565,22 @@
       <p>
         <strong>NOTE:</strong>
         You can use <span class="k">Tab</span><span class="k">s</span>
-        or <span class="k">Ctrl</span><span class="k">s</span> from the main screen to save the current
+        or <span class="k">Ctrl&nbsp;s</span> from the main screen to save the current
         document without opening the file manager first.
+      </p>
+      <p>
+        Documents can be exported (downloaded) as <kbd>.rpn</kbd> files using the
+        <span class="k">x</span> command, and later re-imported by using the upload
+        field found at the bottom of the File Manager.
       </p>
 
       <h2 id="help_symbols">
         <span class="k">&#39;</span> Math Symbols
       </h2>
       <p>
-        Assorted standalone math symbols.  These all put exactly one object onto the stack.
+        Assorted standalone math symbols.  Adding subscripts or superscripts
+        to &quot;large&quot; symbols like <code>\sum</code> will place them
+        in the correct position for normal math notation.
       </p>
       <table class="keybindings"><tbody>
           <tr>
@@ -682,7 +705,7 @@
       <ul class="keybindings">
         <li>
           <span class="k">&#39;</span><span class="k">&#39;</span>
-          Put a placeholder (<code>\htmlClass{placeholder_expr}{\blacksquare}</code>) onto the stack.
+          Put a placeholder <code>\htmlClass{placeholder_expr}{\blacksquare}</code> onto the stack.
           You can treat it like any other subexpression, applying operations to it and using it
           in other expressions.  All placeholders are identical.
         </li>
@@ -783,28 +806,33 @@
           </tr>
           <tr>
             <td><span class="k">*</span> <code>x^{*}</code></td>
+            <td><span class="k">^</span> <code>\star x</code></td>
             <td><span class="k">=</span> <code>\Rightarrow x</code></td>
-            <td><span class="k">-</span> <code>-x</code></td>
           </tr>
           <tr>
+            <td><span class="k">-</span> <code>-x</code></td>
             <td><span class="k">+</span> <code>+x</code></td>
             <td><span class="k">`</span> <code>x^\mathrm{T}</code> <em>(transpose)</em></td>
-            <td><span class="k">~</span> <code>\tilde x</code></td>
           </tr>
           <tr>
+            <td><span class="k">~</span> <code>\tilde x</code></td>
             <td><span class="k">/</span> <code>\cancel x</code></td>
             <td><span class="k">\</span> <code>1/x</code></td>
-            <td><span class="k">!</span> <code>\neg x</code> <em>(not)</em></td>
           </tr>
           <tr>
-            <td><span class="k">_</span> <code>\underline{x\dots}</code></td>
             <td><span class="k">[</span> <code>\small x</code> <em>(smaller)</em></td>
             <td><span class="k">]</span> <code>\large x</code> <em>(larger)</em></td>
+            <td><span class="k">{</span> <code>\overbrace{x\dots}</code></td>
           </tr>
           <tr>
-            <td><span class="k">{</span> <code>\overbrace{x\dots}</code></td>
             <td><span class="k">}</span> <code>\underbrace{x\dots}</code></td>
-            <td><span class="k">Tab</span> <code>\quad x</code> <em>(indent)</em></td>
+            <td><span class="k">!</span> <code>\neg x</code> <em>(not)</em></td>
+            <td><span class="k">_</span> <code>\underline{x\dots}</code></td>
+          </tr>
+          <tr>
+            <td colspan="3">
+              <span class="k">Tab</span> <code>\quad x</code> <em>(indent)</em>
+            </td>
           </tr>
       </tbody></table>
 
@@ -832,86 +860,90 @@
           </tr>
           <tr>
             <td><span class="k">g</span> <code>x\gets y</code> <em>(<strong>g</strong>ets)</em></td>
+            <td><span class="k">G</span> <code>x\Leftarrow y</code></td>
             <td><span class="k">j</span> <code>x\Join y</code> <em>(<strong>j</strong>oin)</em></td>
+          </tr>
+          <tr>
             <td>
               <span class="k">k</span> or <span class="k">|</span>
               <code>\left.x\,\middle\vert\,y\right.</code>
             </td>
-          </tr>
-          <tr>
             <td><span class="k">l</span> <code>x\parallel y</code></td>
             <td><span class="k">m</span> <code>x\pmod y</code></td>
-            <td><span class="k">M</span> <code>x\mp y</code></td>
           </tr>
           <tr>
+            <td><span class="k">M</span> <code>x\mp y</code></td>
             <td><span class="k">n</span> <code>x\quad\mathrm{whe\mathbf{n}}\quad y</code></td>
             <td><span class="k">o</span> <code>x\circ y</code> <em>(<strong>o</strong>f)</em></td>
-            <td><span class="k">O</span> <code>x\odot y</code></td>
           </tr>
           <tr>
+            <td><span class="k">O</span> <code>x\odot y</code></td>
             <td><span class="k">p</span> <code>x\perp y</code></td>
             <td><span class="k">P</span> <code>x\pm y</code></td>
-            <td><span class="k">q</span> <code>x\quad\mathrm{and}\quad y</code></td>
           </tr>
           <tr>
+            <td><span class="k">q</span> <code>x\quad\mathrm{and}\quad y</code></td>
             <td><span class="k">Q</span> <code>x\quad\mathrm{or}\quad y</code></td>
             <td><span class="k">r</span> <code>x\quad\mathrm{fo\mathbf{r}}\quad y</code></td>
+          </tr>
+          <tr>
             <td>
               <span class="k">s</span> or
               <span class="k">&nbsp;</span>
               <code>x\,y</code>
             </td>
-          </tr>
-          <tr>
             <td><span class="k">S</span> <code>x\circledast y</code></td>
             <td><span class="k">t</span> <code>x\to y</code></td>
-            <td><span class="k">T</span> <code>x\longrightarrow y</code></td>
           </tr>
           <tr>
+            <td><span class="k">T</span> <code>x\longrightarrow y</code></td>
             <td><span class="k">u</span> <code>x\cup y</code></td>
             <td><span class="k">v</span> <code>x\vee y</code></td>
-            <td><span class="k">V</span> <code>x\veebar y</code></td>
           </tr>
           <tr>
+            <td><span class="k">V</span> <code>x\veebar y</code></td>
             <td><span class="k">w</span> <code>x\wedge y</code> <em>(<strong>w</strong>edge)</em></td>
             <td><span class="k">W</span> <code>x\barwedge y</code></td>
-            <td><span class="k">x</span> <code>x\times y</code></td>
           </tr>
           <tr>
+            <td><span class="k">x</span> <code>x\times y</code></td>
             <td><span class="k">X</span> <code>x\otimes y</code></td>
             <!-- <td><span class="k">[</span> <code>x\llcorner y</code></td>
             <td><span class="k">]</span> <code>x\lrcorner y</code></td> -->
             <td><span class="k">=</span> <code>x\Rightarrow y</code></td>
-            <td><span class="k">+</span> <code>x\Longrightarrow y</code></td>
           </tr>
           <tr>
+            <td><span class="k">+</span> <code>x\Longrightarrow y</code></td>
             <td><span class="k">-</span> <code>x\ominus y</code></td>
             <td><span class="k">.</span> <code>x\cdot y</code></td>
-            <td><span class="k">,</span> <code>x,y</code></td>
           </tr>
           <tr>
+            <td><span class="k">,</span> <code>x,y</code></td>
             <td><span class="k">(</span> <code>\left(x,y\right)</code></td>
             <td><span class="k">&gt;</span> <code>x\cdots y</code></td>
-            <td><span class="k">&lt;</span> <code>\left\langle x,y\right\rangle</code></td>
           </tr>
           <tr>
+            <td><span class="k">&lt;</span> <code>\left\langle x,y\right\rangle</code></td>
             <td><span class="k">*</span> <code>x*y</code></td>
             <td><span class="k">^</span> <code>x\star y</code>
-            <td><span class="k">:</span> <code>x\colon y</code></td>
           </tr>
           <tr>
+            <td><span class="k">:</span> <code>x\colon y</code></td>
             <td><span class="k">;</span> <code>x;y</code></td>
             <td><span class="k">`</span> <code>x^\mathrm{T} y</code></td>
-            <td><span class="k">~</span> <code>xy^\mathrm{T}</code></td>
           </tr>
           <tr>
+            <td><span class="k">~</span> <code>xy^\mathrm{T}</code></td>
             <td><span class="k">/</span> <code>x/y</code></td>
             <td><span class="k">\</span> <code>x\backslash y</code></td>
-            <td><span class="k">%</span> <code>x\div y</code></td>
           </tr>
           <tr>
+            <td><span class="k">%</span> <code>x\div y</code></td>
             <td><span class="k">Tab</span> <code>x\quad y</code></td>
-            <td colspan="2">
+            <td><span class="k">_</span> <code>x\_y</code></td>
+          </tr>
+          <tr>
+            <td colspan="3">
               <span class="k">&#39;</span> <em>conjunction</em> (see below)
             </td>
           </tr>
@@ -933,7 +965,7 @@
         creates: <code>x\quad\mathrm{iff}\quad y</code>.
         This <em>conjunction</em> command starts a special text entry mode where you can
         type in whatever phrase you want instead.  Using <span class="k">Enter</span>
-        creates an ordinary conjunction, while <span class="k">Shift</span><span class="k">Enter</span>
+        creates an ordinary conjunction, while <span class="k">Shift&nbsp;Enter</span>
         will make it bolded.
       </p>
 
@@ -942,7 +974,7 @@
       </h2>
       <p>
         Similar to <span class="k">,</span>, these commands combine two expressions
-        into an "equation" by placing a relational operator between them.
+        into an "equation" by placing a relational operator (or arrow) between them.
       </p>
 
       <p>Equality-like relations:</p>
@@ -952,28 +984,48 @@
             <td><span class="k">c</span> <code>x\cong y</code> <em>(<strong>c</strong>ongruent)</em></td>
           </tr>
           <tr>
-            <td><span class="k">e</span> <code>x\equiv y</code></td>
-            <td><span class="k">E</span> <code>x\iff y</code></td>
+            <td><span class="k">e</span> <code>x\leftrightarrow y</code></td>
+            <td><span class="k">E</span> <code>x\longleftrightarrow y</code></td>
           </tr>
           <tr>
-            <td><span class="k">f</span> <code>x\Leftarrow y</code> <em>(<strong>f</strong>rom)</em></td>
-            <td><span class="k">g</span> <code>x\gets y</code> <em>(<strong>g</strong>ets)</em></td>
+            <td><span class="k">f</span> <code>x\Leftrightarrow y</code></td>
+            <td><span class="k">F</span> <code>x\Longleftrightarrow y</code></td>
           </tr>
           <tr>
             <td><span class="k">i</span> <code>x\in y</code> <em>(<strong>i</strong>n)</em></td>
             <td><span class="k">I</span> <code>x\notin y</code></td>
           </tr>
           <tr>
+            <td><span class="k">j</span> <code>x\leftarrow y</code></td>
+            <td><span class="k">J</span> <code>x\longleftarrow y</code></td>
+          </tr>
+          <tr>
+            <td><span class="k">k</span> <code>x\Leftarrow y</code></td>
+            <td><span class="k">K</span> <code>x\Longleftarrow y</code></td>
+          </tr>
+          <tr>
             <td><span class="k">m</span> <code>x\mapsto y</code> <em>(<strong>m</strong>aps to)</em></td>
+            <td><span class="k">M</span> <code>x\longmapsto y</code></td>
+          </tr>
+          <tr>
+            <td><span class="k">n</span> or <span class="k">!</span> <code>x\ne y</code></td>
             <td><span class="k">o</span> <code>x\circeq y</code></td>
           </tr>
           <tr>
-            <td><span class="k">=</span> or <span class="k">q</span> <code>x = y</code></td>
-            <td><span class="k">!</span> or <span class="k">n</span> <code>x\ne y</code></td>
+            <td><span class="k">p</span> <code>x\propto y</code> <em>(<strong>p</strong>roportional)</em></td>
+            <td><span class="k">P</span> <code>x\simeq y</code></td>
           </tr>
           <tr>
-            <td><span class="k">p</span> <code>x\propto y</code> <em>(<strong>p</strong>roportional)</em></td>
-            <td><span class="k">t</span> <code>x\to y</code></td>
+            <td><span class="k">q</span> or <span class="k">=</span> <code>x = y</code></td>
+            <td><span class="k">Q</span> <code>x\equiv y</code> <em>(e<strong>q</strong>uivalent)<em></td>
+          </tr>
+          <tr>
+            <td><span class="k">t</span> <code>x\to y</code> <em>(<strong>t</strong>o)</em></td>
+            <td><span class="k">T</span> <code>x\longrightarrow y</code></td>
+          </tr>
+          <tr>
+            <td><span class="k">v</span> <code>x\Rightarrow y</code></td>
+            <td><span class="k">V</span> or <span class="k">+</span> <code>x\Longrightarrow y</code></td>
           </tr>
           <tr>
             <td><span class="k">;</span> <code>x\coloncolon y</code></td>
@@ -1012,11 +1064,11 @@
             <td><span class="k">}</span> <code>x\ggg y</code></td>
           </tr>
           <tr>
-            <td><span class="k">s</span> <code>x\subset y</code></td>
+            <td><span class="k">s</span> <code>x\subset y</code> <em>(<strong>s</strong>ubset)</em></td>
             <td><span class="k">S</span> <code>x\subseteq y</code></td>
           </tr>
           <tr>
-            <td><span class="k">u</span> <code>x\supset y</code></td>
+            <td><span class="k">u</span> <code>x\supset y</code> <em>(s<strong>u</strong>perset)</em></td>
             <td><span class="k">U</span> <code>x\supseteq y</code></td>
           </tr>
       </tbody></table>
@@ -1197,10 +1249,10 @@
         <span class="k">Ctrl</span> key shortcuts:
       </p>
       <ul class="keybindings">
-        <li><span class="k">Ctrl</span><span class="k">x</span> <code>f\Rightarrow f(x)</code></li>
-        <li><span class="k">Ctrl</span><span class="k">t</span> <code>f\Rightarrow f(t)</code></li>
-        <li><span class="k">Ctrl</span><span class="k">f</span> <code>x\Rightarrow f(x)</code></li>
-        <li><span class="k">Ctrl</span><span class="k">g</span> <code>x\Rightarrow g(x)</code></li>
+        <li><span class="k">Ctrl&nbsp;x</span> <code>f\Rightarrow f(x)</code></li>
+        <li><span class="k">Ctrl&nbsp;t</span> <code>f\Rightarrow f(t)</code></li>
+        <li><span class="k">Ctrl&nbsp;f</span> <code>x\Rightarrow f(x)</code></li>
+        <li><span class="k">Ctrl&nbsp;g</span> <code>x\Rightarrow g(x)</code></li>
       </ul>
 
       <p><strong>Vertical Stacking:</strong></p>
@@ -1366,7 +1418,7 @@
         </li>
         <li>
           <strong>NOTE:</strong>
-          Using <span class="k">Shift</span><span class="k">Enter</span> will automatically enclose the tag string
+          Using <span class="k">Shift&nbsp;Enter</span> will automatically enclose the tag string
           in parentheses, useful for equation numbers like <kbd>(1)</kbd>.
         </li>
       </ul>
@@ -1395,7 +1447,7 @@
         <span class="k">/</span><span class="k">d</span>&nbsp;
         <span class="k">/</span><span class="k">D</span>&nbsp;
         <span class="k">/</span><span class="k">v</span>
-        Derivative Building
+        Derivatives and Differentials
       </h2>
       <p>
         These are some shortcuts for quickly creating common types of expressions involving derivatives and differentials.
@@ -1598,7 +1650,7 @@
               <span class="k">n</span> <code>\operatorname{sgn}{(x)}</code>
               <em>(sig<strong>n</strong>)</em>
             </td>
-            <td><span class="k">p</span> <code>\Pr{(x)}</code></td>
+            <td><span class="k">p</span> <code>\Pr x</code></td>
           </tr>
           <tr>
             <td><span class="k">P</span> <code>\Pr{(x,y)}</code></td>
@@ -2463,14 +2515,15 @@
         </li>
         <li>
           <span class="k">q</span> and <span class="k">Q</span>
-          Check whether an equation or inequality like
-          <code>x^2 &gt; \sin x</code> is true or not.
-          If this can be determined algebraically, it will be; otherwise,
-          the expression will be evaluated randomly at several points in the
-          range <code>(-10, 10)</code> to test for likely truth or falsehood.
+          Check whether an equation or inequality like <code>x^2 &gt; \sin x</code> is true or not.
+          <!-- If this can be determined algebraically, it will be; otherwise, the -->
+          The expression will be evaluated randomly at several points
+          sampled from <code>\mathcal{N}(\mu=0,\sigma=10)</code>
+          to test for likely truth or falsehood.
           <span class="k">Q</span>
-          <code>(f \enspace a\enspace b)</code>
-          allows you to specify the <code>(a, b)</code> range to test explicitly.
+          <code>f\enspace\mu\enspace\sigma</code>
+          allows you to specify the mean and standard deviation
+          <code>\mathcal{N}(\mu,\sigma)</code> explicitly.
         </li>
         <li>
           <span class="k">v</span>
@@ -2753,134 +2806,310 @@
         However, the following Control key based shortcuts are available for optional use.
         On macOS, the Command key also functions as an alias to Control.
       </p>
+      <p>
+        <strong>NOTE:</strong> Pressing <span class="k">c</span> while the User Guide
+        popup is open will take you directly to this section.
+      </p>
 
       <ul class="keybindings">
         <li>
-          <span class="k">Ctrl</span><span class="k">0-4</span>
+          <span class="k">Ctrl&nbsp;0-4</span>
           Add common subscripts and superscripts: <code>x_0, x^{-1}, x^2, x^3, x^4</code>
-          (same as <span class="k">.</span><span class="k">0-4</span>)
+          &ndash; same as <span class="k">.</span><span class="k">0-4</span>
         </li>
-        <li><span class="k">Ctrl</span><span class="k">a</span>
+        <li><span class="k">Ctrl&nbsp;a</span>
           Swap the top two stack top items
-          (same as <span class="k">Tab</span><span class="k">a</span>)
+          &ndash; same as <span class="k">Tab</span><span class="k">a</span>
         </li>
-        <li><span class="k">Ctrl</span><span class="k">b</span>
-          Apply a bold font to the stack top
-          (same as <span class="k">]</span>)
+        <li><span class="k">Ctrl&nbsp;b</span>
+          Apply a bold font: <code>x\Rightarrow \boldsymbol x</code>
+          &ndash; same as <span class="k">]</span>
         </li>
-        <li><span class="k">Ctrl</span><span class="k">c</span>
+        <li><span class="k">Ctrl&nbsp;c</span>
           Copy stack top to clipboard
-          (same as <span class="k">Tab</span><span class="k">c</span>)
+          &ndash; same as <span class="k">Tab</span><span class="k">c</span>
         </li>
-        <li><span class="k">Ctrl</span><span class="k">e</span>
+        <li><span class="k">Ctrl&nbsp;d</span>
+          Make subscript &ndash; same as <span class="k">Enter</span>
+        </li>
+        <li><span class="k">Ctrl&nbsp;e</span>
           <code>x \Rightarrow \mathrm{e}^x</code>
-          (same as <span class="k">/</span><span class="k">e</span>)
+          &ndash; same as <span class="k">/</span><span class="k">e</span>
         </li>
-        <li><span class="k">Ctrl</span><span class="k">f</span>
+        <li><span class="k">Ctrl&nbsp;f</span>
           <code>x \Rightarrow f(x)</code>
         </li>
-        <li><span class="k">Ctrl</span><span class="k">g</span>
+        <li><span class="k">Ctrl&nbsp;g</span>
           <code>x \Rightarrow g(x)</code>
         </li>
-        <li><span class="k">Ctrl</span><span class="k">i</span>
+        <li><span class="k">Ctrl&nbsp;i</span>
           Move the stack top into the document at the current selection position
-          (same as <span class="k">Tab</span><span class="k">i</span>)
+          &ndash; same as <span class="k">Tab</span><span class="k">i</span>
         </li>
-        <li><span class="k">Ctrl</span><span class="k">j</span>
+        <li><span class="k">Ctrl&nbsp;j</span>
           Move the current document selection back onto the stack
-          (same as <span class="k">Tab</span><span class="k">j</span>)
+          &ndash; same as <span class="k">Tab</span><span class="k">j</span>
         </li>
         <li>
-          <span class="k">Ctrl</span><span class="k">k</span>
+          <span class="k">Ctrl&nbsp;k</span>
           <code>f\enspace x\enspace y \Rightarrow f(x\,|\,y)</code>
-          (same as <span class="k">/</span><span class="k">k</span>)
+          &ndash; same as <span class="k">/</span><span class="k">k</span>
         </li>
-        <li>
-          <span class="k">Ctrl</span><span class="k">K</span>
+        <!-- <li>
+          <span class="k">Ctrl&nbsp;K</span>
           <code>f\enspace x\enspace y\enspace z \Rightarrow f(x,y\,|\,z)</code>
-          (same as <span class="k">/</span><span class="k">K</span>)
-        </li>
-        <li><span class="k">Ctrl</span><span class="k">l</span>
+          &ndash; same as <span class="k">/</span><span class="k">K</span>
+        </li> -->
+        <li><span class="k">Ctrl&nbsp;l</span>
           Recenter the document view around the current document selection
-          (same as <span class="k">Tab</span><span class="k">l</span>)
+          &ndash; same as <span class="k">Tab</span><span class="k">l</span>
         </li>
-        <li><span class="k">Ctrl</span><span class="k">m</span>
+        <li><span class="k">Ctrl&nbsp;m</span>
           <code>x \Rightarrow -x</code>
-          (same as <span class="k">.</span><span class="k">-</span>)
+          &ndash; same as <span class="k">.</span><span class="k">-</span>
         </li>
-        <li><span class="k">Ctrl</span><span class="k">o</span>
+        <li>
+          <span class="k">Ctrl&nbsp;n</span>
+          Apply a roma<strong>n</strong> font: <code>x\Rightarrow \mathrm x</code>
+          &ndash; same as <span class="k">.</span><span class="k">r</span>
+        </li>
+        <li><span class="k">Ctrl&nbsp;o</span>
           <code>f\enspace x \Rightarrow f(x)</code>
-          (same as <span class="k">/</span><span class="k">o</span>)
+          &ndash; same as <span class="k">/</span><span class="k">o</span>
         </li>
         <li>
-          <span class="k">Ctrl</span><span class="k">p</span>
+          <span class="k">Ctrl&nbsp;p</span>
           Enclose the stack top in parentheses
-          (same as <span class="k">(</span>)
+          &ndash; same as <span class="k">(</span>
         </li>
         <li>
-          <span class="k">Ctrl</span><span class="k">r</span>
+          <span class="k">Ctrl&nbsp;r</span>
           <code>f\enspace x\enspace y \Rightarrow f(x,y)</code>
-          (same as <span class="k">/</span><span class="k">r</span>)
+          &ndash; same as <span class="k">/</span><span class="k">r</span>
         </li>
-        <li>
-          <span class="k">Ctrl</span><span class="k">R</span>
+        <!-- <li>
+          <span class="k">Ctrl&nbsp;R</span>
           <code>f\enspace x\enspace y\enspace z \Rightarrow f(x,y,z)</code>
-          (same as <span class="k">/</span><span class="k">R</span>)
-        </li>
+          &ndash; same as <span class="k">/</span><span class="k">R</span>
+        </li> -->
         <li>
-          <span class="k">Ctrl</span><span class="k">s</span>
+          <span class="k">Ctrl&nbsp;s</span>
           Save the current document
-          (same as <span class="k">Tab</span><span class="k">s</span>)
+          &ndash; same as <span class="k">Tab</span><span class="k">s</span>
         </li>
-        <li><span class="k">Ctrl</span><span class="k">t</span>
+        <li><span class="k">Ctrl&nbsp;t</span>
           <code>f \Rightarrow f(t)</code>
         </li>
-        <li><span class="k">Ctrl</span><span class="k">u</span>
-          Make superscript (same as <span class="k">`</span>)
+        <li><span class="k">Ctrl&nbsp;u</span>
+          Make superscript &ndash; same as <span class="k">`</span>
+          or <span class="k">^</span>
         </li>
-        <li><span class="k">Ctrl</span><span class="k">v</span>
+        <li><span class="k">Ctrl&nbsp;v</span>
           Paste clipboard to stack top
-          (same as <span class="k">Tab</span><span class="k">v</span>)
+          &ndash; same as <span class="k">Tab</span><span class="k">v</span>
         </li>
-        <li><span class="k">Ctrl</span><span class="k">w</span>
+        <li><span class="k">Ctrl&nbsp;w</span>
           Put the stack top into a temporary &quot;floating&quot; spot, or put it back
           on the stack again
-          (same as <span class="k">Tab</span><span class="k">w</span>)
+          &ndash; same as <span class="k">Tab</span><span class="k">w</span>
         </li>
-        <li><span class="k">Ctrl</span><span class="k">x</span>
+        <li><span class="k">Ctrl&nbsp;x</span>
           <code>f \Rightarrow f(x)</code>
         </li>
-        <li><span class="k">Ctrl</span><span class="k">z</span>
+        <li><span class="k">Ctrl&nbsp;z</span>
           Undo last action
-          (same as <span class="k">Tab</span><span class="k">z</span>)
+          &ndash; same as <span class="k">Tab</span><span class="k">z</span>
         </li>
         <li>
-          <span class="k">Ctrl</span><span class="k">y</span> Redo actions undone by 'undo'
-          (same as <span class="k">Tab</span><span class="k">y</span>)
+          <span class="k">Ctrl&nbsp;y</span>
+          Redo actions undone by 'undo'
+          &ndash; same as <span class="k">Tab</span><span class="k">y</span>
         </li>
         <li>
-          <span class="k">Ctrl</span><span class="k">/</span>
+          <span class="k">Ctrl&nbsp;/</span>
           <code>x\enspace y \Rightarrow \displaystyle{\frac{x}{y}}</code>
-          (same as <span class="k">/</span><span class="k">/</span>)
+          &ndash; same as <span class="k">/</span><span class="k">/</span>
         </li>
         <li>
-          <span class="k">Ctrl</span><span class="k">\</span>
+          <span class="k">Ctrl&nbsp;\</span>
           <code>x \Rightarrow \displaystyle{\frac{1}{x}}</code>
-          (same as <span class="k">/</span><span class="k">1</span>)
+          &ndash; same as <span class="k">/</span><span class="k">1</span>
         </li>
         <li>
-          <span class="k">Ctrl</span><span class="k">,</span> Join two items with a comma
-          (same as <span class="k">,</span><span class="k">,</span>)
+          <span class="k">Ctrl&nbsp;]</span>
+          Apply a bold roman font: (<code>x\Rightarrow \bold x</code>)
+          &ndash; same as <span class="k">.</span><span class="k">b</span>
         </li>
         <li>
-          <span class="k">Ctrl</span><span class="k">Space</span> Join two items with a thin space
-          (same as <span class="k">,</span><span class="k">&nbsp;</span>)
+          <span class="k">Ctrl&nbsp;,</span>
+          Join two items with a comma
+          &ndash; same as <span class="k">,</span><span class="k">,</span>
         </li>
         <li>
-          <span class="k">Ctrl</span><span class="k">Backspace</span> Delete the secondmost item from the stack top
-          (same as <span class="k">Tab</span><span class="k">n</span>)
+          <span class="k">Ctrl&nbsp;Space</span>
+          Join two items with a thin space
+          &ndash; same as <span class="k">,</span><span class="k">&nbsp;</span>
+        </li>
+        <li>
+          <span class="k">Ctrl&nbsp;Backspace</span>
+          Drop the secondmost top item from the stack
+          &ndash; same as <span class="k">Tab</span><span class="k">n</span>
         </li>
       </ul>
+
+      <h2 id="help_examples">Examples</h2>
+      <p>
+        Key-by-key examples of how to create some different math formulas.
+        You can follow along more easily by docking this User Guide into the document
+        area by pressing <span class="k">?</span> again.
+      </p>
+
+      <h3>Beta function</h3>
+      <p class="example">
+        <code>\displaystyle{B{\left(\alpha,\beta\right)}=\int^1_0{\left(1-t\right)}^{\alpha-1}t^{\beta-1}\,dt}</code>
+      </p>
+      <ul class="example">
+        <li>
+          <span class="k">B</span><span class="k">;</span><span class="k">a</span><span class="k">;</span><span class="k">b</span><span class="k">/</span><span class="k">r</span>
+          <code>\Rightarrow B{\left(\alpha,\beta\right)}</code>
+        </li>
+        <li>
+          <span class="k">/</span><span class="k">I</span><span class="k">u</span>
+          <code>\Rightarrow \int_0^1</code>
+        </li>
+        <li>
+          <span class="k">t</span><span class="k">.</span><span class="k">c</span><span class="k">;</span><span class="k">a</span><span class="k">1</span><span class="k">-</span><span class="k">`</span>
+          <code>\Rightarrow \left(1-t\right)^{\alpha-1}</code>
+        </li>
+        <li>
+          <span class="k">t</span><span class="k">;</span><span class="k">b</span><span class="k">1</span><span class="k">-</span><span class="k">`</span>
+          <code>\Rightarrow t^{\beta-1}</code>
+        </li>
+        <li>
+          <span class="k">&nbsp;</span><span class="k">&nbsp;</span><span class="k">t</span><span class="k">/</span><span class="k">d</span><span class="k">i</span>
+          <code>\Rightarrow \int^1_0{\left(1-t\right)}^{\alpha-1}t^{\beta-1}\,dt</code>
+        </li>
+        <li>
+          <span class="k">=</span><span class="k">=</span>
+          <code>\Rightarrow B{\left(\alpha,\beta\right)}=\int^1_0{\left(1-t\right)}^{\alpha-1}t^{\beta-1}\,dt</code>
+        </li>
+      </ul>
+
+      <h3>Schrödinger equation</h3>
+      <p class="example">
+        <code>\displaystyle{i\hslash\frac{\partial\Psi}{\partial t}=-\frac{\hslash^2}{2m}\nabla^2\Psi+\phi\Psi}</code>
+      </p>
+      <ul class="example">
+        <li>
+          <span class="k">i</span><span class="k">'</span><span class="k">h</span><span class="k">&nbsp;</span><span class="k">;</span><span class="k">Y</span><span class="k">t</span><span class="k">/</span><span class="k">d</span><span class="k">j</span><span class="k">&nbsp;</span>
+          <code>\Rightarrow i\hslash\frac{\partial\Psi}{\partial t}</code>
+        </li>
+        <li>
+          <span class="k">'</span><span class="k">h</span><span class="k">.</span><span class="k">2</span><span class="k">2</span><span class="k">m</span><span class="k">&nbsp;</span><span class="k">/</span><span class="k">/</span><span class="k">.</span><span class="k">-</span><span class="k">;</span><span class="k">Y</span><span class="k">/</span><span class="k">d</span><span class="k">l</span><span class="k">&nbsp;</span>
+          <code>\Rightarrow -\frac{\hslash^2}{2m}\nabla^2\Psi</code>
+        </li>
+        <li>
+          <span class="k">;</span><span class="k">f</span><span class="k">;</span><span class="k">Y</span><span class="k">&nbsp;</span><span class="k">+</span><span class="k">=</span><span class="k">=</span>
+          <code>\Rightarrow i\hslash\frac{\partial\Psi}{\partial t}=-\frac{\hslash^2}{2m}\nabla^2\Psi+\phi\Psi</code>
+        </li>
+      </ul>
+
+      <h3>Sine power series</h3>
+      <p class="example">
+        <code>\displaystyle{\sin{\omega t}=\sum_{k\ge0}{\left(-1\right)}^k\frac{{\left(\omega t\right)}^{2k+1}}{\left(2k+1\right)!}}</code>
+      </p>
+      <ul class="example">
+        <li>
+          <span class="k">;</span><span class="k">w</span><span class="k">t</span><span class="k">&nbsp;</span><span class="k">/</span><span class="k">s</span>
+          <code>\Rightarrow \sin{\omega t}</code>
+        </li>
+        <li>
+          <span class="k">k</span><span class="k">0</span><span class="k">/</span><span class="k">+</span><span class="k">'</span><span class="k">1</span><span class="k">k</span><span class="k">`</span>
+          <code>\Rightarrow \sum_{k\ge0}{\left(-1\right)}^k</code>
+        </li>
+        <li>
+          <span class="k">;</span><span class="k">w</span><span class="k">t</span><span class="k">&nbsp;</span><span class="k">2</span><span class="k">k</span><span class="k">&nbsp;</span><span class="k">1</span><span class="k">+</span><span class="k">`</span>
+          <code>\Rightarrow {\left(\omega t\right)}^{2k+1}</code>
+        </li>
+        <li>
+          <span class="k">2</span><span class="k">k</span><span class="k">&nbsp;</span><span class="k">1</span><span class="k">+</span><span class="k">!</span><span class="k">/</span><span class="k">/</span>
+          <code>\Rightarrow \frac{{\left(\omega t\right)}^{2k+1}}{\left(2k+1\right)!}</code>
+        </li>
+        <li>
+          <span class="k">&nbsp;</span><span class="k">&nbsp;</span><span class="k">=</span><span class="k">=</span>
+          <code>\Rightarrow \sin{\omega t}=\sum_{k\ge0}{\left(-1\right)}^k\frac{{\left(\omega t\right)}^{2k+1}}{\left(2k+1\right)!}</code>
+        </li>
+      </ul>
+      
+      <h3>Fourier transform</h3>
+      <p class="example">
+        <code>\displaystyle{\mathscr{F}{\left[\phi\right]}=\hat{\phi}{\left(k\right)}=\frac{1}{\sqrt{2\pi}}\int^{\infty}_{-\infty}\phi{\left(x\right)}{\mathrm{e}}^{-ikx}\,dx}</code>
+      </p>
+      <ul class="example">
+        <li>
+          <span class="k">&</span><span class="k">F</span><span class="k">;</span><span class="k">f</span><span class="k">/</span><span class="k">[</span><span class="k">;</span><span class="k">f</span><span class="k">.</span><span class="k">h</span><span class="k">k</span><span class="k">/</span><span class="k">o</span><span class="k">=</span><span class="k">=</span>
+          <code>\Rightarrow \mathscr{F}{\left[\phi\right]}=\hat{\phi}{\left(k\right)}</code>
+        </li>
+        <li>
+          <span class="k">2</span><span class="k">;</span><span class="k">p</span><span class="k">&nbsp;</span><span class="k">/</span><span class="k">q</span><span class="k">/</span><span class="k">1</span>
+          <code>\Rightarrow \frac{1}{\sqrt{2\pi}}</code>
+        </li>
+        <li>
+          <span class="k">/</span><span class="k">I</span><span class="k">r</span><span class="k">;</span><span class="k">f</span><span class="k">x</span><span class="k">/</span><span class="k">o</span><span class="k">&nbsp;</span>
+          <code>\Rightarrow \int^{\infty}_{-\infty}\phi{\left(x\right)}</code>
+        </li>
+        <li>
+          <span class="k">i</span><span class="k">k</span><span class="k">x</span><span class="k">&nbsp;</span><span class="k">&nbsp;</span><span class="k">.</span><span class="k">-</span><span class="k">/</span><span class="k">e</span><span class="k">&nbsp;</span><span class="k">x</span><span class="k">/</span><span class="k">d</span><span class="k">i</span>
+          <code>\Rightarrow \int^{\infty}_{-\infty}\phi{\left(x\right)}{\mathrm{e}}^{-ikx}\,dx</code>
+        </li>
+        <li>
+          <span class="k">&nbsp;</span><span class="k">=</span><span class="k">=</span>
+          <code>\Rightarrow \mathscr{F}{\left[\phi\right]}=\hat{\phi}{\left(k\right)}=\frac{1}{\sqrt{2\pi}}\int^{\infty}_{-\infty}\phi{\left(x\right)}{\mathrm{e}}^{-ikx}\,dx</code>
+        </li>
+      </ul>
+      
+      <h3>Cauchy integral formula</h3>
+      <p class="example">
+        <code>\displaystyle{f^{\left(n\right)}{\left(z_0\right)}=\frac{n!}{2\pi i}\oint\frac{f{\left(z\right)}\,dz}{{\left(z-z_0\right)}^{n+1}}}</code>
+      </p>
+      <ul class="example">
+        <li>
+          <span class="k">f</span><span class="k">n</span><span class="k">(</span><span class="k">`</span><span class="k">z</span><span class="k">.</span><span class="k">0</span><span class="k">/</span><span class="k">o</span>
+          <code>\Rightarrow f^{\left(n\right)}{\left(z_0\right)}</code>
+        </li>
+        <li>
+          <span class="k">n</span><span class="k">!</span><span class="k">2</span><span class="k">;</span><span class="k">p</span><span class="k">&nbsp;</span><span class="k">i</span><span class="k">&nbsp;</span><span class="k">/</span><span class="k">/</span>
+          <code>\Rightarrow \frac{n!}{2\pi i}</code>
+        </li>
+        <li>
+          <span class="k">'</span><span class="k">y</span><span class="k">f</span><span class="k">z</span><span class="k">/</span><span class="k">o</span><span class="k">z</span><span class="k">/</span><span class="k">d</span><span class="k">i</span><span class="k">z</span><span class="k">z</span><span class="k">.</span><span class="k">0</span><span class="k">-</span><span class="k">n</span><span class="k">1</span><span class="k">+</span><span class="k">`</span><span class="k">/</span><span class="k">/</span><span class="k">&nbsp;</span>
+          <code>\Rightarrow \oint\frac{f{\left(z\right)}\,dz}{{\left(z-z_0\right)}^{n+1}}</code>
+        </li>
+        <li>
+          <span class="k">&nbsp;</span><span class="k">=</span><span class="k">=</span>
+          <code>\Rightarrow f^{\left(n\right)}{\left(z_0\right)}=\frac{n!}{2\pi i}\oint\frac{f{\left(z\right)}\,dz}{{\left(z-z_0\right)}^{n+1}}</code>
+        </li>
+      </ul>
+      
+      <h3>Multivariate Gaussian distribution</h3>
+      <p class="example">
+        <code>\displaystyle{f{\left(\boldsymbol{x}\right)}=\frac{1}{\sqrt{{\left(2\pi\right)}^n\det{\boldsymbol{\Sigma}}}}\exp{\left[-\frac{1}{2}{\left(\boldsymbol{x}-\boldsymbol{\mu}\right)}^{\mathrm{T}}{\boldsymbol{\Sigma}}^{-1}\left(\boldsymbol{x}-\boldsymbol{\mu}\right)\right]}}</code>
+      </p>
+      <ul class="example">
+        <li>
+          <span class="k">2</span><span class="k">;</span><span class="k">p</span><span class="k">&nbsp;</span><span class="k">n</span><span class="k">`</span><span class="k">;</span><span class="k">S</span><span class="k">]</span><span class="k">/</span><span class="k">f</span><span class="k">d</span><span class="k">&nbsp;</span><span class="k">/</span><span class="k">q</span><span class="k">/</span><span class="k">1</span>
+          <code>\Rightarrow \frac{1}{\sqrt{{\left(2\pi\right)}^n\det{\boldsymbol{\Sigma}}}}</code>
+        </li>
+        <li>
+          <span class="k">'</span><span class="k">2</span><span class="k">.</span><span class="k">-</span><span class="k">x</span><span class="k">]</span><span class="k">;</span><span class="k">m</span><span class="k">]</span><span class="k">-</span><span class="k">;</span><span class="k">S</span><span class="k">]</span><span class="k">'</span><span class="k">1</span><span class="k">`</span><span class="k">Tab</span><span class="k">o</span><span class="k">&nbsp;</span><span class="k">,</span><span class="k">`</span><span class="k">&nbsp;</span>
+          <code>\Rightarrow -\frac{1}{2}{\left(\boldsymbol{x}-\boldsymbol{\mu}\right)}^{\mathrm{T}}{\boldsymbol{\Sigma}}^{-1}\left(\boldsymbol{x}-\boldsymbol{\mu}\right)</code>
+        </li>
+        <li>
+          <span class="k">[</span><span class="k">/</span><span class="k">E</span><span class="k">&nbsp;</span><span class="k">f</span><span class="k">x</span><span class="k">]</span><span class="k">/</span><span class="k">o</span><span class="k">Tab</span><span class="k">a</span><span class="k">=</span><span class="k">=</span>
+          <code>\Rightarrow f{\left(\boldsymbol{x}\right)}=\frac{1}{\sqrt{{\left(2\pi\right)}^n\det{\boldsymbol{\Sigma}}}}\exp{\left[-\frac{1}{2}{\left(\boldsymbol{x}-\boldsymbol{\mu}\right)}^{\mathrm{T}}{\boldsymbol{\Sigma}}^{-1}\left(\boldsymbol{x}-\boldsymbol{\mu}\right)\right]}</code>
+        </li>
+      </ul>
+
       <p><!-- small spacer --></p>
     </div> <!-- end #helptext -->
   </body>
