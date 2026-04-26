@@ -9,8 +9,8 @@
     <link rel="manifest" href="manifest.json">
     <!-- <link rel="icon" type="image/png" sizes="64x64" href="favicon-64x64.png"> -->
     <title>rpnlatex</title>
-    <script type="module" crossorigin src="./assets/index-BlABf_-O.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-CD7b7_aS.css">
+    <script type="module" crossorigin src="./assets/index-wwqskPgs.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-CaF9ebmT.css">
   </head>
   <body id="body">
     <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -20,7 +20,8 @@
 
     <!-- The entire user manual is inline here, to be unhidden at runtime when requested. -->
     <div id="helptext" style="display: none;">
-      <div class="version_info">rpnlatex v1.4.2</div>
+      <div class="version_info">rpnlatex v1.5.0</div>
+      <div class="version_info">sympy v1.15.0.dev0</div>
       <h1>User Guide</h1>
       <p>
         Scroll this text up and down with
@@ -30,10 +31,10 @@
       <p>
         Close the user guide and return to the editor with
         <span class="k">q</span> or <span class="k">Esc</span>.
-        Reopen the user guide at any time with <span class="k">?</span>.
+        Reopen the user guide with <span class="k">?</span>.
       </p>
       <p>
-        The editor is divided into two sections: the <em>stack</em> and the <em>document</em>.  The stack is where
+        The editor is divided into two sides: the <em>stack</em> and the <em>document</em>.  The stack is where
         math expressions are built up; once you have built an expression on the stack that you want to keep,
         you can transfer it to the document for storage.
       </p>
@@ -45,16 +46,17 @@
         followed by <span class="k">+</span> to apply the addition operation.
       </p>
       <p>
-        The stack is displayed bottom-up; that is, the item most recently placed on the stack
+        The stack is displayed bottom-up: the item most recently placed on the stack
         (called the &quot;stack top&quot;) is the one shown at the bottom of the screen.
         The older items are stacked up above it.
         Editor operations always work with the first few items on the stack.
-        In this user guide, the labels <em>x</em>, <em>y</em> and <em>z</em> are used to refer to
-        these first few items.
+        In this user guide, the labels <em>x</em>, <em>y</em> and <em>z</em> are usually
+        used to refer to these first few items.
       </p>
       <p>
-        Note that items on the stack have a small colored bar shown to the left of them.  This indicates the item's
-        size as well as its &quot;type&quot;: usually a symbolic expression (grey) or a piece of text (blue).
+        The items on the stack have a small colored <em>type indicator bar</em>
+        shown to the left of them.  This indicates the item's size as well as its &quot;type&quot;:
+        usually a symbolic expression (grey) or a piece of text (blue).
       </p>
       <p>
         This editor is designed to be operated entirely from the keyboard.  Most operations are performed using
@@ -65,8 +67,8 @@
         Other errors are signaled by a brief flash of the screen.
       </p>
       <p>
-        Several <a href="#help_examples">examples</a> of how to create different
-        math formulas are available at the end of this User Guide.  You can jump
+        Several <a href="#help_examples">examples</a> of how to create a selection of
+        math formulas are available at the end of this user guide.  You can jump
         directly to the examples by pressing <span class="k">x</span>.
       </p>
 
@@ -78,8 +80,7 @@
             Typing <span class="k">?</span> a second time will &quot;dock&quot; the user guide
             into the document section for easier reference.  While docked, the user guide can be
             scrolled with the <span class="k">&uarr;</span> <span class="k">&darr;</span> arrow keys.
-            Typing <span class="k">?</span> a third time will then close the user guide and
-            reveal the document section again.
+            Typing <span class="k">?</span> a third time will reveal the document section again.
           </p>
           <p>
             <strong>NOTE:</strong> While the user guide popup is visible (and not docked),
@@ -95,14 +96,18 @@
         </li>
         <li>
           <span class="k">+</span> <span class="k">-</span>
-          <span class="k">&lt;</span> <span class="k">&gt;</span> <span class="k">*</span>
-          Join two expressions with the corresponding operator between them
-          (<code>x\cdot y</code> in the case of <span class="k">*</span>).
+          <span class="k">&lt;</span> <span class="k">&gt;</span>
+          Join two expressions with the corresponding operator between them.
         </li>
         <li>
           <span class="k">&nbsp;</span> <em>(space)</em>
-          Concatenate the top two stack items.  This can also be used to create longer
-          integers from individual digits.
+          Concatenate the top two stack items.  This can be used to &quot;implicitly&quot;
+          multiply terms together (as in <code>xy</code>), and to create longer integers
+          from individual digits (<code>1\enspace 2 \Rightarrow 12</code>).
+        </li>
+        <li>
+          <span class="k">Shift Space</span>
+          Concatenate the top three stack items.  Same as <span class="k">&nbsp;</span><span class="k">&nbsp;</span>.
         </li>
         <li>
           <span class="k">^</span> or <span class="k">`</span> <em>(backtick)</em>
@@ -174,7 +179,24 @@
         prefix first.
       </p>
       <ul class="keybindings">
-        <li><span class="k">\</span> Input a longer character string or formula with <a href="#help_math_entry">math entry</a> mode.</li>
+        <li>
+          <span class="k">*</span>
+          Multiply a term by a small numerical value with <a href="#help_coefficient">coefficient</a> mode.
+        </li>
+        <li>
+          <span class="k">\</span>
+          Input a longer character string or formula with
+          <a href="#help_math_entry">math entry</a> mode.
+        </li>
+        <li>
+          <span class="k">\</span><span class="k">\</span>
+          Directly input LaTeX commands with <a href="#help_latex_entry">LaTeX entry</a> mode.
+        </li>
+        <li>
+          <span class="k">\</span><span class="k">%</span>
+          Enter chemical and physical unit formulas with
+          <a href="#help_chemical_entry">chemical entry</a> mode.
+        </li>
         <li><span class="k">&quot;</span> Create a text object with <a href="#help_text_entry">text entry</a> mode.</li>
         <li><span class="k">Tab</span> <a href="#help_stack">Stack manipulation</a> and other utilities.</li>
         <li><span class="k">&#39;</span> <em>(apostrophe)</em> Create standalone <a href="#help_symbols">math symbols</a>.</li>
@@ -186,7 +208,7 @@
           <span class="k">/</span><span class="k">d</span>&nbsp;
           <span class="k">/</span><span class="k">D</span>&nbsp;
           <span class="k">/</span><span class="k">v</span>
-          Build different kinds of <a href="#help_derivatives">derivatives</a>.
+          Build different kinds of <a href="#help_derivatives">derivatives and differentials</a>.
         </li>
         <li>
           <span class="k">/</span><span class="k">i</span>&nbsp;
@@ -194,11 +216,11 @@
           Apply <a href="#help_integrals">integral limits</a>.
         </li>
         <li><span class="k">/</span><span class="k">f</span> Apply <a href="#help_named_operators">named operators</a>.</li>
-        <li><span class="k">)</span> Add paired <a href="#help_delimiters">delimiters</a> to an expression.</li>
+        <li><span class="k">)</span> Enclose expressions in paired <a href="#help_delimiters">delimiters</a>.</li>
         <li><span class="k">|</span> Manipulate <a href="#help_arrays">arrayed structures</a> like matrices, vectors, or lists.</li>
         <li><span class="k">~</span> Build <a href="#help_tensors">tensor</a> expressions using index notation.</li>
         <li><span class="k">_</span> Manipulate subexpressions with <a href="#help_dissect">dissect</a> mode.</li>
-        <li><span class="k">#</span> Perform <a href="#help_cas">symbolic algebra and calculus</a> operations.</li>
+        <li><span class="k">#</span> Perform <a href="#help_sympy">symbolic algebra and calculus</a> operations.</li>
         <li><span class="k">;</span> <span class="k">:</span> Create <a href="#help_greek">Greek letters</a>.</li>
         <li id="help_insert_calligraphic">
           <span class="k">@</span>
@@ -221,6 +243,45 @@
           Some <a href="#help_control_keys">Control key</a> shortcuts are also available.
         </li>
       </ul>
+
+      <h2 id="help_coefficient">
+        <span class="k">*</span> Coefficient Mode
+      </h2>
+      <p>
+        The <span class="k">*</span> prefix can be used to quickly attach a single-digit
+        numerical coefficient to an expression on the stack.  For example,
+        <span class="k">*</span><span class="k">3</span> gives <code>x \Rightarrow 3x</code>.
+        This gives the same result as entering the digit normally and then concatenating
+        with <span class="k">&nbsp;</span> <em>(space)</em>.
+      </p>
+      <p>
+        A minus sign may be entered before the digit:
+        <span class="k">*</span><span class="k">-</span><span class="k">3</span>
+        gives <code>x \Rightarrow -3x</code>.  Also, the following non-digit coefficients
+        are available:
+      </p>
+      <ul class="keybindings">
+        <li><span class="k">i</span> <code>x \Rightarrow ix</code></li>
+        <li><span class="k">p</span> <code>x \Rightarrow \pi x</code></li>
+        <li><span class="k">P</span> <code>x \Rightarrow 2\pi x</code></li>
+      </ul>
+      <p>
+        Coefficient mode can also be used to divide by a digit rather than multiply.
+        To do this, enter <span class="k">/</span> before the digit:
+        <span class="k">*</span><span class="k">/</span><span class="k">5</span>
+        <code>x\Rightarrow \displaystyle{\frac{x}{5}}</code>.
+        This can also be freely mixed with <span class="k">-</span>, as in:
+        <span class="k">*</span><span class="k">-</span><span class="k">/</span><span class="k">i</span>
+        <code>x\Rightarrow \displaystyle{-\frac{x}{i}}</code>
+      </p>
+      <p>
+        &quot;Inline&quot; fractions can be obtained using
+        <span class="k">\</span> instead of <span class="k">/</span>, for example:
+        <span class="k">*</span><span class="k">\</span><span class="k">p</span>
+        <code>x\Rightarrow x/\pi</code> or
+        <span class="k">*</span><span class="k">\</span><span class="k">-</span><span class="k">3</span>
+        <code>x\Rightarrow -x/3</code>.
+      </p>
 
       <h2 id="help_math_entry">
         <span class="k">\</span> Math Entry
@@ -302,18 +363,21 @@
       <p>
         <strong>Named Operators:</strong>
         Typing <span class="k">Tab</span> instead of <span class="k">Enter</span>
-        will typeset your entry as an <em>operator name</em> which behaves the same as built-in operators
+        will typeset your entry as a <em>named operator</em> which behaves the same as built-in operators
         such as <code>\lim</code> and <code>\sin</code>.  This gives extra spacing between anything
         concatenated to (or before) the operator name to match normal math notation.  Only letters,
         numbers, spaces and dashes are allowed in operator names.
       </p>
       <p>
         <strong>NOTE:</strong> The <span class="k">/</span><span class="k">f</span>
-        <a href="#help_named_operators">named operator</a> prefix can also be used
+        <a href="#help_named_operators"><em>named operator</em></a> prefix can also be used
         to create commonly-used named operators.
       </p>
+
+      <h2 id="help_latex_entry">
+        <span class="k">\</span><span class="k">\</span> LaTeX Entry
+      </h2>
       <p>
-        <strong>LaTeX Entry:</strong>
         Typing another <span class="k">\</span>
         after the first one will instead switch into <em>LaTeX entry</em> mode where you can enter an arbitrary
         zero-argument LaTeX command.  This can be used to create any standard LaTeX symbol:
@@ -322,7 +386,34 @@
       <p>
         One-argument LaTeX commands can be created using <span class="k">Shift&nbsp;Enter</span> instead of
         <span class="k">Enter</span>.  The stack top becomes the argument:
-        <code>x^2 \Rightarrow \mathtt{\backslash\backslash utilde} \Rightarrow \utilde{x^2}</code>
+        <code>x^2\enspace \mathtt{\backslash\backslash utilde} \Rightarrow \utilde{x^2}</code>
+      </p>
+      <p>
+        Typing <span class="k">,</span> <em>(comma)</em> instead of <span class="k">Enter</span>
+        will combine two expressions from the stack into an <a href="#help_infix"><em>infix expression</em></a> using the LaTeX
+        command as the operator:
+        <code>x\enspace y\enspace \mathtt{\backslash\backslash}\texttt{amalg,} \Rightarrow x\amalg y</code>
+      </p>
+
+      <h2 id="help_chemical_entry">
+        <span class="k">\</span><span class="k">%</span> Chemical Formula Entry
+      </h2>
+      <p>
+        This mode lets you input chemical formulas like
+        <code>\ce{H2O}</code> using the <a href="https://mhchem.github.io/MathJax-mhchem/">mhchem</a>
+        library.  Please see the documentation there for details.
+      </p>
+      <p>
+        Finishing your entry with <span class="k">Shift&nbsp;Enter</span> instead of
+        <span class="k">Enter</span> creates <em>physical unit</em> expressions
+        like <code>\pu{10 kJ/mol}</code> instead of chemical formulas.
+      </p>
+      <p>
+        <strong>NOTE:</strong> For longer chemical formulas, you can paste the input
+        directly from the system clipboard using <span class="k">Tab</span><span class="k">V</span>
+        (without entering the <span class="k">\</span><span class="k">%</span> mode).
+        Just surround the formula in a <kbd>\ce{...}</kbd> LaTeX command, as in
+        <kbd>\ce{H2O}</kbd>.
       </p>
 
       <h2 id="help_text_entry">
@@ -359,7 +450,7 @@
         </li>
         <li>
           Finishing the text entry with <span class="k">Shift&nbsp;Enter</span> will
-          create a section header instead (with a larger font and underline).  You can later toggle
+          create a section header instead (with a larger font and an underline).  You can later toggle
           whether or not the text object is a section header with the
           <span class="k">/</span><span class="k">&quot;</span> command.
         </li>
@@ -401,7 +492,10 @@
         In the descriptions below, N refers to the prefix argument if given, otherwise the default is used.
       </p>
       <ul class="keybindings">
-        <li><span class="k">Enter</span> <em>(Dup)</em> Duplicate the top N items (default 1).</li>
+        <li>
+          <span class="k">Enter</span> or <span class="k">Tab</span>
+          <em>(Dup)</em> Duplicate the top N items (default 1).
+        </li>
         <li><span class="k">a</span> <em>(Sw<strong>a</strong>p)</em>
           Reverse the order of the top N items (default 2).
         </li>
@@ -511,10 +605,13 @@
         </li>
         <li>
           <span class="k">w</span>
-          Move the stack top into a &quot;floating&quot; spot in the upper-right corner.
-          This can be used to temporarily keep an item out of the way, or to pin
-          it for quick reference.  If there is already a floating item in this spot, it is
-          put back on the stack instead.
+          Move N items (default 1) from the stack to a &quot;floating&quot; area in the
+          upper-right corner.  This can be used to temporarily keep items out of the way, or to pin
+          them for quick reference.
+        </li>
+        <li>
+          <span class="k">W</span>
+          Pop N items (default 1) from the &quot;floating&quot; area back onto the stack.
         </li>
         <li>
           <span class="k">f</span>
@@ -523,6 +620,10 @@
         <li>
           <span class="k">s</span>
           Save the current document to browser storage.
+        </li>
+        <li>
+          <span class="k">x</span>
+          Clear all items from the stack.
         </li>
         <li>
           <span class="k">X</span>
@@ -538,11 +639,11 @@
         </li>
         <li>
           <span class="k">!</span> <em>Export document:</em>
-          Copy the document content to the clipboard as LaTeX text.
+          Copy the document content to the system clipboard as LaTeX text.
         </li>
         <li>
           <span class="k">@</span> <em>Export stack item(s):</em>
-          Copy the top N stack items (default 1) to the clipboard as LaTeX text.
+          Copy the top N stack items (default 1) to the system clipboard as LaTeX text.
         </li>
         <li>
           <span class="k">$</span>
@@ -558,7 +659,7 @@
         <span class="k">Tab</span><span class="k">f</span>
         opens the File Manager popup panel.
         If your browser supports it, you can save and manage separate documents in the
-        internal browser storage (localStorage).
+        internal browser storage (<kbd>localStorage</kbd>).
         Your data persists between browser sessions, but this may not work in Private/Incognito Mode.
         Each document has a filename but there is only one level of storage - no subfolders.
       </p>
@@ -569,7 +670,7 @@
         document without opening the file manager first.
       </p>
       <p>
-        Documents can be exported (downloaded) as <kbd>.rpn</kbd> files using the
+        Documents can be exported (downloaded) as binary <kbd>.rpn</kbd> files using the
         <span class="k">x</span> command, and later re-imported by using the upload
         field found at the bottom of the File Manager.
       </p>
@@ -750,7 +851,7 @@
             <td><span class="k">h</span> <code>\hat x</code> <em>(hat)</em></td>
           </tr>
           <tr>
-            <td><span class="k">H</span> <code>\widehat{x\dots}</code></td>
+            <td><span class="k">H</span> <code>\widehat{x\dots}</code> <em>(wide hat)</em></td>
             <td><span class="k">i</span> <code>x^{-}</code></td>
             <td><span class="k">I</span> <code>x^{+}</code></td>
           </tr>
@@ -762,7 +863,7 @@
           <tr>
             <td><span class="k">M</span> <code>\mp x</code> <em>(minus-or-plus)</em></td>
             <td><span class="k">n</span> <code>\bar x</code> <em>(overli<strong>n</strong>e)</em></td>
-            <td><span class="k">o</span> <code>\overline{x\dots}</code> <em>(<strong>o</strong>verline)</em></td>
+            <td><span class="k">o</span> <code>\overline{x\dots}</code> <em>(wide <strong>o</strong>verline)</em></td>
           </tr>
           <tr>
             <td><span class="k">p</span> <code>x_\perp</code> <em>(perpendicular)</em></td>
@@ -801,12 +902,12 @@
           </tr>
           <tr>
             <td><span class="k">&nbsp;</span> <code>x\,</code> <em>(append space)</em></td>
-            <td><span class="k">&#39;</span> <code>x'</code></td>
-            <td><span class="k">,</span> <code>x^{\circ}</code> <em>(degrees)</em></td>
+            <td><span class="k">&#39;</span> <code>x^\prime</code> <em>(prime)</em></td>
+            <td><span class="k">,</span> <code>x^\circ</code> <em>(degrees)</em></td>
           </tr>
           <tr>
-            <td><span class="k">*</span> <code>x^{*}</code></td>
-            <td><span class="k">^</span> <code>\star x</code></td>
+            <td><span class="k">*</span> <code>x^{*}</code> <em>(conjugate)</em></td>
+            <td><span class="k">^</span> <code>\star x</code> <em>(Hodge star)</em></td>
             <td><span class="k">=</span> <code>\Rightarrow x</code></td>
           </tr>
           <tr>
@@ -820,21 +921,28 @@
             <td><span class="k">\</span> <code>1/x</code></td>
           </tr>
           <tr>
-            <td><span class="k">[</span> <code>\small x</code> <em>(smaller)</em></td>
-            <td><span class="k">]</span> <code>\large x</code> <em>(larger)</em></td>
-            <td><span class="k">{</span> <code>\overbrace{x\dots}</code></td>
+            <td><span class="k">(</span> <code>\small x</code> <em>(smaller)</em></td>
+            <td><span class="k">)</span> <code>\large x</code> <em>(larger)</em></td>
+            <td><span class="k">[</span> <code>\overbracket{x\dots}</code></td>
           </tr>
           <tr>
+            <td><span class="k">]</span> <code>\underbracket{x\dots}</code></td>
+            <td><span class="k">{</span> <code>\overbrace{x\dots}</code></td>
             <td><span class="k">}</span> <code>\underbrace{x\dots}</code></td>
+          </tr>
+          <tr>
             <td><span class="k">!</span> <code>\neg x</code> <em>(not)</em></td>
             <td><span class="k">_</span> <code>\underline{x\dots}</code></td>
-          </tr>
-          <tr>
-            <td colspan="3">
-              <span class="k">Tab</span> <code>\quad x</code> <em>(indent)</em>
-            </td>
+            <td><span class="k">Tab</span> <code>\quad x</code> <em>(indent)</em></td>
           </tr>
       </tbody></table>
+      <p>
+        <strong>NOTE:</strong> With the bracket/brace structures created by
+        <span class="k">[</span> <span class="k">]</span>
+        <span class="k">{</span> <span class="k">}</span>,
+        adding a superscript or subscript will center the expression above or below:
+        <code>\underbrace{x+y}_{\textrm{sum}}</code>
+      </p>
 
       <h2 id="help_infix">
         <span class="k">,</span> Infix Operators
@@ -928,7 +1036,7 @@
             <td><span class="k">^</span> <code>x\star y</code>
           </tr>
           <tr>
-            <td><span class="k">:</span> <code>x\colon y</code></td>
+            <td><span class="k">:</span> <code>x\colon y</code> (see below)</td>
             <td><span class="k">;</span> <code>x;y</code></td>
             <td><span class="k">`</span> <code>x^\mathrm{T} y</code></td>
           </tr>
@@ -949,11 +1057,24 @@
           </tr>
       </tbody></table>
       <p>
+        <strong>NOTE:</strong>
+        <span class="k">:</span><span class="k">:</span> can be used as an alternative
+        to <span class="k">,</span><span class="k">:</span> to get different spacing:
+        compare <code>x:y</code> vs. <code>x\colon y</code>.
+      </p>
+      <p>
         <strong>Apply:</strong>
         The <span class="k">,</span><span class="k">a</span>
         command takes three expressions from the stack, combining them into an
         infix expression.  The stack top becomes the infix operator.  For example:
         <code>x\enspace y\enspace \circledast \Rightarrow x\circledast y</code>
+      </p>
+      <p>
+        <strong>NOTE:</strong>
+        This can also be done directly from <a href="#help_latex_entry">LaTeX entry mode</a>
+        using <span class="k">,</span> to finish the LaTeX command name:
+        <code>x\enspace y\enspace \mathtt{\backslash\backslash}\texttt{circledast,}
+          \Rightarrow x\circledast y</code>
       </p>
       <p id="conjunction_anchor">
         <strong>Conjunction:</strong>
@@ -1135,17 +1256,18 @@
           <tr>
             <td>
               <span class="k">l</span>
-              <code>x \Rightarrow \lim\limits_x</code>
+              <code>x \Rightarrow \displaystyle{\lim_x}</code>
             </td>
             <td>
               <span class="k">L</span>
-              <code>x\enspace y \Rightarrow \lim\limits_{x\to y}</code>
+              <code>x\enspace y \Rightarrow \displaystyle{\lim_{x\to y}}</code>
             </td>
           </tr>
           <tr>
             <td>
               <span class="k">b</span>
               <code>x\enspace y \Rightarrow \displaystyle{\binom{x}{y}}</code>
+              <em>(<strong>b</strong>inomial)</em>
             </td>
             <td>
               <span class="k">g</span>
@@ -1162,8 +1284,12 @@
               <code>x\enspace y \Rightarrow \displaystyle\sum_{x\ge y}^{\phantom z}</code>
             </td>
           </tr>
+      </tbody></table>
+
+      <p><strong>Common Functions:</strong></p>
+      <table class="keybindings"><tbody>
           <tr>
-            <td><span class="k">q</span> <code>\sqrt{x}</code></td>
+            <td><span class="k">q</span> <code>\sqrt{x}</code> <em>(s<strong>q</strong>uare root)</em></td>
             <td><span class="k">Q</span> <code>\sqrt[3]{x}</code></td>
           </tr>
           <tr>
@@ -1202,7 +1328,7 @@
       </ul>
       <p>
         Using <span class="k">-</span> or <span class="k">h</span> or
-        <span class="k">2</span> before the other trigonometric commands
+        <span class="k">2</span> right before these trigonometric commands
         gives inverse, hyperbolic, and squared forms of the functions, respectively:
       </p>
       <ul class="keybindings">
@@ -1236,11 +1362,15 @@
       </ul>
       <p>
         <strong>NOTE:</strong>
-        These commands should be used instead of simply concatenating the function name to
-        its (parenthesized) argument(s) with <span class="k">&nbsp;</span>.
-        The spacing is tighter to match normal function notation.
+        These function application commands should be used instead of simply concatenating
+        the function name to its (parenthesized) argument(s) with <span class="k">&nbsp;</span>.
+        This will cause it to be treated as a &quot;function call&quot; internally so that
+        the spacing is tighter to match normal function notation.
         Compare: <code>f{\left(x\right)}</code> vs. <code>f\left(x\right)</code>.
-        Other function call types can be created by first building an argument list such as
+        Also, some operations such as adding a prime with
+        <span class="k">.</span><span class="k">&#39;</span> will then yield
+        <code>f'{\left(x\right)}</code> vs. <code>(f\left(x\right))'</code> otherwise.
+        Other function call types can be created by first building an argument list like
         <code>x,y\,|\,z,w</code> and then applying to <code>f</code> with
         <span class="k">/</span><span class="k">o</span>.
       </p>
@@ -1332,6 +1462,12 @@
           <code>x\enspace y \Rightarrow yx</code> (prepend)
         </li>
         <li>
+          <span class="k">u</span> (<strong>u</strong>p)
+          Increment an expression by adding 1: <code>x+2\Rightarrow x+3</code>.
+          <span class="k">/</span><span class="k">-</span><span class="k">u</span>
+          decrements instead.
+        </li>
+        <li>
           <span class="k">w</span>
           S<strong>w</strong>ap the parts of an expression.
           Infix or relational expressions swap their left and right sides,
@@ -1342,9 +1478,15 @@
         </li>
         <li>
           <span class="k">z</span>
-          "Dissolve" an expression, breaking it apart into its component parts if possible.
+          "Dis<strong>z</strong>olve" an expression, breaking it apart into its component parts if possible.
           Delimiters will be removed, fractions disassembled, and matrix elements put
           on the stack in row-major order.
+        </li>
+        <li>
+          <span class="k">&lt;</span> or <span class="k">&gt;</span>
+          Extract the left or right side of an infix or relational expression.
+          The split will be based on the operator most recently used to create the infix
+          expression.  For fractions, the numerator or denominator is extracted.
         </li>
         <li>
           <span class="k">|</span> <code>x\enspace y \Rightarrow \left.x\right\vert_{y}</code>
@@ -1359,12 +1501,6 @@
         <li>
           <span class="k">Enter</span> <code>x\enspace y\enspace z \Rightarrow x_y^z</code>
           (shortcut for adding a subscript and superscript at once)
-        </li>
-        <li>
-          <span class="k">&lt;</span> or <span class="k">&gt;</span>
-          Extract the left or right side of an infix or relational expression.
-          The split will be based on the operator most recently used to create the infix
-          expression.  For fractions, the numerator or denominator is extracted.
         </li>
         <li>
           <span class="k">!</span>
@@ -1389,7 +1525,9 @@
         </li>
         <li>
           <span class="k">&quot;</span>
-          Toggle whether the stack top is displayed as a section header.
+          Turn the stack top into a <em>section header</em> text object, with a larger font and an underline.
+          Math expressions will be automatically converted into text objects containing the expression.
+          Applying this command a second time will remove the section header property.
         </li>
       </ul>
 
@@ -1473,11 +1611,11 @@
             <td><span class="k">Q</span> <code>x \Rightarrow \displaystyle{\frac{\partial^2}{\partial x^2}}</code></td>
           </tr>
           <tr>
-            <td><span class="k">m</span> <code>x\enspace y \Rightarrow \displaystyle{\frac{\partial^2}{\partial x\,\partial y}}</code></td>
+            <td><span class="k">m</span> <code>x\enspace y \Rightarrow \displaystyle{\frac{\partial^2}{\partial x\,\partial y}}</code> (<strong>m</strong>ixed)</td>
             <td><span class="k">M</span> <code>f\enspace x\enspace y \Rightarrow \displaystyle{\frac{\partial^2 f}{\partial x\,\partial y}}</code></td>
           </tr>
           <tr>
-            <td><span class="k">p</span> <code>x \Rightarrow \partial x</code></td>
+            <td><span class="k">p</span> <code>x \Rightarrow \partial x</code> (<strong>p</strong>artial)</td>
             <td><span class="k">P</span> <code>x\enspace y \Rightarrow \partial_y x</code></td>
           </tr>
           <tr>
@@ -1505,13 +1643,21 @@
             <td><span class="k">4</span> <code>x \Rightarrow d^4 x</code></td>
           </tr>
           <tr>
-            <td><span class="k">f</span> <code>x\enspace y \Rightarrow dx \wedge dy</code></td>
+            <td>
+              <span class="k">f</span>
+              <code>x\enspace y \Rightarrow dx \wedge dy</code>
+              (<strong>f</strong>orm)
+            </td>
             <td><span class="k">F</span> <code>x\enspace y\enspace z \Rightarrow dx \wedge dy \wedge dz</code></td>
           </tr>
           <tr>
-            <td colspan="2">
+            <td>
               <span class="k">i</span> or <span class="k">&nbsp;</span>
               <code>x\enspace y \Rightarrow x\,dy</code>
+            </td>
+            <td>
+              <span class="k">/</span>
+              <code>x\enspace y \Rightarrow \displaystyle{\frac{dx}{y}}</code>
             </td>
           </tr>
       </tbody></table>
@@ -1551,7 +1697,7 @@
 
       <p>
         <strong>Variational Calculus:</strong>
-        Functional derivative operations from the calculus of variations may be entered
+        Functional derivative operations from the calculus of variation may be entered
         with the <span class="k">/</span><span class="k">v</span> prefix.
         The partial derivative commands from
         <span class="k">/</span><span class="k">d</span> are available, the only
@@ -1607,6 +1753,10 @@
             <td><span class="k">T</span> <code>\Rightarrow \int_{-\pi}^\pi</code></td>
             <td><em>symmetric trigonometric</em></td>
           </tr>
+          <tr>
+            <td><span class="k">P</span> <code>\Rightarrow \int_0^\pi</code></td>
+            <td><em>zero to <code>\pi</code></em></td>
+          </tr>
       </tbody></table>
 
       <h2 id="help_named_operators">
@@ -1660,7 +1810,7 @@
           <tr>
             <td>
               <span class="k">t</span> <code>\operatorname{Tr} x</code>
-              <em>(<strong>t</strong>race)</em>
+              <em>(trace)</em>
             </td>
             <td><span class="k">v</span> <code>\mathrm{Var}[x]</code></td>
             <td><span class="k">V</span> <code>\mathrm{Var}[x,y]</code></td>
@@ -1994,7 +2144,7 @@
           <span class="k">c</span> <em>(case)</em>
           Build a list of N cases for a piecewise function definition.
           If the component items are infix expressions joined with a colon
-          (via <span class="k">,</span><span class="k">:</span>),
+          (via <span class="k">,</span><span class="k">:</span> or <span class="k">:</span><span class="k">:</span>),
           they will be split up and placed as the left and right parts of the case structure.
           For example:
           <br>
@@ -2017,7 +2167,7 @@
         <li>
           <span class="k">f</span> and <span class="k">F</span>
           Same as <span class="k">c</span> and <span class="k">C</span>,
-          but prepend the word "if" to the right-hand side of expressions joined with a colon.
+          but prepend the word "i<strong>f</strong>" to the right-hand side of expressions joined with a colon.
           If there is no colon, the right-hand side becomes the word "otherwise" instead.
           For example:
           <br>
@@ -2045,28 +2195,24 @@
       <ul class="keybindings">
         <li>
           <span class="k">,</span>
-          <code>x_1,x_2,x_n</code>
-        </li>
-        <li>
-          <span class="k">.</span>
-          <code>x_1,x_2,\dots,x_n</code>
-        </li>
-        <li>
-          <span class="k">e</span>
-          <code>x_1,x_2,x_n,\dots</code>
+          <code>x_1,x_2,x_N,\dots</code>
           <em>(<strong>e</strong>llipsis)</em>
         </li>
         <li>
+          <span class="k">.</span>
+          <code>x_1,x_2,\dots,x_N</code>
+        </li>
+        <li>
           <span class="k">;</span>
-          <code>x_1;\,x_2;\,x_n</code>
+          <code>x_1;x_2;x_N</code>
         </li>
         <li>
           <span class="k">+</span>
-          <code>x_1 + x_2 + \cdots + x_n</code>
+          <code>x_1 + x_2 + \cdots + x_N</code>
         </li>
         <li>
           <span class="k">p</span>
-          <code>x_1 + x_2 + x_n + \cdots</code>
+          <code>x_1 + x_2 + x_N + \cdots</code>
           <em>(<strong>p</strong>lus)</em>
         </li>
       </ul>
@@ -2101,8 +2247,8 @@
         </li>
         <li>
           Indices are positioned according to the order they are attached, with correct spacing to
-          indicate the axis ordering.  For example, <code>\displaystyle{\Gamma^{i}_{\hphantom{i}jk}}</code>
-          and <code>\displaystyle{\Gamma^{ij}_{\hphantom{ij}k}}</code> have distinct mathematical meanings, but
+          indicate the axis ordering.  For example, <code>\displaystyle{\Gamma^{ij}_{\hphantom{ij}k}}</code>
+          and <code>\displaystyle{\Gamma_k^{\hphantom{k}ij}}</code> have distinct mathematical meanings, but
           would both appear as <code>\displaystyle{\Gamma^{ij}_k}</code> using ordinary subscripts and superscripts.
         </li>
         <li>
@@ -2226,8 +2372,8 @@
           expression is left unmodified).
         </li>
         <li>
-          <span class="k">t</span> or <span class="k">T</span>
-          <strong>Trim</strong> down to the currently selected subexpression.
+          <span class="k">k</span> or <span class="k">K</span>
+          <strong>Keep</strong> the currently selected subexpression.
           Same as <span class="k">x</span>, but only the selected subexpression is left
           on the stack.
         </li>
@@ -2237,353 +2383,327 @@
         </li>
       </ul>
 
-      <h2 id="help_cas">
-        <span class="k">#</span> Symbolic Algebra
+      <h2 id="help_sympy">
+        <span class="k">#</span> Symbolic Algebra and Calculus
       </h2>
+      <p style="color: #600; font-style: italic; font-size: 120%;">
+        <strong>NOTE:</strong> These commands are under active developoment
+        and not fully ready for use.
+      </p>
       <p>
         These commands perform symbolic algebra and calculus operations on expressions
-        using the <a href="https://github.com/davidedc/Algebrite">Algebrite</a> library.
+        using the Python <a href="https://www.sympy.org/">SymPy</a> library, powered by
+        <a href="https://pyodide.org/">Pyodide</a>.  Pyodide runs a full Python interpreter
+        directly in your browser via <a href="https://webassembly.org/">WebAssembly</a>.
       </p>
       <p>
-        Most of these commands come in two varieties: lowercase letters try to guess
-        the appropriate variable to use in the operation (for example,
-        <code>\displaystyle{y^2 - 1}</code> uses <code>y</code>), while uppercase
-        letters require the variable to be specified explicitly.
+        The first time you use one of these commands in a session, the Python environment
+        will be initialized, so it may take a few seconds to get a result.  After that, operations
+        should run at full speed.  These operations may potentially be time-consuming, so they
+        are run in a background thread and results are displayed as they become available.
+        (Long-running computations can be terminated using <span class="k">#</span><span class="k">!</span>,
+        described below.)
       </p>
       <p>
-        <strong>NOTE:</strong> Algebrite is a relatively simple and lightweight computer
-        algebra system, so not everything can be expected to work.
-        It's also easy to perform operations that are too large or
-        time-consuming, such as expanding <code>(x+1)^{10000}</code>, and the Algebrite
-        library itself has some bugs, so be careful using these commands and make sure to
-        save your work.  There is no way to interrupt a long-running computation other
-        than closing the browser tab itself.
+        Performing these symbolic operations comes with some caveats:
       </p>
-
-      <p><strong>Algebra:</strong></p>
-      <ul class="keybindings">
+      <ul>
         <li>
-          <span class="k">#</span>
-          &quot;Run&quot; an expression through Algebrite, evaluating any indicated
-          operations like <code>5^2</code> and performing default simplifications
-          such as combining like terms.
+          Expressions must be translated into a form acceptable by SymPy,
+          and unfortunately traditional math notation can be ambiguous.
+          This editor makes a best-effort at translating expressions into
+          something SymPy can understand, but if that process fails an error
+          will be signaled.
         </li>
-        <li>
-          <span class="k">x</span> and <span class="k">X</span>
-          E<strong>x</strong>pand a polynomial or rational function, rewriting with partial fractions if possible:
-          <code>\displaystyle{
-            \frac{{\left(x+3\right)}^2}{\left(x+1\right)\left(x+2\right)}
-            \Rightarrow 1+\frac{4}{x+1}-\frac{1}{x+2}}
-          </code>
-        </li>
-        <li>
-          <span class="k">f</span> and <span class="k">F</span>
-          Factor a polynomial over the integers:
-          <code>\displaystyle{
-            x^3-1 \Rightarrow \left(x-1\right)\left(x^2+x+1\right)}
-          </code>.
-          Applied to a literal integer, factor into primes instead:
-          <code>123456 \Rightarrow 2^6\cdot 3\cdot 643</code>
-        </li>
-        <li>
-          <span class="k">c</span> and <span class="k">C</span>
-          Complete the square in an expression by rewriting in a way that eliminates
-          the term linear in a variable:
-          <code>2x^2-3x+1 \Rightarrow
-            2{\left(x-\frac{3}{4}\right)}^2-\frac{1}{8}
-          </code>.
-          Any extra terms like <code>x^3</code> or <code>\sin x</code> are left alone.
-        </li>
-        <li>
-          <span class="k">r</span>
-          Rationalize an expression by putting everything over a common denominator:
-          <code>\displaystyle{
-            \frac{1}{x+1}+\frac{1}{x-1}\Rightarrow\frac{2x}{\left(x-1\right)\left(x+1\right)}}
-          </code>
-        </li>
-        <li>
-          <span class="k">s</span>
-          Attempt to rewrite an expression in a <strong>s</strong>impler form:
-          <code>\displaystyle{
-            \frac{\left(x+2\right)!}{x!} \Rightarrow
-            \left(x+1\right)\left(x+2\right)}
-          </code>
-        </li>
-        <li>
-          <span class="k">w</span> and <span class="k">W</span>
-          <em>(<strong>w</strong>here)</em>
-          Substitute a value for a variable in an expression:
-          <span class="k">w</span>
-          <code>x^2\enspace 10 \Rightarrow 100</code>
-          or <span class="k">W</span>
-          <code>x+y\enspace y\enspace 10 \Rightarrow x+10</code>.
-          Note that with <span class="k">W</span>, the &quot;variable&quot;
-          can be any arbitrary expression:
-          <code>3\mathrm{e}^x\enspace \mathrm{e}^x\enspace y\Rightarrow 3y</code>.
-        </li>
-        <li>
-          <span class="k">e</span>
-          Rewrite trigonometric functions using <strong>e</strong>xponentials:
-          <code>\displaystyle{
-            \sin{x} \Rightarrow \frac{i{\mathrm e}^{-2ix}}{2}-\frac{i{\mathrm e}^{2ix}}{2}}
-          </code>
-        </li>
-        <li>
-          <span class="k">P</span> and <span class="k">R</span>
-          Rewrite a complex value in <span class="k">P</span> polar
-          or <span class="k">R</span> rectangular form:
-          <code>
-            \displaystyle{
-              {\mathrm e}^{i\pi/3} \Leftrightarrow \frac{1}{2}+\frac{i\sqrt{3}}{2}}
-          </code>
-        </li>
-        <li>
-          <span class="k">*</span>
-          Complex conjugation:
-          <code>\displaystyle{
-            {\mathrm e}^{2ix}\Rightarrow{\mathrm e}^{-2ix}}
-          </code>
-        </li>
-        <li>
-          <span class="k">z</span> and <span class="k">Z</span>
-          Find the (real or complex) exact roots of a polynomial if possible.
-          Multiple roots are displayed as a list:
-          <code>
-            x^2+2 \Rightarrow
-            \begin{aligned}
-            x_1 & {}=-i\sqrt{2}\\
-            x_2 & {}=i\sqrt{2}
-            \end{aligned}
-          </code>
-        </li>
-        <li>
-          <span class="k">m</span>
-          <code>f\enspace a\enspace b \Rightarrow \displaystyle{\sum_{x=a}^b f{(x)}}</code>
-          or
-          <span class="k">M</span>
-          <code>f\enspace x\enspace a\enspace b \Rightarrow \displaystyle{\sum_{x=a}^b f{(x)}}</code>:
-          Su<strong>m</strong> <code>f{(x)}</code> for values of the variable
-          ranging from <code>a</code> to <code>b</code>;
-          <code>a</code> and <code>b</code> must be finite integers.
-        </li>
-        <li>
-          <span class="k">o</span>
-          <code>f\enspace a\enspace b \Rightarrow \displaystyle{\prod_{x=a}^b f{(x)}}</code>
-          or
-          <span class="k">O</span>
-          <code>f\enspace x\enspace a\enspace b \Rightarrow \displaystyle{\prod_{x=a}^b f{(x)}}</code>:
-          Pr<strong>o</strong>duct of <code>f{(x)}</code> values.
+        <li style="margin-top: 0.5em;">
+          Conversely, the output from SymPy must be translated into math
+          expressions usable by the editor.  SymPy can perform its own
+          translation into LaTeX code, but that comes with a loss of symbolic structure.
+          The output of these symbolic commands cannot be edited with
+          <a href="#help_dissect">dissect mode</a> or destructured with
+          commands such as <span class="k">/</span><span class="k">z</span>
+          <em>(dissolve)</em>.  They can still be combined with other expressions
+          as usual, though.  This loss of structure is indicated by a green tint on
+          the expression.
+          <strong>NOTE:</strong> This LaTeX conversion is only being done as a
+          temporary stopgap.  In a future update, SymPy expressions will be
+          converted fully back into editor objects.
         </li>
       </ul>
-      
-      <p><strong>Calculus:</strong></p>
-      <ul class="keybindings">
-        <li>
-          <span class="k">d</span> and <span class="k">D</span>
-          Differentiate an expression:
-          <code>\displaystyle{x^2\sin{x} \Rightarrow 2x\sin{x}+x^2\cos{x}}</code>.
-          Generic functions like <code>f{(x)}</code> can also be handled
-          and are shown with &quot;prime&quot; notation:
-          <code>\displaystyle{
-            xf{\left(x\right)}
-            \Rightarrow f{\left(x\right)}+xf^{\prime}{\left(x\right)}}
-          </code>
-        </li>
-        <li>
-          <span class="k">i</span> and <span class="k">I</span>
-          Attempt to calculate the indefinite integral of an expression:
-          <code>\displaystyle{
-            2\sin{x}\cos{x} \Rightarrow {\left(\sin{x}\right)}^2}
-          </code>
-        </li>
-        <li>
-          <span class="k">j</span>
-          <code>f\enspace a\enspace b \Rightarrow \int_a^b f{(x)}\,dx</code>:
-          Attempt to calculate a definite integral.
-          The integration bounds can be symbolic expressions or rational numbers.
-          Currently, numerical integration (quadrature) is not supported,
-          and the integration bounds must be finite.  Example:
-          <code>\displaystyle{
-            \tan x \enspace 0 \enspace \pi/3 \Rightarrow \ln 2}
-          </code>
-        </li>
-        <li>
-          <span class="k">J</span>
-          <code>f\enspace z\enspace a\enspace b \Rightarrow \int_a^b f{(z)}\,dz</code>:
-          Specify the integration variable explicitly.
-        </li>
-        <li>
-          <span class="k">t</span> and <span class="k">T</span>
-          Expand a function in Taylor series.  Lowercase <span class="k">t</span>
-          performs a default expansion about <code>x=0</code> to order 7:
-          <code>\displaystyle{
-              \sin{2x} \Rightarrow -\frac{8x^7}{315}+\frac{4x^5}{15}-\frac{4x^3}{3}+2x}
-          </code>.  Uppercase <span class="k">T</span>
-          takes 4 arguments on the stack:
-          <code>f\enspace x\enspace a\enspace n</code> and calculates the expansion
-          about <code>f(x=a)</code> to order <code>n</code>.
-        </li>
-      </ul>
-
-      <p><strong>Linear Algebra:</strong></p>
       <p>
-        These operations are performed by applying the usual
-        math syntax to matrices or vectors created with the
-        <span class="k">|</span> commands.
-        Evaluating the expression with
+        SymPy has many different commands available, and for conciseness
+        only the general form of the commands is given here.  Please see
+        the <a href="https://docs.sympy.org/">SymPy documentation</a>
+        for full details.
+      </p>
+
+      <p><strong>Expression Evaluation:</strong></p>
+      <p>
         <span class="k">#</span><span class="k">#</span>
-        will then execute the matrix or vector operation(s).
+        performs general <em>expression evaluation</em> through SymPy.
+        Arithmetic expressions such as <code>1+2 \Rightarrow 3</code>
+        and <code>\sqrt{16} \Rightarrow 4</code> will be evaluated, default simplifications
+        performed (such as combining like terms) and also a variety of math notation
+        will be interpreted:
       </p>
-      <p>
-        <strong>NOTE:</strong> the matrices or vectors must be &quot;literal&quot;
-        matrices, not generic variables like <code>M</code>.  However,
-        they can contain symbolic expressions as their elements.
-      </p>
-      <ul class="keybindings">
+      <ul>
         <li>
-          <code>A\cdot B</code> or <code>AB</code>:
-          Matrix product.  A row vector times a column vector
-          yields the inner product (a scalar), while a column
-          vector times a row vector yields the outer product
-          (a rank-1 matrix).
+          Complex conjugation: <code>\overline{x}</code>
+          or <code>x^{*}</code>, e.g.:
+          <code>\overline{3+4i} \Rightarrow 3-4i</code>
         </li>
         <li>
-          <code>A + B</code> or <code>A - B:</code>
-          Matrix or vector sum or difference.
+          Matrix transpose: <code>A^{\mathrm{T}}</code>,
+          adjoint/Hermitian: <code>A^{\dagger}</code>
         </li>
         <li>
-          <code>A^{-1}</code>:
-          Matrix inverse:
-          <code>
-            {\begin{bmatrix}a & b\\c & d\end{bmatrix}}^{-1}
-            \Rightarrow \begin{bmatrix}
-              \frac{d}{ad-bc} & -\frac{b}{ad-bc}\\
-              -\frac{c}{ad-bc} & \frac{a}{ad-bc}
-            \end{bmatrix}
-          </code>
+          Degrees notation: <code>x^{\circ}</code>
+          e.g. <code>{45}^{\circ} = \pi/4</code>
         </li>
+        <li>Indefinite integrals: <code>\int x^2\,dx \Rightarrow x^3/3</code></li>
+        <li>Definite integrals: <code>\int_0^{\pi/3} \tan{x}\,dx \Rightarrow \ln{2}</code></li>
+        <li>Derivatives: <code>\frac{d}{dx} \sin{\omega x} \Rightarrow \omega\cos{\omega x}</code></li>
+        <li>Summations: <code>\sum_{k\ge1}\frac{1}{k^2} \Rightarrow \pi^2/6</code></li>
+        <li>Products: <code>\prod^2_{k=0}(x+k) \Rightarrow x(x+1)(x+2)</code></li>
+        <li>Limits: <code>\lim_{x\to 0} \frac{\sin x}{x} \Rightarrow 1</code></li>
         <li>
-          <code>A^n</code>: Matrix power (<code>n</code> integer).
+          Differential equations with traditional notation:
+          <code>\frac{d^2y}{dx^2}+\omega^2y=0</code>
+          or <code>y^{\prime\prime}+\omega^2y=0</code>
+          or <code>\ddot{x}+\omega^2x=0</code> can all be used
         </li>
-        <li>
-          <code>A^{\mathrm{T}}</code>: Matrix/vector transpose.
-          <strong>NOTE:</strong> the
-          <span class="k">|</span><span class="k">T</span>
-          command also performs transpose directly.
-        </li>
-        <li>
-          <code>\det A</code>:
-          Determinant <span class="k">/</span><span class="k">f</span><span class="k">d</span>
-          of a square matrix:
-          <code>
-            \det{\begin{bmatrix}a & b\\c & d\end{bmatrix}}
-            \Rightarrow ad-bc
-          </code>
-        </li>
-        <li>
-          <code>\operatorname{Tr} A</code>:
-          Trace <span class="k">/</span><span class="k">f</span><span class="k">t</span>
-          of a square matrix:
-          <code>
-            \operatorname{Tr}{\begin{bmatrix}a & b\\c & d\end{bmatrix}}
-            \Rightarrow a+d
-          </code>
-        </li>
-        <!-- <li>
-          <code>\boldsymbol x \times \boldsymbol y</code>:
-          Cross product of two vectors; both must be three-element column vectors.
-        </li> -->
+        <!-- integral transforms, etc -->
       </ul>
 
-      <p><strong>Numerical Operations:</strong></p>
+      <p><strong>Common Symbolic Actions:</strong></p>
       <ul class="keybindings">
         <li>
           <span class="k">=</span>
-          Evaluate constants in an expression, replacing them with
-          decimal approximations:
-          <code>(\ln{2})^3 \Rightarrow 0.333024651</code>
+          Try to numerically evaluate an expression:
+          <code>2\pi \Rightarrow \mathtt{evalf(2*pi)} \Rightarrow 6.28318530717959</code>
         </li>
         <li>
           <span class="k">/</span>
-          Given a decimal number, try to find a close rational approximation to that number.
-          Rational factors of values like <code>\pi</code> and <code>\sqrt{3}</code> can also
-          be detected: <code>1.644934066 \Rightarrow \pi^2/6</code>
+          Try to convert a floating-point value back into a rational value
+          (possibly up to a factor of certain values like <code>\sqrt{3}</code>):
+          <code>6.28318530717959 \Rightarrow \mathtt{nsimplify(6.283\dots)} \Rightarrow 2\pi</code>
         </li>
         <li>
-          <span class="k">y</span> and <span class="k">Y</span>
-          Numerically find all (real or complex) roots of a polynomial.
+          <span class="k">d</span>
+          <code>f\Rightarrow \mathtt{diff(f)}</code>
+          <em>(<strong>d</strong>ifferentiate)</em>
         </li>
         <li>
-          <span class="k">q</span> and <span class="k">Q</span>
-          Check whether an equation or inequality like <code>x^2 &gt; \sin x</code> is true or not.
-          <!-- If this can be determined algebraically, it will be; otherwise, the -->
-          The expression will be evaluated randomly at several points
-          sampled from <code>\mathcal{N}(\mu=0,\sigma=10)</code>
-          to test for likely truth or falsehood.
-          <span class="k">Q</span>
-          <code>f\enspace\mu\enspace\sigma</code>
-          allows you to specify the mean and standard deviation
-          <code>\mathcal{N}(\mu,\sigma)</code> explicitly.
+          <span class="k">D</span>
+          <code>f\enspace x\Rightarrow \mathtt{diff(f,x)}</code>
+          <em>(differentiation variable specified)</em>
+        </li>
+        <li>
+          <span class="k">p</span>
+          <code>f\Rightarrow \mathtt{integrate(f)}</code>
+          Indefinite integral <em>(<strong>p</strong>rimitive)</em>
+        </li>
+        <li>
+          <span class="k">P</span>
+          <code>f\enspace x\Rightarrow \mathtt{integrate(f,x)}</code>
+          <em>(integration variable specified)</em>
+        </li>
+        <li>
+          <span class="k">f</span>
+          <code>x\Rightarrow \mathtt{factor(x)}</code>:
+          <code>x^2-2x+1 \Rightarrow (x-1)^2</code>
+        </li>
+        <li>
+          <span class="k">s</span>
+          <code>x\Rightarrow \mathtt{simplify(x)}</code>
         </li>
         <li>
           <span class="k">v</span>
-          Compute numerical eigenvalues of a matrix.  The matrix must be real, symmetric, and contain
-          only numeric values (no symbols).  A diagonal matrix containing the eigenvalues is
-          returned.
+          <code>x \Rightarrow \mathtt{solve(x)}</code>:
+          Try to solve for the variable in an expression:
+          <code>x^2 = 3 \Rightarrow \left\{- \sqrt{3}, \sqrt{3}\right\}</code>
         </li>
         <li>
           <span class="k">V</span>
-          Compute numerical eigenvectors of a matrix.  A matrix containing the eigenvectors as its columns is returned.
+          <code>y\enspace x \Rightarrow \mathtt{solve(y, x)}</code>:
+          Like <span class="k">v</span>, but the variable to be solved for
+          is given explicitly:
+          <code>x=c^2 \enspace c \Rightarrow
+            \left\{- \sqrt{x}, \sqrt{x}\right\}</code>
         </li>
+        <li>
+          <span class="k">x</span>
+          <code>x\Rightarrow \mathtt{expand(x)}</code>:
+          <code>(x-1)^2 \Rightarrow x^2-2x+1</code>
+        </li>
+<!--        <li>
+          <span class="k">y</span>
+          Expand an expression in Taylor series, about <code>x=0</code>
+          and to order 6:
+          <code>\sin x \Rightarrow
+            x - \frac{x^{3}}{6} + \frac{x^{5}}{120} + O\left(x^{6}\right)
+          </code>
+        </li>
+        <li>
+          <span class="k">Y</span>
+          Like <span class="k">y</span>, but the variable to use for the series
+          expansion is given explicitly.  The variable can be given in the form
+          <code>x=123</code>, defaulting to zero if only <code>x</code> is specified.
+          A prefix argument can be used to override the default order of 6.
+          <code>
+            x^2\enspace x=1 \Rightarrow
+            2 x + \left(x - 1\right)^{2} - 1
+          </code>
+        </li>
+-->        
       </ul>
 
-      <p><strong>Special Functions:</strong></p>
+      <p><strong>Expression Manipulation:</strong></p>
       <p>
-        These commands generate special functions and polynomials that
-        occur frequently in mathematics.  They require the subprefix key
-        <span class="k">p</span> to be pressed first.
-        The resulting generated functions always use <code>x</code> as the variable
-        (though this can be changed to something else using the
-        <span class="k">#</span><span class="k">w</span> command).
+        The <span class="k">#</span><span class="k">m</span> <em>(<strong>m</strong>anipulate)</em>
+        subprefix gives access to less-commonly used symbolic manipulation
+        commands:
       </p>
       <ul class="keybindings">
         <li>
-          <span class="k">p</span><span class="k">p</span>
-          <code>n \Rightarrow P_n{(x)}</code>: Legendre polynomial of degree <code>n</code>.
+          <span class="k">a</span>
+          <code>x\Rightarrow \mathtt{apart(x)}</code>
         </li>
         <li>
-          <span class="k">p</span><span class="k">P</span>
-          <code>n\enspace m \Rightarrow P_n^m{(x)}</code>: Associated Legendre function of order <code>(n,m)</code>.
+          <span class="k">b</span>
+          <code>x\Rightarrow \mathtt{expand\_power\_base(x)}</code>
         </li>
         <li>
-          <span class="k">p</span><span class="k">l</span>
-          <code>n \Rightarrow L_n{(x)}</code>: Laguerre polynomial of degree <code>n</code>.
+          <span class="k">c</span>
+          <code>y\enspace x\Rightarrow \mathtt{collect(y, x)}</code>
         </li>
         <li>
-          <span class="k">p</span><span class="k">L</span>
-          <code>n\enspace m \Rightarrow L_n^{(m)}{(x)}</code>: Associated Laguerre polynomial of order <code>(n,m)</code>.
+          <span class="k">f</span>
+          <code>x\Rightarrow \mathtt{expand\_func(x)}</code>
         </li>
         <li>
-          <span class="k">p</span><span class="k">h</span>
-          <code>n \Rightarrow H_n{(x)}</code>: Hermite polynomial of degree <code>n</code>.
-          These use the &quot;physicist's&quot; scaling convention.
+          <span class="k">g</span>
+          <code>x\Rightarrow \mathtt{expand\_trig(x)}</code>
         </li>
         <li>
-          <span class="k">p</span><span class="k">j</span>
-          <code>\alpha \Rightarrow J_{\alpha}{(x)}</code>: Bessel function of the first kind.
+          <span class="k">k</span>
+          <code>x\Rightarrow \mathtt{cancel(x)}</code>
         </li>
         <li>
-          <span class="k">p</span><span class="k">y</span>
-          <code>\alpha \Rightarrow Y_{\alpha}{(x)}</code>: Bessel function of the second kind.
+          <span class="k">l</span>
+          <code>x\Rightarrow \mathtt{expand\_log(x)}</code>
+        </li>
+        <li>
+          <span class="k">L</span>
+          <code>x\Rightarrow \mathtt{logcombine(x)}</code>
+        </li>
+        <li>
+          <span class="k">p</span>
+          <code>x\Rightarrow \mathtt{expand\_power\_exp(x)}</code>
+        </li>
+        <li>
+          <span class="k">t</span>
+          <code>x\Rightarrow \mathtt{together(x)}</code>
         </li>
       </ul>
+      
+      <p><strong>Expression Querying:</strong></p>
+      <p>
+        The <span class="k">#</span><span class="k">?</span> subprefix
+        has commands for answering questions about various mathematical
+        properties of an expression:
+      </p>
+      <ul class="keybindings">
+        <!-- <li>
+          <span class="k">a</span>
+          <code>x\Rightarrow \mathtt{assumptions(x)}</code>
+          Get a table of SymPy &quot;assumptions&quot; about the expression <code>x</code>
+        </li> -->
+        <!-- <li>
+          <span class="k">d</span>
+          <code>x n\Rightarrow \mathtt{dominant(x, n)}</code>
+          Find the dominant term in a sum <code>x</code>, with variable <code>n</code>.
+        </li> -->
+        <li>
+          <span class="k">s</span>
+          <code>f(x)\enspace x\Rightarrow \mathtt{singularities(f(x), x)}</code>
+          Find singularities/poles of <code>f(x)</code>.
+        </li>
+        <li>
+          <span class="k">S</span>
+          <code>f(x)\enspace x\Rightarrow \mathtt{stationary\_points(f(x), x)}</code>
+          Find stationary points of <code>f(x)</code>
+          (where <code>f'(x)=0</code>).
+        </li>
+        <li>
+          <span class="k">c</span>
+          <code>f(x)\enspace x\Rightarrow \mathtt{is\_convex(f(x), x)}</code>
+          Check convexity of <code>f(x)</code>
+        </li>
+        <li>
+          <span class="k">m</span>
+          <code>f(x)\enspace x\Rightarrow \mathtt{maximum(f(x), x)}</code>
+          Find the maximum of <code>f(x)</code> over the reals.
+        </li>
+        <li>
+          <span class="k">M</span>
+          <code>f(x)\enspace x\Rightarrow \mathtt{minimum(f(x), x)}</code>
+          Find the minimum of <code>f(x)</code> over the reals.
+        </li>
+        <li>
+          <span class="k">p</span>
+          <code>f(x)\enspace x\Rightarrow \mathtt{periodicity(f(x), x)}</code>
+          Try to find the period of <code>f(x)</code>
+          (e.g. <code>\sin x \Rightarrow 2\pi</code>).
+        </li>
+        
+      </ul>
 
+<!--  <h3>Differential Equations</h3>  -->      
+
+<!--      <h3>Integral Transforms</h3>
+      <p>
+        The <span class="k">#</span><span class="k">t</span> <em>(<strong>t</strong>ransform)</em>
+        subprefix covers various integral transforms:
+      </p>
+      <ul class="keybindings">
+        <li>
+          <span class="k">c</span>
+          <code>
+
+            -->
+
+      
+      <!-- <p><strong>Matrix Operations:</strong></p>
+      <p>
+      </p> -->
+
+      <p><strong>SymPy Utilities:</strong></p>
+      <ul class="keybindings">
+        <li>
+          <span class="k">!</span>
+          Stop the currently-running SymPy command, if there is one.
+          This can be used to abort operations that are taking too long.
+          This command terminates the underlying Pyodide environment; it will
+          be automatically restarted the next time you use one of these symbolic
+          operations, but there may be a small delay while it starts up.
+        </li>
+        <li>
+          <span class="k">@</span>
+          Export an expression as Python code, copying it to the system clipboard.
+          If you then open a Python REPL and paste the generated code, you will get a Python function named
+          <kbd>build_expr()</kbd> that can be called to generate a SymPy object corresponding
+          to the exported expression.  (You need to make sure SymPy is installed in your Python environment first
+          via <kbd>pip3 install sympy</kbd>.)  This code is the same code that the editor passes to Pyodide
+          internally to implement the symbolic algebra functions here.
+        </li>
+      </ul>
           
       <h2 id="help_greek">
         <span class="k">;</span>&nbsp;<span class="k">:</span> Greek Letters
       </h2>
       <p>
-        <strong>NOTE:</strong> Either <span class="k">:</span> or <span class="k">;</span>
+        <strong>NOTE:</strong> Either <span class="k">;</span> or <span class="k">:</span>
         may be used to create these letters; they behave identically.
       </p>
       <p>Lowercase Greek letters:</p>
@@ -2691,14 +2811,14 @@
       </tbody></table>
       <p>
         <strong>NOTE:</strong>
-        The sequence
+        <span class="k">:</span><span class="k">:</span>
+        combines <code>x\enspace y \Rightarrow x:y</code>
+        similarly to <span class="k">,</span><span class="k">:</span>
+        <code>x\enspace y \Rightarrow x\colon y</code> but with symmetrical spacing, and
         <span class="k">;</span><span class="k">;</span>
         can be used as an alternative to
         <span class="k">,</span><span class="k">;</span>
-        to join two expressions with a semicolon, and
-        <span class="k">;</span><span class="k">:</span>
-        joins with a colon like
-        <span class="k">,</span><span class="k">:</span>.
+        <code>x\enspace y \Rightarrow x;y</code>.
       </p>
 
       <h2 id="help_configuration">
@@ -2716,56 +2836,53 @@
         </li>
         <li>
           <span class="k">s</span>
-          Set the percentage of the window width (or height) that the stack panel will occupy.
+          Set the percentage of the window width (or height) that the <strong>s</strong>tack panel will occupy.
           The percentage is given by the prefix argument:
           <span class="k">$</span><span class="k">0</span><span class="k">s</span> to <span class="k">$</span><span class="k">9</span><span class="k">s</span> for 0% to 90%, or <span class="k">$</span><span class="k">*</span><span class="k">s</span> for 100%.  Default is 50%.
         </li>
         <li>
           <span class="k">+</span> or <span class="k">z</span>
-          Increase the text zoom factor in steps of 5%.  A prefix argument can
-          be used to jump up multiple steps at once.  A prefix argument of
+          Increase the overall display scaling (<strong>z</strong>oom) factor in steps of 5%.
+          A prefix argument can be used to jump up multiple steps at once.  A prefix argument of
           <span class="k">*</span> or <span class="k">0</span>
           resets the zoom factor back to the default.
         </li>
         <li>
           <span class="k">-</span> or <span class="k">Z</span>
-          Decrease the text zoom factor.
+          Decrease the display zoom factor.
         </li>
         <li>
-          <span class="k">m</span>
-          Change the alignment of math expressions in the stack area.
+          <span class="k">f</span>
+          Enter <strong>f</strong>ullscreen mode if your browser supports it.
+          <span class="k">F</span> exits fullscreen.
+        </li>
+        <li>
+          <span class="k">a</span>
+          Change the <strong>a</strong>lignment of math expressions in the stack area.
           Cycles between left-aligned (the default), centered, and right-aligned.
         </li>
         <li>
-          <span class="k">M</span>
-          Like <span class="k">m</span> but for the document area instead.
+          <span class="k">A</span>
+          Like <span class="k">a</span> but for the document area instead.
         </li>
         <li>
           <span class="k">i</span>
-          Toggle between full-size math display (the default) and compact inline math display modes.
+          Toggle between full-size math display (the default) and compact <strong>i</strong>nline math display modes.
           With inline display mode, equations are always aligned to the left,
-          regardless of the setting chosen by <span class="k">$</span><span class="k">m</span>
-          and <span class="k">$</span><span class="k">M</span>.  Long equations will wrap around to
+          regardless of the setting chosen by <span class="k">$</span><span class="k">a</span>
+          and <span class="k">$</span><span class="k">A</span>.  Long equations will wrap around to
           multiple lines in inline display mode, while full-size mode requires the use of the
           <span class="k">/</span><span class="k">,</span> equation splitting command to insert line breaks.
         </li>
         <li>
-          <span class="k">f</span>
-          Enter fullscreen mode if your browser supports it.
-          <span class="k">F</span> exits fullscreen.
-        </li>
-        <li>
-          <span class="k">H</span>
-          Toggle whether or not to hide the mouse cursor.
-        </li>
-        <li>
           <span class="k">I</span>
-          Toggle whether the prefix key mode indicator in the upper-right corner of the stack
-          is visible or not.
+          Toggle whether or not the mode <strong>i</strong>ndicator
+          in the upper-right corner of the stack is visible when a
+          prefix key has been pressed.
         </li>
         <li>
           <span class="k">V</span>
-          Toggle inverse video or "dark" mode (by inverting all colors).
+          Toggle in<strong>v</strong>erse video or "dark" mode (by inverting all colors).
         </li>
         <li>
           <span class="k">E</span>
@@ -2774,16 +2891,20 @@
         </li>
         <li>
           <span class="k">S</span>
-          Toggle sepia color filter.
+          Toggle <strong>s</strong>epia color filter.
           <strong>NOTE:</strong> inverse video, E-ink, and sepia modes are all
           mutually exclusive.
         </li>
         <li>
-          <span class="k">r</span>
-          Reset all the configuration settings to their initial defaults.
+          <span class="k">M</span>
+          Toggle whether or not to hide the <strong>m</strong>ouse cursor.
         </li>
         <li>
           <span class="k">R</span>
+          Reset all the configuration settings to their initial defaults.
+        </li>
+        <li>
+          <span class="k">!</span>
           Force a page reload (restarting the app).
         </li>
         <li>
@@ -2804,10 +2925,11 @@
       <p>
         For maximum browser compatibility, Control/Alt/Command keys are not required.
         However, the following Control key based shortcuts are available for optional use.
+        These are mostly aliases to existing keybindings.
         On macOS, the Command key also functions as an alias to Control.
       </p>
       <p>
-        <strong>NOTE:</strong> Pressing <span class="k">c</span> while the User Guide
+        <strong>NOTE:</strong> Pressing <span class="k">c</span> while the user guide
         popup is open will take you directly to this section.
       </p>
 
@@ -2822,7 +2944,7 @@
           &ndash; same as <span class="k">Tab</span><span class="k">a</span>
         </li>
         <li><span class="k">Ctrl&nbsp;b</span>
-          Apply a bold font: <code>x\Rightarrow \boldsymbol x</code>
+          Apply a <strong>b</strong>old font: <code>x\Rightarrow \boldsymbol x</code>
           &ndash; same as <span class="k">]</span>
         </li>
         <li><span class="k">Ctrl&nbsp;c</span>
@@ -2830,7 +2952,7 @@
           &ndash; same as <span class="k">Tab</span><span class="k">c</span>
         </li>
         <li><span class="k">Ctrl&nbsp;d</span>
-          Make subscript &ndash; same as <span class="k">Enter</span>
+          Make subscript (<strong>d</strong>own) &ndash; same as <span class="k">Enter</span>
         </li>
         <li><span class="k">Ctrl&nbsp;e</span>
           <code>x \Rightarrow \mathrm{e}^x</code>
@@ -2855,11 +2977,6 @@
           <code>f\enspace x\enspace y \Rightarrow f(x\,|\,y)</code>
           &ndash; same as <span class="k">/</span><span class="k">k</span>
         </li>
-        <!-- <li>
-          <span class="k">Ctrl&nbsp;K</span>
-          <code>f\enspace x\enspace y\enspace z \Rightarrow f(x,y\,|\,z)</code>
-          &ndash; same as <span class="k">/</span><span class="k">K</span>
-        </li> -->
         <li><span class="k">Ctrl&nbsp;l</span>
           Recenter the document view around the current document selection
           &ndash; same as <span class="k">Tab</span><span class="k">l</span>
@@ -2879,7 +2996,7 @@
         </li>
         <li>
           <span class="k">Ctrl&nbsp;p</span>
-          Enclose the stack top in parentheses
+          Enclose the stack top in <strong>p</strong>arentheses
           &ndash; same as <span class="k">(</span>
         </li>
         <li>
@@ -2887,11 +3004,11 @@
           <code>f\enspace x\enspace y \Rightarrow f(x,y)</code>
           &ndash; same as <span class="k">/</span><span class="k">r</span>
         </li>
-        <!-- <li>
+        <li>
           <span class="k">Ctrl&nbsp;R</span>
           <code>f\enspace x\enspace y\enspace z \Rightarrow f(x,y,z)</code>
           &ndash; same as <span class="k">/</span><span class="k">R</span>
-        </li> -->
+        </li>
         <li>
           <span class="k">Ctrl&nbsp;s</span>
           Save the current document
@@ -2901,7 +3018,7 @@
           <code>f \Rightarrow f(t)</code>
         </li>
         <li><span class="k">Ctrl&nbsp;u</span>
-          Make superscript &ndash; same as <span class="k">`</span>
+          Make superscript (<strong>u</strong>p) &ndash; same as <span class="k">`</span>
           or <span class="k">^</span>
         </li>
         <li><span class="k">Ctrl&nbsp;v</span>
@@ -2909,21 +3026,24 @@
           &ndash; same as <span class="k">Tab</span><span class="k">v</span>
         </li>
         <li><span class="k">Ctrl&nbsp;w</span>
-          Put the stack top into a temporary &quot;floating&quot; spot, or put it back
-          on the stack again
+          Put the stack top into a temporary &quot;floating&quot; spot
           &ndash; same as <span class="k">Tab</span><span class="k">w</span>
+        </li>
+        <li><span class="k">Ctrl&nbsp;W</span>
+          Pop the lowest floating item back onto the stack
+          &ndash; same as <span class="k">Tab</span><span class="k">W</span>
         </li>
         <li><span class="k">Ctrl&nbsp;x</span>
           <code>f \Rightarrow f(x)</code>
-        </li>
-        <li><span class="k">Ctrl&nbsp;z</span>
-          Undo last action
-          &ndash; same as <span class="k">Tab</span><span class="k">z</span>
         </li>
         <li>
           <span class="k">Ctrl&nbsp;y</span>
           Redo actions undone by 'undo'
           &ndash; same as <span class="k">Tab</span><span class="k">y</span>
+        </li>
+        <li><span class="k">Ctrl&nbsp;z</span>
+          Undo last action
+          &ndash; same as <span class="k">Tab</span><span class="k">z</span>
         </li>
         <li>
           <span class="k">Ctrl&nbsp;/</span>
@@ -2946,6 +3066,26 @@
           &ndash; same as <span class="k">,</span><span class="k">,</span>
         </li>
         <li>
+          <span class="k">Ctrl&nbsp;.</span>
+          <code>x\Rightarrow \dot x</code>
+          &ndash; same as <span class="k">.</span><span class="k">.</span>
+        </li>
+        <li>
+          <span class="k">Ctrl&nbsp;&#39;</span>
+          <code>x\Rightarrow x^\prime</code>
+          &ndash; same as <span class="k">.</span><span class="k">&#39;</span>
+        </li>
+        <li>
+          <span class="k">Ctrl&nbsp;+</span> or <span class="k">Ctrl&nbsp;=</span>
+          Increment: <code>x\Rightarrow x+1</code>
+          &ndash; same as <span class="k">/</span><span class="k">u</span>
+        </li>
+        <li>
+          <span class="k">Ctrl&nbsp;-</span>
+          Decrement: <code>x\Rightarrow x-1</code>
+          &ndash; same as <span class="k">/</span><span class="k">-</span><span class="k">u</span>
+        </li>
+        <li>
           <span class="k">Ctrl&nbsp;Space</span>
           Join two items with a thin space
           &ndash; same as <span class="k">,</span><span class="k">&nbsp;</span>
@@ -2960,8 +3100,9 @@
       <h2 id="help_examples">Examples</h2>
       <p>
         Key-by-key examples of how to create some different math formulas.
-        You can follow along more easily by docking this User Guide into the document
-        area by pressing <span class="k">?</span> again.
+        <span class="only_if_undocked">You can follow along more easily by docking
+          this user guide into the document area by pressing
+          <span class="k">?</span> again.</span>
       </p>
 
       <h3>Beta function</h3>
@@ -2978,11 +3119,11 @@
           <code>\Rightarrow \int_0^1</code>
         </li>
         <li>
-          <span class="k">t</span><span class="k">.</span><span class="k">c</span><span class="k">;</span><span class="k">a</span><span class="k">1</span><span class="k">-</span><span class="k">`</span>
+          <span class="k">t</span><span class="k">.</span><span class="k">c</span><span class="k">;</span><span class="k">a</span><span class="k">/</span><span class="k">-</span><span class="k">u</span><span class="k">`</span>
           <code>\Rightarrow \left(1-t\right)^{\alpha-1}</code>
         </li>
         <li>
-          <span class="k">t</span><span class="k">;</span><span class="k">b</span><span class="k">1</span><span class="k">-</span><span class="k">`</span>
+          <span class="k">t</span><span class="k">;</span><span class="k">b</span><span class="k">/</span><span class="k">-</span><span class="k">u</span><span class="k">`</span>
           <code>\Rightarrow t^{\beta-1}</code>
         </li>
         <li>
@@ -3024,19 +3165,19 @@
           <code>\Rightarrow \sin{\omega t}</code>
         </li>
         <li>
-          <span class="k">k</span><span class="k">0</span><span class="k">/</span><span class="k">+</span><span class="k">'</span><span class="k">1</span><span class="k">k</span><span class="k">`</span>
+          <span class="k">k</span><span class="k">0</span><span class="k">/</span><span class="k">+</span><span class="k">'</span><span class="k">1</span><span class="k">k</span><span class="k">`</span><span class="k">&nbsp;</span>
           <code>\Rightarrow \sum_{k\ge0}{\left(-1\right)}^k</code>
         </li>
         <li>
-          <span class="k">;</span><span class="k">w</span><span class="k">t</span><span class="k">&nbsp;</span><span class="k">2</span><span class="k">k</span><span class="k">&nbsp;</span><span class="k">1</span><span class="k">+</span><span class="k">`</span>
+          <span class="k">;</span><span class="k">w</span><span class="k">t</span><span class="k">&nbsp;</span><span class="k">2</span><span class="k">k</span><span class="k">&nbsp;</span><span class="k">/</span><span class="k">u</span><span class="k">`</span>
           <code>\Rightarrow {\left(\omega t\right)}^{2k+1}</code>
         </li>
         <li>
-          <span class="k">2</span><span class="k">k</span><span class="k">&nbsp;</span><span class="k">1</span><span class="k">+</span><span class="k">!</span><span class="k">/</span><span class="k">/</span>
+          <span class="k">2</span><span class="k">k</span><span class="k">&nbsp;</span><span class="k">/</span><span class="k">u</span><span class="k">!</span><span class="k">/</span><span class="k">/</span>
           <code>\Rightarrow \frac{{\left(\omega t\right)}^{2k+1}}{\left(2k+1\right)!}</code>
         </li>
         <li>
-          <span class="k">&nbsp;</span><span class="k">&nbsp;</span><span class="k">=</span><span class="k">=</span>
+          <span class="k">&nbsp;</span><span class="k">=</span><span class="k">=</span>
           <code>\Rightarrow \sin{\omega t}=\sum_{k\ge0}{\left(-1\right)}^k\frac{{\left(\omega t\right)}^{2k+1}}{\left(2k+1\right)!}</code>
         </li>
       </ul>
@@ -3082,7 +3223,7 @@
           <code>\Rightarrow \frac{n!}{2\pi i}</code>
         </li>
         <li>
-          <span class="k">'</span><span class="k">y</span><span class="k">f</span><span class="k">z</span><span class="k">/</span><span class="k">o</span><span class="k">z</span><span class="k">/</span><span class="k">d</span><span class="k">i</span><span class="k">z</span><span class="k">z</span><span class="k">.</span><span class="k">0</span><span class="k">-</span><span class="k">n</span><span class="k">1</span><span class="k">+</span><span class="k">`</span><span class="k">/</span><span class="k">/</span><span class="k">&nbsp;</span>
+          <span class="k">'</span><span class="k">y</span><span class="k">f</span><span class="k">z</span><span class="k">/</span><span class="k">o</span><span class="k">z</span><span class="k">/</span><span class="k">d</span><span class="k">i</span><span class="k">z</span><span class="k">z</span><span class="k">.</span><span class="k">0</span><span class="k">-</span><span class="k">n</span><span class="k">/</span><span class="k">u</span><span class="k">`</span><span class="k">/</span><span class="k">/</span><span class="k">&nbsp;</span>
           <code>\Rightarrow \oint\frac{f{\left(z\right)}\,dz}{{\left(z-z_0\right)}^{n+1}}</code>
         </li>
         <li>
@@ -3101,7 +3242,7 @@
           <code>\Rightarrow \frac{1}{\sqrt{{\left(2\pi\right)}^n\det{\boldsymbol{\Sigma}}}}</code>
         </li>
         <li>
-          <span class="k">'</span><span class="k">2</span><span class="k">.</span><span class="k">-</span><span class="k">x</span><span class="k">]</span><span class="k">;</span><span class="k">m</span><span class="k">]</span><span class="k">-</span><span class="k">;</span><span class="k">S</span><span class="k">]</span><span class="k">'</span><span class="k">1</span><span class="k">`</span><span class="k">Tab</span><span class="k">o</span><span class="k">&nbsp;</span><span class="k">,</span><span class="k">`</span><span class="k">&nbsp;</span>
+          <span class="k">'</span><span class="k">2</span><span class="k">.</span><span class="k">-</span><span class="k">x</span><span class="k">;</span><span class="k">m</span><span class="k">-</span><span class="k">]</span><span class="k">;</span><span class="k">S</span><span class="k">]</span><span class="k">'</span><span class="k">1</span><span class="k">`</span><span class="k">Tab</span><span class="k">o</span><span class="k">&nbsp;</span><span class="k">,</span><span class="k">`</span><span class="k">&nbsp;</span>
           <code>\Rightarrow -\frac{1}{2}{\left(\boldsymbol{x}-\boldsymbol{\mu}\right)}^{\mathrm{T}}{\boldsymbol{\Sigma}}^{-1}\left(\boldsymbol{x}-\boldsymbol{\mu}\right)</code>
         </li>
         <li>
@@ -3109,7 +3250,6 @@
           <code>\Rightarrow f{\left(\boldsymbol{x}\right)}=\frac{1}{\sqrt{{\left(2\pi\right)}^n\det{\boldsymbol{\Sigma}}}}\exp{\left[-\frac{1}{2}{\left(\boldsymbol{x}-\boldsymbol{\mu}\right)}^{\mathrm{T}}{\boldsymbol{\Sigma}}^{-1}\left(\boldsymbol{x}-\boldsymbol{\mu}\right)\right]}</code>
         </li>
       </ul>
-
       <p><!-- small spacer --></p>
     </div> <!-- end #helptext -->
   </body>
