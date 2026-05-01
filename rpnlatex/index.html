@@ -9,8 +9,8 @@
     <link rel="manifest" href="manifest.json">
     <!-- <link rel="icon" type="image/png" sizes="64x64" href="favicon-64x64.png"> -->
     <title>rpnlatex</title>
-    <script type="module" crossorigin src="./assets/index-wwqskPgs.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-CaF9ebmT.css">
+    <script type="module" crossorigin src="./assets/index-DFypIgz2.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-Cm6Xudtb.css">
   </head>
   <body id="body">
     <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -20,7 +20,7 @@
 
     <!-- The entire user manual is inline here, to be unhidden at runtime when requested. -->
     <div id="helptext" style="display: none;">
-      <div class="version_info">rpnlatex v1.5.0</div>
+      <div class="version_info">rpnlatex v1.5.1</div>
       <div class="version_info">sympy v1.15.0.dev0</div>
       <h1>User Guide</h1>
       <p>
@@ -310,6 +310,8 @@
           Supported are: <kbd>+, -, *, /</kbd> and <kbd>^</kbd> for powers;
           equations and comparisons may be written using:
           <kbd>x=y, x!=y, x&lt;y, x&gt;y, x&lt;=y, x&gt;=y</kbd>.
+          Full-size fractions use: <kbd>x//y</kbd>
+          <code>\Rightarrow \frac{x}{y}</code>.
         </li>
         <li>
           Multiplication by constants may be written implicitly (like <kbd>5x</kbd>);
@@ -319,20 +321,27 @@
         </li>
         <li>
           Parentheses may be used to indicate precedence:
-          <kbd>(x+1)/(x-1)</kbd> <code>\Rightarrow \displaystyle{\frac{x+1}{x-1}}</code>
+          <kbd>(x+1)//(x-1)</kbd> <code>\Rightarrow \displaystyle{\frac{x+1}{x-1}}</code>
         </li>
         <li>
           Function calls may be written as: <kbd>f(x)</kbd> or <kbd>f[x]</kbd>.
-          Standard math functions like <kbd>sin(x)</kbd> can also be used.
+          Standard math functions like <kbd>sin(x)</kbd> or <kbd>cos x</kbd>
+          can also be used.
         </li>
         <li>
-          Factorial notation (<kbd>x!</kbd>) is allowed.
+          Factorial notation: <kbd>x!</kbd> and prime (derivative) notation:
+          <kbd>x'</kbd> <code>\Rightarrow x^\prime</code>.
         </li>
         <li>
+          <a href="#help_placeholders">Placeholders</a>
+          can be entered with <kbd>[]</kbd>.
+        </li>
+        
+        <!-- <li>
           Column vectors may be entered using square brackets:
           <kbd>[x, y]</kbd> and matrices with nested brackets:
           <kbd>[[1, 2], [3, 4]]</kbd>.
-        </li>
+        </li> -->
       </ul>
       <p>
         <span class="k">Esc</span> (or <span class="k">Ctrl&nbsp;z</span>)
@@ -1932,20 +1941,20 @@
       <ul class="keybindings">
         <li>
           <span class="k">F</span>
-          Change the existing delimiters of the stack top to be of fixed size rather
+          Change the existing delimiters of an expression to be of fixed size rather
           than expanding to fit their contents.
         </li>
         <li>
           <span class="k">x</span> or <span class="k">X</span>
-          Remove delimiters from the stack top if it has any.
+          Remove delimiters from an expression if it has any.
         </li>
         <li>
           <span class="k">l</span> or <span class="k">L</span>
-          Alter the left delimiter of the stack top.
+          Alter the left delimiter of an expression.
         </li>
         <li>
           <span class="k">r</span> or <span class="k">R</span>
-          Alter the right delimiter of the stack top.
+          Alter the right delimiter of an expression.
         </li>
       </ul>
       <p>
@@ -2462,15 +2471,37 @@
         </li>
         <li>Indefinite integrals: <code>\int x^2\,dx \Rightarrow x^3/3</code></li>
         <li>Definite integrals: <code>\int_0^{\pi/3} \tan{x}\,dx \Rightarrow \ln{2}</code></li>
-        <li>Derivatives: <code>\frac{d}{dx} \sin{\omega x} \Rightarrow \omega\cos{\omega x}</code></li>
+        <li>
+          Derivatives:
+          <ul>
+            <li>
+              <code>\frac{d}{dx} \sin{\omega x} \Rightarrow \omega\cos{\omega x}</code>
+            </li>
+            <li>
+              <code>(x^2 + c)^\prime \Rightarrow 2x</code>
+              (assumes <code>x</code> is the variable)
+            </li>
+          </ul>
+        </li>
         <li>Summations: <code>\sum_{k\ge1}\frac{1}{k^2} \Rightarrow \pi^2/6</code></li>
         <li>Products: <code>\prod^2_{k=0}(x+k) \Rightarrow x(x+1)(x+2)</code></li>
         <li>Limits: <code>\lim_{x\to 0} \frac{\sin x}{x} \Rightarrow 1</code></li>
         <li>
           Differential equations with traditional notation:
-          <code>\frac{d^2y}{dx^2}+\omega^2y=0</code>
-          or <code>y^{\prime\prime}+\omega^2y=0</code>
-          or <code>\ddot{x}+\omega^2x=0</code> can all be used
+          <ul>
+            <li>
+              <code>\frac{d^2y}{dx^2}+\omega^2y=0</code>
+              (Leibniz notation - <code>y(x)</code> is inferred from the derivative's variable)
+            </li>
+            <li>
+              <code>y^{\prime\prime}+\omega^2y=0</code>
+              (Lagrange notation - defaults to <code>y(\boldsymbol{x})</code> unless explicitly specified)
+            </li>
+            <li>
+              <code>\ddot{x}+\omega^2x=0</code>
+              (Newton notation - defaults to <code>x(\boldsymbol{t}))</code>
+            </li>
+          </ul>
         </li>
         <!-- integral transforms, etc -->
       </ul>
